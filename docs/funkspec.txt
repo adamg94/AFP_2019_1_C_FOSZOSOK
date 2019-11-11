@@ -1,0 +1,31 @@
+﻿Funkcionális Specifikáció
+-------------------------
+
+1. A rendszer céljai és nem céljai
+
+
+2. Jelenlegi helyzet
+
+
+3. Vágyálomrendszer
+
+
+4. Jelenlegi üzleti folyamatok modellje
+
+
+5. Igényelt üzleti folyamatok modellje
+
+
+6. Követelménylista
+
+
+7. Használati esetek
+
+
+8. Képernyőtervek
+
+
+9. Funkció -> Követelmény: Megfeleltetés
+
+
+10. Fogalomszótár

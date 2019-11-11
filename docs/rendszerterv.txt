@@ -1,0 +1,19 @@
+﻿Rendszerterv
+------------
+
+1. A rendszer célja
+
+
+2. Projekt terv
+
+
+3. Üzleti folyamatok végleges modellje
+
+
+4. Követelménylista
+
+
+5. Funkcionális terv
+
+
+6. Fizikai környezet

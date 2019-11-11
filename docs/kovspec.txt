@@ -1,0 +1,19 @@
+﻿Követelmény Specifikáció
+------------------------
+
+1. Jelenlegi helyzet
+
+
+2. Vágyálomrendszer
+
+
+3. Jelenlegi üzleti folyamatok modellje
+
+
+4. Igényelt üzleti folyamatok modellje
+
+
+5. Követelménylista
+
+
+6. Fogalomszótár
