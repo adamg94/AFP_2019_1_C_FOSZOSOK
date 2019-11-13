@@ -2,7 +2,7 @@
 ------------------------
 
 1. Jelenlegi helyzet
-Jelenleg a megrendelő semmilyen hasnoló rendszerrel nem dolgozott még. A kapcsolattartón keresztül megtudtuk, hogy nagyon elszánt a projektel kapcsolatban és mindenben szabadkezet kapunk egészen addig a pontig ameddig,a kölcségvetés ezt lehetővé teszi, illetve amíg az adott helyzet ezt megköveteli.
+A mai világban elkerülhetelen, hogy egy befektető fejében megforduljon az az ötlet, hogy "mi lenne, ha fognám a pénzem, az ötleteim és megkeresnék vele néhány feltörekvő informatikust akikkel játékot csináltatnék a saját ízlésem szerint. Mivel azt mondják jótól másolni nem szégyen ezért már egy létező játékkal fogok példálózni számukra." Jelenleg a megrendelő semmilyen hasnoló rendszerrel nem dolgozott még. A kapcsolattartón keresztül megtudtuk, hogy nagyon elszánt a projektel kapcsolatban és mindenben szabadkezet kapunk egészen addig a pontig ameddig,a kölcségvetés ezt lehetővé teszi, illetve amíg az adott helyzet ezt megköveteli. Egy faluépítős stratégiai játék tetszett meg a megrendelőnek melynek a használata közben felötlött benne, hogy megannyi jó ötlet hiányzik belőle. Az alap játékot és az általa megálmodott kiegészítéseket szeretné, hogy implementáljuk részére.
 
 
 2. Vágyálomrendszer
