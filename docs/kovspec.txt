@@ -8,6 +8,30 @@ A megrendelő egy olyan többplatformos stratégiai alapokon működő játékot
 2. Vágyálomrendszer
 
 
+Szerző: Gulyás Ádám
+A megrendelő anyagi helyzetére tekintettel egyelőre a következőket szeretné: A megrendelő külön kikötése volt, hogy anyagi helyzetére tekintettel a projekt több szakaszban készüljön el. Szeretné, ha a fejlesztés során figyelembe vennénk a későbbi esetleges továbbfejlesztése lehetőségét, de ezeket, mint kérte nem szeretné belevenni jelenleg. A projektet úgy alkotjuk meg, hogy annak fejlesztése bármikor lehetséges legyen, akár 1 évvel később, ha a megrendelő azt szeretné.
+A megrendelő elvárása egy olyan applikáció, mely egyszerre több platformon is képes futni. Szeretné, ha weben is és asztali alkalmazásként is elérhető lenne. Vezető fejlesztőnk megemlítette számára egy olyan többplatformos lehetőség használatát, ahol webtechnológiával asztali alkalmazást készítünk, s ezt a későbbiekben könnyedén átportolhatjuk böngészős formátumba. Ezt követően mobil és táblagép eszközökről is elérhető lenne, de csak böngészőn keresztül. Felvetettük az android és iOS lehetőségét is, de ő egyelőre az asztali alkalmazást szeretné. A cél a Windows, Linux és MacOSX rendszerekkel való kompatibilitás.
+A játék indításakor egy bejelentkező képernyőt szeretne ami úgy működne, hogy amennyiben olyan felhasználónevet adunk meg ami még nem létezik, akkor azt automatikusan létrehozná a rendszer, azzal a jelszóval amit ott megadtunk. Legközelebb pedig ezzel be tudnánk jelentkezni. 
+A játék úgy nézne ki, hogy vannak nyersanyagtermelők, ezek óránként termelnének nyersanyagokat, háromfélét, s ezekből tudna a játékos épületeket és a termelőket is fejleszteni. A falu grafikus formában is megjelenne, az épületek vizuálisan képként lennének reprezentálva, s minél magasabb a szintjük, annál durvábban néznének ki. Alapvetően három különböző kinézettel fog rendelkezni egy épület. Az épületüknek különböző funkciójuk van, amelyek valamilyen bónuszt adnak a faluhoz.
+Ezek a következők:
+Palota: Itt tudja a játékos fejleszteni az összes többi épületet, a palotát is beleértve. A palota szintjének növelése százalékosan csökkentené az építési időket. A fejlesztések nyersanyagokba és időbe kerülnek. 
+Kereskedőház: Itt tud a játékos nyersanyagot cserélni. A kereskedőház fejlesztésével nő a kereskedők száma.
+Kereskedő műhely: Itt lehet a kereskedők szekereit fejleszteni. Minél nagyobb az épület szintje, annál több nyersanyagot tud magával vinni a kereskedő.
+Templom: A templomban lehetne miséket szervezni, ezzel fenntartva a falu jó hangulatát. A falu babonás és mély hívők tagjai, ha nem kapnak elegendő figyelmet, elkezdik csökkenteni a többi lakók morálját. Ez csökkentett nyersanyagtermelést, megnövekedett fejlesztési időket és megnövekedett költségeket is jelent, hiszen növekszik az alapanyag megsemmisülésének veszélye. A templom fejlesztésével növelhető a misénkénti elégedettség szintje. Az átlagon felüli elégedettség, gyorsabb építkezést és termelést is jelent.
+Fal: A megrendelő szeretné, ha a falut egy védőfal venné körbe. A későbbiekben szeretne ennek egy valamilyenféle védelmi mechanizmust kialakítani, egyelőre azonban nem lesz különösképpen jelentősége. Az összhatás miatt szeretné, ha ez így ebben a formában készülne el.
+Nyersanyagok raktára: Ide kerülne minden nyersanyag, azonban a raktár kapacitása véges. Növelésével több nyersanyagot lehet tárolni.
+Rejtekhely: Egy későbbi mechanika miatt szeretné, ha ez az egyszerű „épület” is elkészülne. Minél nagyobb a szintje, annál több nyersanyagot képes elrejteni mindenféle fenyegetés elől.
+Szobor: Ez az épület akkor épülhetne csak fel, ha a faluban már minden más megépült. Ez szimbolizálja a falu nagyságát, jellemét. A szobor is csak később kapna funkciót. A megrendelő felvetette, hogy ez majd növeli a nyersanyagtermelést, amit most is meg tudunk tenni, a későbbiekben pedig speciális egységek, illetve képzési idők csökkentését is lehetővé fogja tenni.
+Nemesfémkohó: Az ércbánya többnyire csak vasat termel, de bizonyos eséllyel a játékos foghat még aranyt, rezet, ezüstöt. A vasat és az agyagot megmunkálhatja, hogy erősebb, masszívabb nyersanyagot kapjon, de a ritkán talált nyersanyagokat is eladhatja, becserélheti. Az épület megépítésével a Palotában megnyílik a lehetősége az épületeknek nemesfémekkel való fejlesztésére, mely strapabíróbb épületeket eredményez. A különleges anyagokat csak találni és készíteni lehet.
+Malom: A malom az a hely, ahol a megtermelt búzát feldolgozzák. Jó balanszban kell tartani a termelést és feldolgozást, különben veszteséges lesz. A malom szintjének növelésével javítható a búza feldolgozásának a sikeressége. Minél több búzát képes feldolgozni, annál több embert képes eltartani a faluban.
+Búzamezők: A búzamezőkön termesztjük a búzát. Növelésével növelhető a megtermelt búza mennyisége, de csak ésszel, hiszen a Malom alacsony fejlettsége nagy veszteséget okozhat.
+Ércbánya: Vasat termel óránként. Minden megtermelt óra után nő az esélye különleges ércek találásának is. Minél több idő telt el, annál több lesz az esély. Minden órában lefutna egy függvény ami megpróbálna találni valamennyi különleges ércet. Ha nem sikerül, tovább nő az esély a következő órára. Így a rendszer úgy lesz megalkotva, hogy egy bizonyos idő után biztosan kapjon különleges ércet a játékos. A 30. szinttől láthatóvá válik a jelenlegi esély egy különleges ércre, majd minden további 5. szintnél még több különleges érc esélyei láthatóvá válnak.
+Agyagbánya: Agyagot termel, amit a Nemesfémkohóban kővé is alakíthatunk. Az agyag fontos nyersanyag az épületek fejlesztésénél.
+Favágó: Fát termel.
+A megrendelő beszélgetésünket itt lezárja, kijelenti, hogy ígényét ezekben szeretné meghatározni, egyelőre nem szeretne többet. Kérdésünkre felvázolta, hogy a jövőben miket szeretne:
+Központi szervert, ahol a játékosok egymás ellen játszhatnának. Egységeket, melyekkel támadni/védekezni lehet. Szövetségi rendszert, ahol a játékosok összegyűlhetnek. A megrendelő kiköti, hogy a projekt sikerességén múlik a továbbfejlesztés.
+
+
 3. Jelenlegi üzleti folyamatok modellje
 
 
