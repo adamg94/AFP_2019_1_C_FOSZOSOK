@@ -1,1 +1,15 @@
-keccs
+Adatbázisterv: Csak 95%-ban OK, lehet kihagytunk valamit.
+Felhasznalo_tabla
+{id,nev,jelszo}
+Falu_tabla
+{id,felh_id,palota,fal,ercbanya,agyagbanya,fatelep,szobor,rejtekhely,kereskedohaz,kereskedomuhely,templom,nyersanyagraktar,nemesfemkoho,malom,buzamezo,}
+Fejlesztes_tabla
+{id,faluid,epulet_jel szint,epitesi_ido,start_time_UNIX}
+
+Osztályterv: nagyon kezdetleges
+ősosztályok:
+Epulet{id,nev,leiras,szint,kep_sources[tomb],MainFunction override, vagy gyerekosztályokba}
+Termelo{id,nev,liras,szint,mennyiseg,kep_sources[tomb]}
+gyerekosztályok:
+palota {extend: Epulet, MainFunction override, vagy nem és helyette saját funckciói: megjelenít tábla, fejleszt/épít/rombol, stb.}
+ercbanya{extend: Termelo, saját funkció: 30,35,40. szinten megjeleníteni az esélyt: réz,ezüst,arany}
