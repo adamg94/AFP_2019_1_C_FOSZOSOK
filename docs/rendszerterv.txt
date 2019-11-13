@@ -5,7 +5,33 @@
 
 
 2. Projekt terv
+A rendszer megalkotásához szükség van a rendelkezésre álló számítógépekre, valamint szükség van a nodejs és annak az
+electron package-ének letöltésére. 
 
+A projekten dolgozó emberek és felelősségeik:
+Gulyás Ádám
+Komjáti Ákos
+Török Dániel István
+Unger Erik
+Git repo folyamatos frissítése, amint valami elkészül, valamint folyamatos kapcsolattartás és megbeszélés a projektben résztvevők között.
+
+Ütemterv: 
+November 20: dokumentációk elkészítése, adatbázis, osztályok megtervezése, integrálása, működő prototípus készítése.
+December 1: Kódolás befejezése
+December 2: Tesztelés elkezdése, esetleges bugok javítása.
+December 10: Tesztdokumentációk véglegesítése, leadáskész állapot létrehozása. 
+December 11: Projekt bemutatása.
+
+Mérföldkövek:
+I. Feladatok meghatározása, kiosztása megegyezés szerint.
+II. Dokumentáciiók, képernyő tervek elkészítése.
+III. Osztályok meghatározása és Adatbázis modelljének megtervezése
+IV. Különböző modulok elkészítése.
+V. Modulok integrálása.
+VI. Front-end elkészítése.
+VII. Tesztelés befejezése, teszdokumentáció írása
+VIII. Felkészülés a projekt bemutatására.
+IX. Projekt bemutatása
 
 3. Üzleti folyamatok végleges modellje
 
