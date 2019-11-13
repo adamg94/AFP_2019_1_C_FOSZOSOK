@@ -2,7 +2,7 @@
 ------------------------
 
 1. Jelenlegi helyzet
-Jelenleg a megrendelő semmilyen hasnoló rendszerrel nem dolgozott még. A kapcsolattartón keresztül megtudtuk, hogy nagyon elszánt a projektel kapcsolatban és mindenben szabadkezet kapunk egészen addig a pontig ameddig,a kölcségvetés ezt lehetővé teszi, illetve amíg az adott helyzet ezt megköveteli.
+
 
 
 2. Vágyálomrendszer
