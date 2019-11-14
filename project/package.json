@@ -1,0 +1,34 @@
+{
+  "name": "village-builder",
+  "version": "1.0.0",
+  "description": "A strategy game based on building villages. ",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamg94/AFP_2019_1_C_FOSZOSOK.git"
+  },
+
+  "keywords": [
+    "village",
+    "strategy",
+    "strategy",
+    "game",
+    "game",
+    "building",
+    "game"
+  ],
+  "author": "Gulyás Ádám, Török Dániel, Komjáti Ákos, Unger Erik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adamg94/AFP_2019_1_C_FOSZOSOK/issues"
+  },
+  "homepage": "https://github.com/adamg94/AFP_2019_1_C_FOSZOSOK#readme",
+  "dependencies": {
+    "electron": "^7.1.1",
+    "express": "^4.17.1"
+  }
+}
