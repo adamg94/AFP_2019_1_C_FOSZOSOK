@@ -42,7 +42,7 @@ A bejelentkezést követően hozzáférést kell adni a játékos már meglévő
 A játékos innentől kezdve szabadkezet kap, úgy gazdálkodik a falujával, ahogy szeretne, termelhet, építkezhet, fejleszthet stb.
 Játék közben a háttérben passzívan termelődik a nyersanyag folyamatosan, fejlődnek az épületek.
 A megrendelő külön kiemelte, hogy a játék bezárásakor se álljon le a fejlesztés és a termelés.
-Modell: lásd kovspecUzletModell
+Modell: lásd Pictures/kovspecUzletModell.png
 
 5. Követelménylista
 
