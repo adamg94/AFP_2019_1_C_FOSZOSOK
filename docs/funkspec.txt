@@ -58,6 +58,19 @@ Interjúnkat itt zárjuk a megrendelővel. A megrendelő közli, hogy szeretné,
 
 7. Használati esetek
 
+Egy szerepkör lesz elérhető az eddigiek megbeszélt alapján, ezt hívjuk játékosnak.
+-Regisztráció: a játékos akadálymentesen regisztrálhat.
+-Bejelentkezés: be tud jelentkezni, ha már regisztrált.
+-Profil: a profilját megtekintheti, módosíthatja adatait.
+
+Épületek:
+-Menüpontok kezelése: a menüpontokat kedve szerint böngészheti és olvashatja azok összes tartalmát.
+-Építkezés indítása: a falujában még meg nem épített épület megépítését elindíthatja.
+-Épület szintjének növelése: ha már a faluja tartalmazza az épületet, és ha az adott épület még nem érte el a maximum szintjét akkor a megfelelő nyersanyag mennyiség befektetésével elindíthatja a folyamatot.
+-Épület lerombolása: ha úgy dönt, hogy már nincs szüksége egy épületre lerombolhatja azt, növelve az épület értékének egy részével a nyersanyagait.
+-Épület funkciójának használata: az egyes épületek saját funkcióit használhatja.
+
+Lásd: haszalat.png
 
 8. Képernyőtervek
 
