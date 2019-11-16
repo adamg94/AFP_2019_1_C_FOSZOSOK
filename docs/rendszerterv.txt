@@ -8,6 +8,8 @@
 A rendszer megalkotásához szükség van a rendelkezésre álló számítógépekre, valamint szükség van a nodejs és annak az
 electron package-ének letöltésére. 
 
+A szerepkörök még nem kerültek kiosztásra, a TODO lista szerint fog megtörténnie a későbbiekben,
+
 A projekten dolgozó emberek és felelősségeik:
 Gulyás Ádám
 Komjáti Ákos
@@ -15,9 +17,13 @@ Török Dániel István
 Unger Erik
 Git repo folyamatos frissítése, amint valami elkészül, valamint folyamatos kapcsolattartás és megbeszélés a projektben résztvevők között.
 
+A fejlesztés SCRUM módszer keretei között zajlik.
+A megbeszélések játszanak nagyon nagy szerepet ebben a módszerben, mert a sprintek után, a mi esetünkben szerdán, tudunk megbeszélést tartani, ilyenkor átbeszélve, hogy kinek mi okozott esetleges nehézséget és esetlegesen segíteni is tudjuk egymást. Ilyen megbeszéléseken jött létre az adatbázis- és osztályterv is.
+
 Ütemterv: 
-November 20: dokumentációk elkészítése, adatbázis, osztályok megtervezése, integrálása, működő prototípus készítése.
-December 1: Kódolás befejezése
+November 20: Dokumentációk elkészítése, adatbázis, osztályok megtervezése.
+November 27: Prototípus készítése.
+December 1: Kódolás befejezése.
 December 2: Tesztelés elkezdése, esetleges bugok javítása.
 December 10: Tesztdokumentációk véglegesítése, leadáskész állapot létrehozása. 
 December 11: Projekt bemutatása.

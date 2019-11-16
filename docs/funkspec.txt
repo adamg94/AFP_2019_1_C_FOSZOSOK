@@ -48,7 +48,7 @@ Interjúnkat itt zárjuk a megrendelővel. A megrendelő közli, hogy szeretné,
 
 
 4. Jelenlegi üzleti folyamatok modellje
-
+A webes stratégiai jétékok igen népszerűek még manapság is, viszont rengetek pay-to-win funkció van bennük, ami rengeteg embert frusztrál és elveszi a kedvüket egy idő után. Ahogy azt sokan látják szükség lenne a piacnak, egy hasonló játékra, amely nem engedi meg, hogy a fizető játékosok behozhatatlan előnyre tegyenek szert. Sajnos ezek az elemek nem csak az ilyen típusú játékokban léteznek, hanem rengeteg ingyenes játékban és néhány fizetősben is, ami lássuk be elég kiábrándító. Azok akik nem tehetik meg, vagy egyszerűen nem szeretnék megtenni, hogy fizessenek egy ilyen játékba, hamar otthagyják azt, vagy vannak akik el se kezdik. Továbbá ezekben a böngészős játékokban ugyanúgy jelen vannak a reklámfelületek is, tehát akkor is rengeteget keresnének a játékosokon, ha azok nem fizetnének a fizetős funkciókért. Sok játékfejlesztő vette észre ezt a "piaci rést" és úgy gondolták tovább, hogy a fizetős funkciók csak olyan "előnyhöz" juttassák a játékosokat, amelyek nem jelentenek tényleges előnyt. A legáltalánosabb ezek közül a különböző kinézetek árulása, amitől vagányabbnak érzi magát az ember, de semmivel se lesz jobb tőle. Divatos még manapság az úgy nevezett battle pass, aminek a lényege, hogy egy bizonyos összeg befizetése után szinteket léphet a pass és, ha sokat játszik az adott ember, akkor a befizetett összeg többszöröséért kap vizuális jutalmakat. A több éves tapasztalat azt mutatja, hogy az ilyen játékokkal az emberek szívesebben játszanak akár több évet is, ha abban elég tartalom van, valamint emiatt szívesebben vesznek 1-2 kinézet tudván, hogy úgyis sokáig játszanak majd még a játékkal. A megrendelő ezeket az indokokat vázolva keresett meg minket, és szeretne egy a már említett böngészős stratégiai játékokból ismert város fejlesztő játékot készíttetni. Szeretné elkerülni a pay-to-win elemeket ezáltal megtartva a játékosait hosszabb időre. A város fejlesztős játék első verziójában még nem szeretné, hogy kinézeteket tegyünk, szeretné átlátni az egyes funkciók működését. Külön kiemelte, hogy neki nagy szenvedélyei közé tartoznak az ilyen játékok és szeretné, ha egy olyan játék jönne létre, ami megfelel egy új és egy veterán játékos igényeinek is.
 
 5. Igényelt üzleti folyamatok modellje
 
@@ -58,6 +58,19 @@ Interjúnkat itt zárjuk a megrendelővel. A megrendelő közli, hogy szeretné,
 
 7. Használati esetek
 
+Egy szerepkör lesz elérhető az eddigiek megbeszélt alapján, ezt hívjuk játékosnak.
+-Regisztráció: a játékos akadálymentesen regisztrálhat.
+-Bejelentkezés: be tud jelentkezni, ha már regisztrált.
+-Profil: a profilját megtekintheti, módosíthatja adatait.
+
+Épületek:
+-Menüpontok kezelése: a menüpontokat kedve szerint böngészheti és olvashatja azok összes tartalmát.
+-Építkezés indítása: a falujában még meg nem épített épület megépítését elindíthatja.
+-Épület szintjének növelése: ha már a faluja tartalmazza az épületet, és ha az adott épület még nem érte el a maximum szintjét akkor a megfelelő nyersanyag mennyiség befektetésével elindíthatja a folyamatot.
+-Épület lerombolása: ha úgy dönt, hogy már nincs szüksége egy épületre lerombolhatja azt, növelve az épület értékének egy részével a nyersanyagait.
+-Épület funkciójának használata: az egyes épületek saját funkcióit használhatja.
+
+Lásd: haszalat.png
 
 8. Képernyőtervek
 

@@ -37,6 +37,12 @@ Központi szervert, ahol a játékosok egymás ellen játszhatnának. Egységeke
 
 4. Igényelt üzleti folyamatok modellje
 
+A megrendeéő a fő oldalon akar bejelentkezni (felhasználónév, jelszó), olyan páros megadása esetén, ami még nem létezik szeretné, ha egyből regisztrálódna is egy új felhasználó.
+A bejelentkezést követően hozzáférést kell adni a játékos már meglévő vagy újonnan létrejött falujához, és a menüsorhoz.
+A játékos innentől kezdve szabadkezet kap, úgy gazdálkodik a falujával, ahogy szeretne, termelhet, építkezhet, fejleszthet stb.
+Játék közben a háttérben passzívan termelődik a nyersanyag folyamatosan, fejlődnek az épületek.
+A megrendelő külön kiemelte, hogy a játék bezárásakor se álljon le a fejlesztés és a termelés.
+Modell: lásd Pictures/kovspecUzletModell.png
 
 5. Követelménylista
 
