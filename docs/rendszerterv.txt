@@ -18,6 +18,7 @@ Unger Erik
 Git repo folyamatos frissítése, amint valami elkészül, valamint folyamatos kapcsolattartás és megbeszélés a projektben résztvevők között.
 
 A fejlesztés SCRUM módszer keretei között zajlik.
+A megbeszélések játszanak nagyon nagy szerepet ebben a módszerben, mert a sprintek után, a mi esetünkben szerdán, tudunk megbeszélést tartani, ilyenkor átbeszélve, hogy kinek mi okozott esetleges nehézséget és esetlegesen segíteni is tudjuk egymást. Ilyen megbeszéléseken jött létre az adatbázis- és osztályterv is.
 
 Ütemterv: 
 November 20: Dokumentációk elkészítése, adatbázis, osztályok megtervezése.
