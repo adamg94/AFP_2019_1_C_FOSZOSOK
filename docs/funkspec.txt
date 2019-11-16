@@ -53,6 +53,28 @@ A webes stratégiai jétékok igen népszerűek még manapság is, viszont renge
 5. Igényelt üzleti folyamatok modellje
 
 
+A belépési rendszer megvalósítása:
+Ha a felhasználó egy olyan nevet ad meg, ami nem szerepel az adatbázisban,
+akkor azt automatikusan regisztrálja a rendszer, amennyiben az megfelel a követelményeknek.
+Ezen követelmények egybe értendőek a jelszó követelményeivel.
+Amennyiben a felhasználónév létezik, a rendszer ellenőrzi a jelszót,
+s ezt követően a játékba dobja a felhasználót.
+
+Start rendszerek: A játék offline módban nem működik,
+a fejlesztések leállnak, a nyersanyagok cseréje úgy szintén.
+Azonban a megrendelő szeretné, ha ekkor sem állnának le.
+Ezt úgy lehet elérni, ha minden interakció során az adatbáziba elmentjük azt az időt, amikor
+az adott interakció elkezdődött, elmentjük mellé az időt, ami szükséges a folyamat
+végrehajtásához, regisztrálunk egy eseményt a passzív rendszerbe, ami majd élesedik akkor, amikor a folyamat véget ért,
+vagy ha az offline módban van, akkor nem tud aktiválódni. Ezért a start folyamat során lekérjük az időt egy NTP szerverről,
+s kiszámoljuk, hogy az interakciók befejeződtek-e már, vagy még nem, de már haladtak.
+Az időt azért kell NTP szerverről lekérni, mert a játék localhost módban fut, a mögötte lévő
+localhost server pedig az OS rendszeridejét venné alapúl, így a játékos manipulálhatná azt.
+Az aktív rendszerek kiváltanak egy esményt, amit a passzív rendszer háttérfolyamati kezelnek,
+majd ha szükséges az adatbázist frissítik. 
+Modell: lásd Pictures/Funk.Spec. - Igenyelt Uzleti Folyamatok modellje.png
+
+
 6. Követelménylista
 
 
