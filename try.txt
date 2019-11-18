@@ -13,3 +13,16 @@ Termelo{id,nev,liras,szint,mennyiseg,kep_sources[tomb]}
 gyerekosztályok:
 palota {extend: Epulet, MainFunction override, vagy nem és helyette saját funckciói: megjelenít tábla, fejleszt/épít/rombol, stb.}
 ercbanya{extend: Termelo, saját funkció: 30,35,40. szinten megjeleníteni az esélyt: réz,ezüst,arany}
+
+
+
+NTP serverhez ajax call:
+
+fetch('http://worldtimeapi.org/api/timezone/europe/budapest')
+.then(response => response.json())
+.then(result => 
+{
+let date = new Date(result.datetime);
+console.log(d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()); //utcbe majd
+}
+);

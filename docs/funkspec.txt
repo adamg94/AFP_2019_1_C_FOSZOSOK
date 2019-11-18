@@ -11,40 +11,49 @@
 
 
 Szerző: Gulyás Ádám
+
+
 A funkcionális specifikációban úgy tárgyaljuk át a vágyálomrendszert, hogy az egyes elvárásokat, követelményeket a felhasználó szemszöge szerint vizsgáljuk meg, pontosan átbeszéljük a megrendelővel, hogy hogyan is működjön a rendszer, mi hogyan nézzen ki, s a későbbiekben meghatározni a használati eseteket.
 Az applikáció a Javascript nyelvre épülő NodeJS keretrendszerrel fog elkészülni, mely a Javascript-ből egy általános felhasználású scriptnyelvet konstruál, így hasonlóan a Python nyelvhez megtehetünk benne majdnem mindent. A NodeJS-t alapvetően webes használathoz tervezték, de elterjedtségének köszönhetően ma már számos más területen is előre nyomul. Az applikációt az Electron nevezetű szabad keretrendszerrel készítjük el, mely asztali környezetben egy Chromium motoron futtatja a HTML + CSS + JS kódokat, de a végeredmény egy asztali alkalmazás. (Hasonló alkalmazások: Discord, VS Code, Slack… stb)
 A megrendelő megérti, hogy e technológiával a későbbiekben egyszerű lesz a weben is futtatni, kisebb módosításokkal, így elfogadja ezt. A NodeJS platformfüggetlen, így természetesen Linux és MacOSX-en is futtatható.
 Felhasználói felület: A megrendelő úgy gondolta, hogy a bejelentkező ablakon egy felhasználói név, jelszó és egy gomb lesz található, mely abban az esetben, ha a felhasználó még nem létezik, automatikusan létrehozza azt. Vezető designerünk felvetette az ötletét az elrendezéseknek. A megrendelő több lehetséges változatot is kapott. Egyfelől a bejelentkező oldal háttere minden esetben a játékról készült kép lenne, előtérben a beviteli mezőkkel. A háttér kicsit elhomályosítva, a mezők középre rendezve. Egy másik lehetséges megoldás egy bal/jobb oldalt az ablak magasságával megegyező boksz, ami kb 10% széles itt lenne található a bejelentkezés, a maradék 90%-a az ablaknak pedig a kép lenne a játékról. A megrendelőnek ez utóbbi tetszett.
-Játék index oldal: Bejelentkezést/regisztrációt követően egyből egy kezdő faluba dobna a rendszer, a grafikusan megjelenített falu befoglalná a terület 90%-át középen, balra rendezve. Felül  egy menüsor lenne, ahol az egyes épületeket érheti el a felhasználó, illetve saját profilbeállítását, pl. jelszócsere.
+Játék index oldal: Bejelentkezést/regisztrációt követően egyből egy kezdő faluba dobna a rendszer, a grafikusan megjelenített falu befoglalná a terület 90%-át középen, balra rendezve. Felül egy menüsor lenne, ahol az egyes épületeket érheti el a felhasználó, illetve saját profilbeállítását, pl. jelszócsere.
 A falunézet mellett lenne két doboz még, az egyikben a jelenleg rendelkezésre álló nyersanyagok, alatta pedig a termelési információk (milyen nyersanyagot milyen gyorsasággal termel)
 Felhasználói élmény javítása érdekében a nyersanyag kijelzése történhetne egy kliensoldali scripttel, mely mindig frissítené az éppen elérhető mennyiségű nyersanyagokat.
 Programozói megjegyzés: valójában nem frissítés lenne, hiszen ha percenként kapna pl. 1 fát, az azt jelentené, hogy percenként kellene az adatbázist frissíteni. A kijelzés ezért csak vizuális lenne, nem valós adatlekérés. A rendszer úgy működne, hogy egy script elosztja minden percre, hogy hány darab egységet kell kapjon a felhasználó, de nem frissíti az adatbázisban. Úgy működne, hogy az előzőleg elindított építkezésnél le kell menteni az akkor éppen aktuális mennyiségű nyersanyagot és az akkori dátumot, majd ha a felhasználó szeretne valamit fejleszteni, akkor a rendszer megvizsgálja, hogy mennyi idő telt el azóta, ez alatt az idő alatt mennyi nyersanyagot kellett, hogy kapjon, ezt hozzáadja ahhoz ami alapból volt neki a mentésből, s ha ez elegendő, akkor a fejlesztés indulhat. Tehát leegyszerűsítve a nyersanyag termelését és az aktuális mennyiséget nem úgy kell elmenteni, hogy percenként terheljük az adatbázist. A kliensoldalon lévő script reprezentálja, hogy ha ez a valóságban így történne, akkor mennyi nyersanyagunk lenne. Ezt át beszéltük a többi programozóval, nekik is ez a megoldás a kézenfekvő.
 Falunézet: A falunézetet úgy kell kialakítani, hogy az a felhasználónak egyszerű és gyorsan kezelhető legyen. Felmerült egyik kollégánk ötlete, hogy a szinteket egy kis feliratbox-ba megjeleníthetnénk az épületek mellett. A megrendelőnek nagyon tetszett az ötlet, továbbá ez segíti a felhasználót is a tájékozódásban. Az egyes épületekre egérrel is rá lehetne kattintani, nem csak a felső menüsorból, így vizualizálva mintha egy virtuális faluban lenne a felhasználó.
 Épületek nézetei: A megrendelő itt szavunkba vágott és felvetette saját ötleteit, amit a régről ismert. Az épületnézetnél lenne egy leírás az adott épületről, hogy mire való pontosan. Ki lenne jelezve annak neve, szintje és képe. Ezen kívül az oldal többi részén természetesen az adott épület funkcióját meg kell valósítani, melyet a megrendelő az alábbiakban határozott meg:
 Palota: Egy faszerkezetű kialakítás. A játékos egy 1-es szintű palotával, 1-es szintű termelőkkel, 1-es szintű raktárral kezd. Ilyen szinten nem tud még mindent elkezdeni így egy faszerkezet jelölhetné, reprezentálhatná, hogy az adott épülethez mit kell megépíteni ahhoz, hogy használhassa. A palota épületnézetét úgy képzeli el, hogy két fül van, az egyiken az előbb említett faszerkezet, a másikon pedig egy táblázat az épületekről, azok költségeiről és a fejlesztés lehetőségéről.
-Egyik programozónk rákérdez, hogy tulajdonképpen hogy működik az épületfejlesztés? A megrendelő  statálja, hogy minden épületnek van építési ideje, mely akár órákig is tarthat. Itt egyből felmerült bennünk néhány kérdés.
+Egyik programozónk rákérdez, hogy tulajdonképpen hogy működik az épületfejlesztés? A megrendelő statálja, hogy minden épületnek van építési ideje, mely akár órákig is tarthat. Itt egyből felmerült bennünk néhány kérdés.
 Az építések csak „online” idő alatt mennek, vagy „offline” is? Azaz, ha a játék épp nem fut, vagy fut. A megrendelő egyértelműen jelezte, hogy ilyen téren „online” szeretné futtatni.
 Programozói megjegyzés: Ezt meglehet úgy oldani, hogy egy központi szerverről lekérdezzük az időt mindig, amikor egy épület fejlesztése elkezdődik, majd ha újra belép, akkor pedig megnézzük, hogy volt-e fejlesztés és az újonnan lekért idő alapján eltelt-e annyi, amennyi szükséges. Az időt mindenképpen egy megbízható szerverről kell lekérdezni, hiszen az OS idejét a felhasználó kedve szerint változtathatja.
 Egy másik kérdés volt, hogy lehessen-e építési sort létrehozni. A megrendelő igennel válaszolt, egyszerre 3 épület építését lehetne sorba tenni.
 Lebontási lehetőség? A megrendelő szeretné, ha lenne egy Lebontás fül is, ahol lebonthatnánk az épületeket. Ezek valamivel kevesebb ideig tartanak és visszaadnak valamennyi nyersanyagot, amit meg lehetett menteni. (kb 40-50%-át a szintnek)
-Kereskedő ház és kereskedő műhely: A megrendelő a kereskedő házat úgy írta le, hogy 1:1 arányban tudnánk cserélni nyersanyagot a számítógéppel, de ezek a cserék időbe telnének. Az időt a piac szintje csökkentené, illetve több kereskedőnk lehetne. Több kereskedő azt jelenti, hogy több nyersanyagot vihet magával. Vezető programozónk rákérdezett, hogy hogy képzeli el a korábban említett különleges ércek cseréjét. A megrendelő azt mondta, hogy a három alap nyersanyag cseréje 1:1 arányban kell, hogy működjön. Fémet csak 0.50:1 arányban tudnánk cserélni, Követ úgyszintén. Rezet 0.30:1, ezüstöt 0.20:1, s aranyat 0.10:1 arányban. Ezen arányok azt jelentik, hogy ha pl. 100 aranyam van, akkor azért kaphatok 1000 vasat/agyagot/fát. Ugyanakkor a különleges ércek egymás közötti cseréjét is szeretné. Rezet ezüsttért 0.7:1 arányban lehetne, réz és arany aránya 0.4:1, míg arany és ezüst aránya 0.5:1
+Kereskedő ház és kereskedő műhely: A megrendelő a kereskedő házat úgy írta le, hogy bizonyos arányokban tudnánk cserélni nyersanyagokat a számítógéppel, de ezek a cserék időbe telnének. Az időt az épület  szintje csökkentené, illetve több kereskedőnk lehetne. Több kereskedő azt jelenti, hogy több nyersanyagot vihet magával. Vezető programozónk rákérdezett, hogy hogy képzeli el a korábban említett különleges ércek cseréjét. A megrendelő azt mondta, hogy a három alap nyersanyag cseréje 1:1 arányban kell, hogy működjön. Fém és kő egymás közötti cseréje is 1:1. Azonban Fém/Kő nem cserélhető alapanyagra, hiszen azok fejleszthetőek. A többi különleges érc csak található, de egymás között cserélhetőek. Egyedül a rezet lehet majd lebontani fémre/kőre.
+Az arányokat úgy képzeli el, hogy egyesen arányos mennyiségű rézért, kapjon arányos mennyiségű ezüstöt, amit becserélhet arannyá. A lényeg, hogy az arányok ne legyenek megkerülhetőek. Ne legyen olcsóbb a réz rögtön arannyá való alakítása, mintha előbb ezüstté tennénk.
 Programozói kérdések? Hogyan képzeli el a cserét és mi a haszna a kereskedő műhelynek, ha a kereskedők száma a kereskedőház növelésével nő, amivel nő a kapacitás.
 A megrendelő a cserét úgy vázolta, hogy lenne egy táblázat ahol be tudná írni a felhasználó a megfelelő helyre, hogy mit és mire szeretne cserélni. A rendszer pedig megjelenítené az arányokat.
-A műhelyre azt válaszolta, hogy a kereskedők fixen 2000 egységet tudnak magukkal vinni összesen, de a szekér további maximum 75%-ot adna ehhez hozzá, a maximum szinten.
-Templom: A templom úgy működne, hogy lenne benne egy csúszka ami jelölné a jelenlegi jólétet százalékos értékben. Ha ez a szám 75% fölötti, az azt jelenti, hogy különböző bónuszokat kapunk, ha ez alatti akkor minden normális, 50% alatt pedig lassító mechanizmusok lennének, lassab építkezés, drágább építkezés. Miséket lehetne tartani melyek több órásak így egy nap csak ritkán lehetne tartani. A templom szintjének növelése csökkentené a misék idejét, ugyanakkor a miséért járó jólét pontok nem lennének többek, csupán sűrűbben tudnánk őket megszervezni. Ha 30% alatt van a jólét, minden 3x olyan lassú és drága. A jólét 90% fölött fejti ki legnagyobb hatását, minden építkezés és termelés 25%-kal javul.
+A műhelyre azt válaszolta, hogy a kereskedők fixen 500 egységet tudnak magukkal vinni összesen, de a szekér további maximum 100%-ot adna ehhez hozzá, a maximum szinten, tehát egy kereskedő maximum 1000 egységet vihetne magával.
+Templom: A templom úgy működne, hogy lenne benne egy csúszka ami jelölné a jelenlegi jólétet százalékos értékben. Ha ez a szám 75% fölötti, az azt jelenti, hogy különböző bónuszokat kapunk, ha ez alatti akkor minden normális, 50% alatt pedig lassító mechanizmusok lennének, lassabb építkezés, drágább építkezés. Miséket lehetne tartani melyek több órásak így egy nap csak ritkán lehetne tartani. A templom szintjének növelése csökkentené a misék közti időt, ugyanakkor a miséért járó jólét pontok nem lennének többek, csupán sűrűbben tudnánk őket megszervezni. 50% alatt 25%-kal növekedő építési idő, 25%-kal lassabb termelés. 30% alatt 50%-kal több építési idő, 50%-kal lassabb termelés.
+75% fölött 25%-kal több termelés, és 25%-kal csökkentett építés, 90% fölött, ez a két szám 50%-ra nő.
 Fal: Nincs szerepe, csak vizuális megjelenés. 
 Nyersanyag raktár: A különleges érceket is itt tárolnánk, de ezekből jóval kevesebb férhet el majd egységenként. A raktár növelésével nőne az elraktározható mennyiség.
-Rejtekhely: Nem minősül raktárnak, csupán egy bizonyos mennyiséget megvéd minden esetben ha támadás érné a falut. Jelenlegi formájában nem tudná funkcióját érvényesíteni. Ha pl. 500 egységet képes megvédeni, akkor a fosztogatok nem tudnak a raktárból 500 alá lopni magukat nyersanyagonként. A rejtekhely fejlesztésével a 20. szinten lehetőség van kincs elásására, ami egy bonyolultabb nyersanyagvédés lenne. A kincs elásását a különleges ércekkel lehetne csak. Minél nagyobb a rejtekhely szintje annál többet tudna a láda tárolni. Egyszerre csak 1 ládát lehetne elásni és az ott maradhatna örökkön örökké. Az ásásnak és a kiásásnak is van ideje.
-Szobor: Csak akkor épülhessen meg, ha már minden más felépült. Megépülése esetén minden nyersanyagtermelés 15%-kal jobb és a nyersanyagraktár, a rejtekhely összes kapacitása is 20%-kal több lesz. Ezeken kívül még mást is csinálna, de a megrendelő kikötötte, hogy ez egy későbbi fejlesztés.
-Nemesfémkohó: Itt tudnánk megmunkálni a megtermelt agyag és vasat. A megmunkálás időt vesz igénybe cserébe az így kapott fém és kő összességében többet ér, mint a sima vas és agyag. Az agyagot fém-re tudnánk oda-vissza cserélni 0.4:1 arányban.
+Rejtekhely: Nem minősül raktárnak, csupán egy bizonyos mennyiséget megvéd minden esetben ha támadás érné a falut. Jelenlegi formájában nem tudná funkcióját érvényesíteni. Ha pl. 500 egységet képes megvédeni, akkor a fosztogatók elől megvéd 500 egységet alapanyagonként. A rejtekhely fejlesztésével a 20. szinten lehetőség van kincs elásására, ami egy bonyolultabb nyersanyagvédés lenne. A kincs elásását a különleges ércekkel lehetne csak. Minél nagyobb a rejtekhely szintje annál többet tudna a láda tárolni. Egyszerre csak 1 ládát lehetne elásni és az ott maradhatna örökkön örökké. Az ásásnak és a kiásásnak is van ideje.
+Szobor: Csak akkor építhető, ha már minden maximum szintre felépült előtte. Passzív bónuszokat ad hozzá a faluhoz, későbbiekben többet is adhat majd. Megépülése esetén a raktár 25%-kal többet képes raktározni mindenből. A rejtekhely méretére is hatással van, 30%-kal több alapanyag elrejtése és a láda mérete is 20%-kal nagyobb. Egyéb rendszerre nincs hatással.
+Nemesfémkohó: Itt tudnánk megmunkálni a megtermelt agyag és vasat. A megmunkálás időt vesz igénybe cserébe az így kapott fém és kő összességében többet ér, mint a sima vas és agyag.
 Programozói megjegyzés: Aránytáblázat létrehozása a jobb áttekinthetőség kedvéért.
 A felhasználót nagyban segítené egy ilyen táblázat.
-Malom: Ha óránként pl. 1500 búza termelődik, de a malom ennek csak az 5%-át képes feldolgozni. Ez 75. Ennyi embert tudna foglalkoztatni. Mit jelent a foglalkoztatás? Az épületek minél magasabb szintűek, annál több embert igényelnek, de ennek a mechanikának később lenne jelentősége a megrendelő szerint, amikor esetleges egységek is szóba jöhetnének. A malom szintjének növelése növeli a feldogozás mértékét.
-Búzamező: Mennyi búzát termel óránként, fejlesztésével növelhető e összeg. Eleinte nagyon kevés búza termelődik, kb. 100 óránként ez 5 embert jelent egy egyes szintű malommal. A malom fejlesztése kézenfekvőbb ezekben az esetekben, de ez egy felhasználói stratégia.
-Érctermelő: Az érctermelővel kapcsolatban nincs különösebb tárgyalás a megrendelő részéről. A felhasználó felé. Vasat termel óránként. Minden megtermelt óra után nő az esélye különleges ércek találásának is. Minél több idő telt el, annál több lesz az esély. Minden órában lefutna egy függvény ami megpróbálna találni valamennyi különleges ércet. Ha nem sikerül, tovább nő az esély a következő órára. Így a rendszer úgy lesz megalkotva, hogy egy bizonyos idő után biztosan kapjon különleges ércet a játékos. A 30. szinttől láthatóvá válik a jelenlegi esély egy különleges ércre, majd minden további 5. szintnél még több különleges érc esélyei láthatóvá válnak.
+Malom: Passzív épület melyet csak fejleszteni tudunk. A malmot és a búzaföldeket egy jó balanszban kell tartani, ugyanis a malom nem tudja mindig feldolgozni a megtermelt mennyiségű búzát.
+A búzatermelő a maximális szintjén 20000 egységet ad ki, és a malom a maximális szinten ebből csak 19000-et képes feldolgozni naponta, ez azt jelenti, hogy 1000 mindig kárba vész.
+A malom szintjének növelése növeli a feldolgozható búza mennyiségét. Ha sokkal nagyobb a malom, mint a búzaföldek, akkor a malom kihasználatlan. 
+Búzamezők: Passzív termelő, nem óránként, hanem naponta. Ez nem egy elkölthető nyersanyag. Minden építkezés embereket igényel fixen, ezek az emberek a búzamezők által fixen megtermelt egységekből vonódnak le. Eleinte is viszonylag sok búzát termel, de még az épület szintjének növelésével is lassan növekszik.
+
+Érctermelő: Az érctermelővel kapcsolatban nincs különösebb tárgyalás a megrendelő részéről. A felhasználó felé. Vasat termel óránként. Minden megtermelt óra után nő az esélye különleges ércek találásának is. Minél több idő telt el, annál több lesz az esély. Minden órában lefutna egy függvény ami megpróbálna találni valamennyi különleges ércet. Ha nem sikerül, tovább nő az esély a következő órára. Így a rendszer úgy lesz megalkotva, hogy egy bizonyos idő után biztosan kapjon különleges ércet a játékos. A 40. szinttől láthatóvá válik a jelenlegi esély egy különleges ércre, majd minden további 5. szintnél még több különleges érc esélyei láthatóvá válnak.
 Agyag és Fa termelés: Szintén semmi egyéb változás a követelmény specifikáció óta.
 
 Interjúnkat itt zárjuk a megrendelővel. A megrendelő közli, hogy szeretné, hogyha bármit meggondol, akkor a fejlesztés során ezt jelezhesse. A programozók ezt tudomásul veszik.
+
+
 
 
 4. Jelenlegi üzleti folyamatok modellje
@@ -98,6 +107,126 @@ Lásd: haszalat.png
 
 
 9. Funkció -> Követelmény: Megfeleltetés
+
+
+Funkció – követelmény megfeleltetés
+
+1. Alap program: Követelmény, hogy egy platformfüggetlen asztali alkalmazást készítsünk a megrendelő igényei szerint. Az ügyfél továbbá kijelentette, hogy a későbbiekben új megbízásként szeretné továbbfejlesztetni alkalmazását a web és mobileszközök irányába. Adott volt tehát egy olyan megoldás keresése, mely webtechnológiák segítségével asztali alkalmazást hoz létre. Az Electron API használatával ez lehetséges.
+
+2. Bejelentkezés és regisztráció: Az ügyfél azt kérte, hogy a rendszer vizsgálja meg a beírt felhasználónevet, s döntse el arról, hogy az már egy létező fiók-e vagy sem. Ha nem létezik, akkor automatikusan regisztrálja be azt a fiókot, s a beírt jelszót, de ha nem felelne meg a felhasználónév és jelszó a követelményeknek, akkor erről értesíteni kell a felhasználót. Ezt a következőképpen oldottuk meg:
+
+Ha nincs felhasználó, de sikeres a regisztráció: „A rendszerben nem volt ilyen felhasználó, ezért létrehoztuk ezt. Legközelebb az imént megadott adataiddal folytathatod a játékot.”
+
+Ha nincs felhasználó, és sikertelen volt a regisztráció: „A rendszer nem találta a felhasználónevet ezért megkísérelte annak beregisztrálását, de a felhasználónév és/vagy jelszó nem felel meg a követelményeknek: Felhasználó név: [A-z][0-9], jelszó minimum 5 karakter.”
+
+3. Kinézet:
+Belépési terület: Az ügyfél egy kettéosztott képernyőt kért, ahol bal oldalon egy kis sávban a bejelentkező felület található, mellette jobb oldalon a nagyobb terület a játékról egy kimentett statikus kép kissé elhomályosítva. Ezt az akaratát megtettük.
+Játékfelület: A játékba belépve az ügyfél egy menüsort kért fentre középre, ahol a játékos elérheti az összes épületet, s egy profil beállítások menüpontot is.
+
+A profilbeállításokban a felhasználó meg tudja változtatni a falva nevét, saját jelszavát, s kérelmezheti fiókja törlését, mely 3 nappal a kérvényt követően automatikusan törlődik. 
+A menüsor alatt található a játék, két oszlopra szedve. Bal oldalt a nagyobbik félben a játék grafikus megjelenítése, ahol az épületek egymás mellett elhelyezkednek, egy kis doboz jelzi mellettük az épület adott szintjét, s ezen épületekre kattintva bejön maga az épület.
+Jobb oldali oszlop egy információs tér, ahol megtudjuk, hogy miből mennyi nyersanyagunk van, hogy áll a népesség száma, illetve hogy óránként milyen mennyiségben növekszik a három alap nyersanyag. A megrendelő kérése volt, hogy az aktuális nyersanyagok kijelzése legyen „meganimálva”, hogy a felhasználó realtime láthassa, hogy miből mennyije van. Ezt úgy oldottuk meg, hogy a játékba belépéskor a szerverről lekéri az éppen aktuális mennyiséget és azt is, hogy óránként mekkora a termelés, majd ezt elosztotta egészen addig, míg másodpercenként is kitudta
+ jelezni, s kliensoldalon frissítette az adatokat anélkül, hogy a szervert terhelte volna. Ugyanakkor szerveroldalon minden egyes interakció esetén a szerver is kiszámolta másodpercre való lebontásban, hogy abban az adott pillanatban mennyi nyersanyag volt elérhető, de ez a számítás csak interakciók esetén volt, nem pedig minden alkalommal.
+Épületek kinézetei: Ez kétértelmű, maguk az épületek grafikusan kaptak egy fejlődő kinézetet. Az ügyfél azt szerette volna, ha az épületek minél magasabb szintre lépésük esetén jobban néznének ki. Ezt úgy definiálta, hogy megjelenik az épületnél egy új szárny, új emelet, stb. 
+Mindamellett az épületek belső nézetei, avagy funkciói is eltérően néznek ki.
+Palota: A palotát megnyitva egy olyan központi felsőrész jelenik meg, amely egyforma minden épület esetében. Ez a header rész úgy néz ki, hogy egy kép az épületről, mellette az épület neve és szintje, majd leírása, hogy mit lehet ott tenni.
+Ezt követően három fül található az oldalon. Az egyik fülben egy faszerkezet, mely megmutatja, hogy az egyes épületek megépítéséhez mit kell tennie a felhasználónak, hiszen vannak olyan épületek, amelyek nem épülhetnek meg akármikor. A középső fül a default fül, itt végezhetünk építést/fejlesztést. Itt egy táblázatot kapunk magáról az épületekről, kis képükkel, nevükkel és aktuális szintjükkel, nyersanyag szükségleteikkel, időigény, valamint egy fejlesztés/építés gombbal. Miután különleges nyersanyagokkal is megépíthetünk egy épületet, ott vizuálisan a táblázat ezt jelzi, hogy van ilyen lehetőségünk is. A számítások: Mivel az agyag/vas kővé/fémmé alakításának aránya 1:4-hez, ráadásul időigényes, ezért biztos, hogy az eredeti alapanyag árak 25%-tól kisebb értékkel kell dolgozni. A végső képlet: Fa+Agyag+Vas összeadva, beszorozva 0,10-zel, majd az eredmény ketté felezve, az egyik a fém ár, a másik a kő ár.
+Rombolás fül: Ugyan úgy néz ki, mint az építés fül, azt leszámítva, hogy nincs nyersanyagigény, csak időigény.
+Kereskedő ház: A kereskedő házban cserélhetünk nyersanyagokat. A három alap nyersanyagot (Vas, Agyag és Fa) 1:1 arányban cserélhetjük, de ennek a cserének a megtörténte időhöz kötött, mely nő a cserélendő mennyiségtől, azonban csökken az épület szintjétől. Egy kereskedő önmagában 500 egység nyersanyagot tud tárolni minden nyersanyagtípusból. Az épület fejlesztése ezt nem növeli, de a kereskedők számát igen. Különleges ércek cseréje is itt történik: A különleges ércek a következők: Fém, Kő, Arany, Ezüst, Réz. A Fém és Kő az készíthető, a másik három csak található anyag. A fém és vas közötti csere le van tiltva, csak úgy, mint a kő és agyag cseréje, hiszen ezek készíthető elemek.
+Ugyanakkor a Fém és Kő cserélhető egymás között 1:1 arányban. A másik három különleges anyag csak találhatóak, ugyanakkor egymás között cserélhetőek, a réz beváltható fémre/kőre.
+
+A réz és fém/kő aránya 1:3. Ez azt jelenti, hogy 1 egység rézért cserébe 3 egységnyi fém/kő nyersanyagot kapunk. Oda-vissza már nem értendő, hiszen rezet csak találni lehet.
+
+A három különlegesebb érc is cserélhető egymás között.
+Az alábbi táblázat lerövidítve mutatja az arányokat:
+Réz → Ezüst → Arany: 1 → 0.5 → 0.125
+Réz→Ezüst: 1 réz = 0.5 ezüst
+Ezüst → Réz: 1 ezüst = 2 réz
+Réz → Arany: 1 réz = 0.125 arany
+Arany → Réz: 1 arany = 8 réz
+Ezüst→Arany: 0.25 → 1
+Ezüst → Arany: 1 ezüst = 0.25 arany
+Arany → Ezüst: 1 arany = 4 ezüst
+
+Idők meghatározása: 
+Alapnyersanyagok egymás között: 100%
+Réz cseréje Fém/Kő-re: 120%
+Réz, ezüst egymás között: 150%
+Arany és réz/ezüst csere: 200%
+
+Ezen cseréket és arányokat egy táblázat valósítja meg jelezve a felhasználónak a pontos számokat.
+Kereskedő műhely:
+A kereskedő műhely megépítésével és fejlesztésével szekeret adhatunk a kereskedőknek.
+Az épület maximális szintje 10. Minden szinttel 10%-kal növeli a kereskedő alapteherbírását, ami a maximális szinten 100%-ot jelent. Ekkor a kereskedők 1000 egységnyi anyagot képesek majd tárolni.
+
+Templom: A templom épülete passzív buff/debuff hatásokat ad a falura. Alapból 1. szinten megkapjuk ezt az épületet. A templom jelzi a falu lakóinak morálját. A morált bármi tudja módosítani, például a vallás. Ha ez a szám 50 és 75% közötti akkor minden normálisan működik.
+50% alatt gyengítő hatásokat, míg 75% fölött erősítő hatásokat kapunk. Lassító hatások:
+50% alatt 25%-kal növekedő építési idő, 25%-kal lassabb termelés. 30% alatt 50%-kal több építési idő, 50%-kal lassabb termelés.
+Gyorsító hatások: 
+75% fölött 25%-kal több termelés, és 25%-kal csökkentett építés, 90% fölött, ez a két szám 50%-ra nő. A templom szintjének növelése ezeket az értékeket nem módosítja, de gyakrabban tarthatunk miséket. Óránként a morál 3%-kal csökken, Egy mise 18%-ot ad. Egy mise két órán keresztül tart. Misék közötti idő 4 óra → 20 perc az épület szintjétől függően.
+
+Fal: Nincs szerepe, vizuális megjelenés.
+
+Nyersanyagraktár: A Nyersanyagraktárban tároljuk az alapanyagokat és különleges érceket is.
+A két készíthető anyag a kő és a fémből az eredeti kapacitás 50%-a, réz esetén az eredeti 35%-a, ezüst esetén az eredeti 20%-a, míg arany esetén az eredeti 10%-a.
+Példa:
+1000 egység agyag/vas/fa
+500 egység ezüst
+350 egység réz
+200 egység ezüst
+100 egység arany
+
+Rejtekhely: Nem minősül raktárnak, de egy későbbi fejlesztés előfunkciója. Támadás esetén bizonyos egységnyi nyersanyagot elrejt a raktárból.
+Ezek nem százalékos értékek, mindig fix egységek. A szint fejlesztésével nő az elrejthető mennyiség. 20. szintig a különleges érceket nem lehetne védeni, azt követően azonban elérhetővé válna azok elásásának lehetősége. Egyszerre csak egy ládát lehet elásni, de az örökre ott maradna és nem találna rá senki, csak aki elásta. Falufoglalás esetén automatikusan elveszne. Viszonylag nagy mennyiségben lehet elrejteni benne különleges érceket, nincs megszabva, hogy az egyes típusok közül mennyi fér el benne. Az épület szintjének növelésével nő az elásható mennyiség, csökken az ásási idő is. 
+
+Szobor: Csak akkor építhető, ha már minden maximum szintre felépült előtte. Passzív bónuszokat ad hozzá a faluhoz, későbbiekben többet is adhat majd. Megépülése esetén a raktár 25%-kal többet képes raktározni mindenből. A rejtekhely méretére is hatással van, 30%-kal több alapanyag elrejtése és a láda mérete is 20%-kal nagyobb. Egyéb rendszerre nincs hatással.
+
+Nemesfémkohó: A megtermelt agyag és vas megmunkálásának helye. Követ és Fémet készíthetünk ebben az épületben. Minél magasabb az épület szintje a fejlesztés annál rövidebb ideig tart. Az arányok: 
+Agyag/Vas → Kő/Fém 4:1
+Példa: 4 db agyagért 1db követ kapunk.
+
+Malom: Passzív épület melyet csak fejleszteni tudunk. A malmot és a búzaföldeket egy jó balanszban kell tartani, ugyanis a malom nem tudja mindig feldolgozni a megtermelt mennyiségű búzát.
+A búzatermelő a maximális szintjén 20000 egységet ad ki, és a malom a maximális szinten ebből csak 19000-et képes feldolgozni naponta, ez azt jelenti, hogy 1000 mindig kárba vész.
+A malom szintjének növelése növeli a feldolgozható búza mennyiségét. Ha sokkal nagyobb a malom, mint a búzaföldek, akkor a malom kihasználatlan. 
+
+Búzamezők: Passzív termelő, nem óránként, hanem naponta. Ez nem egy elkölthető nyersanyag. Minden építkezés embereket igényel fixen, ezek az emberek a búzamezők által fixen megtermelt egységekből vonódnak le. Eleinte is viszonylag sok búzát termel, de még az épület szintjének növelésével is lassan növekszik.
+
+Vasbánya: A vasbánya egy mély barlang ahol többnyire vasat szednek ki a munkások. Rengeteg ember kell ide, hiszen minél nagyobb a szintje a bányának, annál mélyebb, ezáltal annál többet is termel. Időnként azonban lehetőség van réz, ezüst és arany találására is. Rezet valamivel hamarabb találunk, mint ezüstöt, de aranyat csak ritkán. Ezen ércek találására óránként van esély. Miután egy egységet találtunk nullázódik az alapesély. Azonban, ha nem találtunk egy egységet egy óra alatt, akkor az esély növekedni fog. Egy pont után biztosan találni fogunk. A 40. szinttől kezdve látható lesz az ércek találásának esélyei. 40. szinten a rézé, 45. szinten az ezüstté és az utolsó 50. szinten pedig az aranyé is.
+
+Agyag és Fatermelő: Ezek teljesen ugyanannyi agyagot és fát termelnek, mint a vas, ha mindhárom azonos szinten van. Nincs különösebb funkciójuk, passzív épületek.
+
+4. Adatmentés
+Az adatok mentésére MongoDB adatbázis-kezelő rendszert használ a projekt, hiszen ez mostanában egy eléggé elterjedt gyors rendszer. Adatbázis tervezése során mindenképpen oda kellett figyelni a jól megtervezett, s normalizált alakok használatára. A végeredmény így néz ki:
+
+Felhasználó { id, név, jelszó }
+
+Falu { id, név, Felhasználó.id, Épületlista.id }
+
+Épületlista { id, Falu.id, level_palota, level_fal, level_vas, level_fa, level_agyag, level_buza, level_malom, level_kereskedo, level_kmuhely, level_szobor, level_koho, level_rhely, level_templom, level_raktar }
+
+Építés { id, Épületlista.Id, Épületlista.épületneve, level(+/-), ntp_utc_start time, utc_jobtime }
+
+Nyersanyag { faluid, ammount_fa, ammount_vas, ammount_ko, ammount_agyag, ammount_fem, ammount_buza, ammount_rez, ammount_ezust, ammount_arany, ammount_workers }
+
+Templom { faluid, level_moral }
+
+Rejtekhely {  faluid, ammount_fa, ammount_vas, ammount_ko, ammount_agyag, ammount_fem, ammount_buza, ammount_rez, ammount_ezust, ammount_arany }
+
+Kincs {  faluid, ammount_rez, ammount_ezust, ammount_arany }
+
+
+5. Játékfolyam
+
+A játékot úgy próbáltuk megalkotni, hogy a lehető legkevésbé terhelje le a szervert. Ezért megalkodtuk az interakciók és eseménykezelők rendszert, ahol az interakciók az egyedüli rendszerek, melyek az adatbázissal és a szerverrel is kommunikálnak. Az eseménykezelők pedig azok az időhöz kötött rendszerek, melyeknek szükséges bekövetkezniük egy idő lejártakor.
+A megjelenített adatok animációi, mind kliensoldalon hajtódnak végre. Amikor építés történik a gombra való kattintáskor a szerver megvizsgálja, hogy biztosan van-e annyi nyersanyagunk. Viszont a kliensoldal is kiszámolja ezt, s amíg nincs elég mennyiség, addig nem enged rányomni. 
+
+6. Interakciók
+Minden olyan cselekvés, amely a játékban valamilyen folyam elindítását jelzi. Ezek lehetnek fejlesztések rombolások, nyersanyag cseréi, nyersanyag fejlesztése stb. Minden ilyen interakció beregisztrál egy eseményt, amit online játék esetén a rendszernek végre kell majd hajtania.
+Offline módban azért nem kell, mert minden belépéskor frissíti az adatbázist, lekérve az NTP időt s ez alapján ha már korábban véget ért valami, csak frissíti annak tulajdonságait.
+
+7. Eseménykezelő
+Az interakciók beregisztrálnak eventeket, amiket egy kliensoldali timer fog triggerelni. A folyamat során az adatok frissítése történik.
+
 
 
 10. Fogalomszótár
