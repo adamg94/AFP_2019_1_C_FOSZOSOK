@@ -2,6 +2,16 @@
 -------------------------
 
 1. A rendszer céljai és nem céljai
+A rendszer célja megvalósítani az adott eszközökkel egy többplatformos stratégiai alapokon működő korszerű játékot. Legjobban a Travian: Legends-hez tudom hasonlítani, annyi különbséggel, hogy ez egy asztalon is futtatható játék lesz nem pedig egy teljesen böngészőhöz kötött. Az alapok melyekkel szembe kell néznünk: 
+- Megnyerő világ melybe bárki szívesen tölti el a szabadidejének azt a kis részét melyet erre tud fordítani.
+- Nyersanyagok és egyéb erőforrások méreteinek és költségeinek fixálása
+- Lényeges stratégiai pontok ismertetése a játékossal (ne halljon éhen a város/faluja két óra alatt)
+- Tovább fejleszthetőség megtartási (későbbi kinézetek hozzáadásának lehetőségével)
+- Költségek ismertetése a játékossal
+Az interneten megismert több hasonló játéból szerzett tapasztalatok alapján a játéknak nem célja:
+- Megvezetni a felhasználót azzal kapcsolatban, amit vesz
+- Pay-to-win modell elkerülése
+- Minden jól ismert reklám trükk kihagyása hiszen nem azért fizet a játékos, hogy hosszú másodperceken keresztül bámulhasson valami ezerszer hallott éppen aktuális reklámot.
 
 
 2. Jelenlegi helyzet
