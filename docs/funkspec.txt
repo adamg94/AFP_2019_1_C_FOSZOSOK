@@ -5,7 +5,7 @@
 
 
 2. Jelenlegi helyzet
-
+A megrendelő egy olyan többplatformos stratégiai alapokon működő játékot szeretne. Említése szerint évekkel ezelőtt Ő maga is játszott olyan böngészős játékokkal, amelyeknek az volt a célja, hogy az interneten marasztalja a felhasználót, közben pedig sok hirdetés ment a háttérben. A későbbiekben ez a rendszer változott és igazi pénzért játékon belüli fizetőeszközt is lehetett vásárolni. Ezen játékok többnyire gondolkodós, stratégiát kidolgozós módszereket követeltek a felhasználótól, de a lényeg a szórakozás volt. Az interneten megismert több hasonló játékot és be szeretne szállni a konkurensek mellé, egyedi ötleteivel. A megrendelő úgy szeretné, hogy az alkalmazást több fázisban készítsük el, így nem kell egyszerre sok pénzt áldoznia, ha a projekt nem válik be, akkor válthat. Úgy beszéltük meg, hogy a játék fejlesztéseit olyan nagyobb csoportokra bontjuk, melyek elkészülte után a játék tényleges, játszható formába kerül.
 
 3. Vágyálomrendszer
 
