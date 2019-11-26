@@ -40,7 +40,7 @@ A megrendelő szeretne egy stratégiai játékot hiszen ezek manapság nagyon n�
 
 4. Igényelt üzleti folyamatok modellje
 
-A megrendeéő a fő oldalon akar bejelentkezni (felhasználónév, jelszó), olyan páros megadása esetén, ami még nem létezik szeretné, ha egyből regisztrálódna is egy új felhasználó.
+A megrendelő a fő oldalon akar bejelentkezni (felhasználónév, jelszó), olyan páros megadása esetén, ami még nem létezik szeretné, ha egyből regisztrálódna is egy új felhasználó.
 A bejelentkezést követően hozzáférést kell adni a játékos már meglévő vagy újonnan létrejött falujához, és a menüsorhoz.
 A játékos innentől kezdve szabadkezet kap, úgy gazdálkodik a falujával, ahogy szeretne, termelhet, építkezhet, fejleszthet stb.
 Játék közben a háttérben passzívan termelődik a nyersanyag folyamatosan, fejlődnek az épületek.
@@ -51,3 +51,19 @@ Modell: lásd Pictures/kovspecUzletModell.png
 
 
 6. Fogalomszótár
+
+free-to-play: Teljesen ingyenesen játszható játék, ezeknek a játékoknak általában különböző kinézetekből, kiegészítőkből jön be a pénze, amit a játékos megvásárolhat a játékon belül
+
+applikáció: Más néven alkalmazás, ami egy számítógépes program, ami egy fordítóprogram segítségével készül el egy forráskódból.
+
+platform: Jól behatárolható jellemzőkkel, rendelkező számítógépes hardver vagy szoftverkörnyezet. A platform egy tipikusan egy konkrét operációs rendszert vagy egy hardverarchitektúrát jelöl, de előfordulhat pl mobil platform is.
+
+asztali alkalmazás: A szoftver, amely utasítja a futó számítógépet vagy eszközt, hogy megtegye, amit a programozó tervezett. Azt is elmondják, hogy a számítógép vagy az eszköz hogyan tegye meg, mit tegyen, milyen módon stb.
+
+kompalibilitás: A számítástechnikában készülékek, berendezések, programok, alkalmazások együttműködését, összekapcsolhatóságát jelentő tulajdonság.
+
+Android: A Google saját mobil operációs rendszere, ami Linux kernelt használ. Elsősorban éríntőképernyős mobil eszközökre lett lefejlesztve.
+
+iOS: Az Apple operációs rendszere, amit kizárólag az Apple saját termékeire, készülékeikre fejlesztenek.
+
+morál: Egy csoport, és tagjainak általános összetartása és elszántsága, ami különösen a motiváltság és fegyelem terén mutatkozik meg.
