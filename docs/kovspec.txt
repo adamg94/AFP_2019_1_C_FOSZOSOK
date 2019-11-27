@@ -52,7 +52,9 @@ Modell: lásd Pictures/kovspecUzletModell.png
 
 6. Fogalomszótár
 
-free-to-play: Teljesen ingyenesen játszható játék, ezeknek a játékoknak általában különböző kinézetekből, kiegészítőkből jön be a pénze, amit a játékos megvásárolhat a játékon belül
+free-to-play: Teljesen ingyenesen játszható játék, ezeknek a játékoknak általában különböző kinézetekből, kiegészítőkből jön be a pénze, amit a játékos megvásárolhat pénzért a játékon belül.
+
+pay-to-win: Ez egy elnevezés a játékos társadalom felől, amely azt jelzi, hogy az szóban forgó játékban nagyobb esélye van annak a játékosnak, aki a játékban valós pénzért beszerezhető tartalmakért fizet.
 
 applikáció: Más néven alkalmazás, ami egy számítógépes program, ami egy fordítóprogram segítségével készül el egy forráskódból.
 
