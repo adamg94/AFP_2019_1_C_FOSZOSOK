@@ -67,3 +67,7 @@ Android: A Google saját mobil operációs rendszere, ami Linux kernelt használ
 iOS: Az Apple operációs rendszere, amit kizárólag az Apple saját termékeire, készülékeikre fejlesztenek.
 
 morál: Egy csoport, és tagjainak általános összetartása és elszántsága, ami különösen a motiváltság és fegyelem terén mutatkozik meg.
+
+konkurens: Versenytárs, vetélytárst jelent. Itt pontosan a már meglévő hasonló tematikájú játékok ellen kell "versenyezni".
+
+interakció: Kölcsönös viszony, kölcsönhatást jelent.
