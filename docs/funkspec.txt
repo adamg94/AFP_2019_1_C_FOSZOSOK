@@ -237,8 +237,6 @@ Offline módban azért nem kell, mert minden belépéskor frissíti az adatbázi
 7. Eseménykezelő
 Az interakciók beregisztrálnak eventeket, amiket egy kliensoldali timer fog triggerelni. A folyamat során az adatok frissítése történik.
 
-
-
 10. Fogalomszótár
 
 Megjegyzés(!): Leírom ide is, ami már benne van a követelmény specifikáció "Fogalomszótár" című része alatt.
@@ -261,13 +259,15 @@ iOS: Az Apple operációs rendszere, amit kizárólag az Apple saját termékeir
 
 morál: Egy csoport, és tagjainak általános összetartása és elszántsága, ami különösen a motiváltság és fegyelem terén mutatkozik meg.
 
-konkurens: Versenytárs, vetélytárst jelent. Itt pontosan a már meglévő hasonló tematikájú játékok ellen kell "versenyezni".
+konkurens: Versenytárs, vetélytárst jelent. Itt pontosan a már meglévő hasonló tematikájú játékok ellen kell "versenyezni". Valamiben jobbnak, egyedibbnek kell lennie, hogy ne egyből hátrányból induljunk.
 
 interakció: Kölcsönös viszony, kölcsönhatást jelent.
 
 fixálás: Valaminek a  javítása, balanszálása.
 
 stratégia: A stratégia cselekvések egy hosszabb távú terve egy bizonyos cél elérése érdekében, amely gyakran egy probléma megoldása. Jó stratégiát csak világosan, egyértelműen meghatározott célokhoz dolgozhatunk ki.
+
+trigger: Angol szó; valaminek a kiváltása.
 
 adatbázis: Az adatbázis azonos minőségű (jellemzőjű), többnyire strukturált adatok összessége, amelyet egy tárolására, lekérdezésére és szerkesztésére alkalmas szoftvereszköz kezel.
 
@@ -283,4 +283,4 @@ React: Egy JavaScript front-end könyvtár felhasználói felületek létrehozá
 
 Node.js: JavaScript futási környezet, amely a JavaScript kódot a böngészőn kívül (például egy szerveren) hajtja végre. Platformfüggetlen.
 
-Electron: Az Electron egy futási keretrendszer, amely lehetővé teszi a felhasználó számára asztali alkalmazások létrehozását. HTML5, CSS, and JavaScript-et használ.
+Electron: Az Electron egy futási keretrendszer, amely lehetővé teszi a felhasználó számára asztali alkalmazások létrehozását. HTML5, CSS, és JavaScript-et használ.
