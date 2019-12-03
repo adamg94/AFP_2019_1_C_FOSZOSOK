@@ -54,4 +54,10 @@ Open up a terminal in each of them, and type
 ```ecmascript
 npm start
 ```
-into all three terminals!
+into the client and server terminals!
+
+In the main project folder you have to start the actual app by:
+```ecmascript
+electron .
+```
+
