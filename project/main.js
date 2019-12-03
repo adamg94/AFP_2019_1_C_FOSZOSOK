@@ -13,7 +13,8 @@ createWindow = () =>
         }
 
     })
-    window.loadFile(__dirname + "/views/login.html")
+    //window.loadFile(__dirname + "/views/login.html")
+    window.loadURL("http://localhost:3000/")
     window.on("closed", () => {
         window = null
     })

@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+
+#window-buttons{
+    top: 0;
+    right: 0;
+    position: absolute;
+    z-index: 999;
+}
+#window-buttons ul li{
+    float: left;
+    list-style: none;
+    padding: 10px 25px;
+    color: #f4f4ff;
+    font-family: 'Indie Flower';;
+    font-size: 25px;
+    transition: 100ms all;
+}
+#window-buttons ul li:hover{
+    background: rgba(255,255,255,0.2);
+    cursor: pointer;
+}
+#close:hover{
+    background: tomato !important;
+}
