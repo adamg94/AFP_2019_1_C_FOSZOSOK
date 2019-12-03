@@ -1,8 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
-
-
+const bodyParser = require('body-parser')
 const app = express()
 const SETTINGS = require('./config.js')
 const port = SETTINGS.PORT
@@ -14,6 +13,9 @@ mongoose.connect(`mongodb://${host}:${mport}/afp`, {useNewUrlParser: true, useCr
 
 app.use(cors())
 app.use(express.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
 
 const connection = mongoose.connection
 

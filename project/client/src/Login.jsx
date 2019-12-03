@@ -12,6 +12,8 @@ class Login extends React.Component{
     this.loginOrRegister = this.loginOrRegister.bind(this)
     this.onChangeUsername = this.onChangeUsername.bind(this)
     this.onChangePassword = this.onChangePassword.bind(this)
+    this.onChangeInfo = this.onChangeInfo.bind(this)
+    this.gett = this.gett.bind(this)
 
     this.state = {
       username : '',
@@ -24,6 +26,15 @@ class Login extends React.Component{
   componentDidMount() 
   {
 
+  }
+  onChangeInfo(msg)
+  {
+    this.setState({
+    infoMessage : <p id="info">Info: <span>{msg}</span></p>
+    })
+  }
+  gett(){
+    console.log("gotgotogotogot")
   }
   onChangeUsername(e)
   {
@@ -40,14 +51,43 @@ class Login extends React.Component{
   loginOrRegister(e)
   {
     e.preventDefault()
-    //ellenőrizzük egy egyszerű getkéréssel, hogy él-e a client-server kommunikáció.
-    axios.get("http://localhost:5000/users/")
+    
+    if(this.state.username.length < 5)
+    {
+      this.onChangeInfo("Username length can't be lower than five!")
+      
+    }
+    
+    else if(this.state.password.length < 1)
+    {
+      this.onChangeInfo("Password empty!")
+    }
+    else{
+
+      const User = {
+        username : this.state.username,
+        password : this.state.password
+      }
+      axios.post("http://localhost:5000/users/", User)
       .then(response => {
-        console.log(response)
-        this.setState({
-          infoMessage : response.data[0].username
-        })
+        
+        if(response.data.success)
+        {
+          ///itt kell ilyenkor átírányítani + beállítani majd a tokent
+          this.setState({
+            infoMessage : response.data.message
+          })
+        }
+        else
+        {
+          this.setState({
+            infoMessage : response.data.message
+          })
+        }
+        
       })
+    }
+    
   }
 
   render()
@@ -55,14 +95,15 @@ class Login extends React.Component{
     return (
       <div>
           <aside>
+            {this.state.infoMessage}
             <form onSubmit={this.loginOrRegister}>  
-                <input value={this.state.username} onChange={this.onChangeUsername} type="text" name="username" placeholder="username" />
-                <input value={this.state.password} onChange={this.onChangePassword} type="password" name="password" placeholder="password" />
+                <input required value={this.state.username} onChange={this.onChangeUsername} type="text" name="username" placeholder="username" />
+                <input required value={this.state.password} onChange={this.onChangePassword} type="password" name="password" placeholder="password" />
                 <input type="submit" value="Play" />
             </form>
           </aside>
           <section id="background">
-            <p id="info">{this.state.infoMessage}</p>
+            
           </section>
       </div>
     )
