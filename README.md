@@ -3,7 +3,7 @@
 Village Builder is a cross-platform web-based strategy game focusing on building upgrades.
 
 ## Installation
-Use the npm install to get all the packages. Get a Prompt where the package.js files are. 
+Use the npm install to get all the packages. Get three Prompts where the package.js files are. 
 
 
 Head to these three folders:
