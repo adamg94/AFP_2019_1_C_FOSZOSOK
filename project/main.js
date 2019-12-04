@@ -17,7 +17,7 @@ createWindow = () =>
     window.loadURL("http://localhost:3000/")
     window.on("close", (e) => {
         e.preventDefault()
-        console.log("v")
+        
         window.webContents.executeJavaScript('localStorage.getItem("afp_falu");', true)
               .then((obj) => {
                 let x = JSON.parse(obj)

@@ -77,35 +77,35 @@ class Login extends React.Component{
       }
       axios.post("http://localhost:5000/users/", User)
       .then(response => {
-        console.log(1)
+        
         if(response.data.success)
         {
-          console.log(2)
-          if(response.data.exitCode === 1) //1- registered, 0-logined
+          
+          if(response.data.exitCode === 1) 
           {
-            console.log(3)
+            
             User = {
               username : this.state.username,
               password : this.state.password
             }
-            console.log(4)
+            
             axios.post("http://localhost:5000/users/", User)
               .then(res => {
-                console.log(5)
+               
                 if(res.data.exitCode === 0)
                 {
-                  console.log(6)
+                 
                   this.setState({
                     infoMessage : res.data.message,
                     username : res.data.username,
                     token : res.data.token
                   })
-                  console.log(7)
-                  console.log(res.data)
+                 
                   setInStorage('afp_falu', {token : res.data.token, username : res.data.username})
+                  window.location = "/village"
                 }
                 else{
-                  console.log(8)
+                 
                   this.setState({
                     infoMessage : response.data.message,
                   })
@@ -115,13 +115,13 @@ class Login extends React.Component{
           }
           else if(response.data.exitCode === 0)
           {
-            console.log(9)
+          
             this.setState({
               infoMessage : response.data.message,
               username : response.data.username,
               token : response.data.token
             })
-            console.log(10)
+           
             setInStorage('afp_falu', {token : response.data.token, username : response.data.username})
           }
           
