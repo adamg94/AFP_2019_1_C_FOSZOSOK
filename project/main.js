@@ -15,7 +15,7 @@ createWindow = () =>
 
     })
     window.loadURL("http://localhost:3000/")
-    window.onbeforeunload = (e) => {
+    window.on("close", (e) => {
         e.preventDefault()
         console.log("v")
         window.webContents.executeJavaScript('localStorage.getItem("afp_falu");', true)
@@ -38,14 +38,16 @@ createWindow = () =>
                             }
                             if(result.body.success)
                             {
-                                window = null
-                                e.returnValue = undefined
+                               
+                                e.returnValue = true
+                                window.destroy()
+
                             }
                         }
                     )
                 }
               })
-    }
+    })
     window.on("closed", _ =>{
         window = null
     })
