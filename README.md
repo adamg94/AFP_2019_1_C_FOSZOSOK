@@ -60,4 +60,9 @@ In the main project folder you have to start the actual app by:
 ```ecmascript
 electron .
 ```
+or
+
+```ecmascript
+npm start
+```
 
