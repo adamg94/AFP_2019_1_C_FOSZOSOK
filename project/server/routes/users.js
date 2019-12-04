@@ -77,7 +77,8 @@ router.route('/').post((req, res) => {
                                     "success" : true,
                                     "message" : "Logined!",
                                     "token" : session_result._id,
-                                    "username" : findOne_result.username
+                                    "username" : findOne_result.username,
+                                    "exitCode" : 0
                                 })
                             })
                         })
@@ -124,12 +125,76 @@ router.route('/').post((req, res) => {
                         res.json({
                             "success" : true,
                             "message" : "Registered!",
-                            "username" : username
+                            "username" : username,
+                            "exitCode" : 1
                         })
                     })
                 })
             })
         }
+    })
+})
+
+router.route('/logout').post((req, res) => {
+    const username = req.body.username
+    const token = req.body.token
+
+    User.findOne({ username : username }, (err9, logoutfindOne_result) => {
+        if(err9)
+        {
+            console.log(`User.findOne Error: '${err9}'!`)
+            res.json({"success" : false, "message" : `Server Error! '009'`})
+            return
+        }
+        if(logoutfindOne_result === null)
+        {
+            console.log(`User.findOne() returned null! username: '${username}'!`)
+            res.json({"success" : false, "message" : `'${username}' doesn't exist!`})
+            return
+        }
+        const userId = logoutfindOne_result._id
+        UserSession.findOne({ userId : userId, isDeleted : false }, (err10, usessionfindOne_result) => {
+            if (err10)
+            {
+                console.log(`UserSession.findOne Error: '${err10}'!`)
+                res.json({"success" : false, "message" : `Server Error! '010'`})
+                return
+            }
+            
+            if(usessionfindOne_result === null)
+            {
+                console.log(`UserSession.findOne() returned null! userId: '${userId}'!`)
+                res.json({"success" : false, "message" : `Session doesn't exist!`})
+                return
+            }
+            const tokenFromDb = usessionfindOne_result._id
+            if(tokenFromDb != token)
+            {
+                console.log(`Client and Server session ID mismatch: ${tokenFromDb} <> ${token}!`)
+                res.json({"success" : false, "message" : `Wrong session!`})
+                return
+            }
+            else
+            {
+                usessionfindOne_result.updateOne({
+                    isDeleted : true
+                }, (err11, usessionUpdateResult) => {
+                    if (err10)
+                    {
+                        console.log(`UserSession.updateOne Error: '${err11}'!`)
+                        res.json({"success" : false, "message" : `Server Error! '011'`})
+                        return
+                    }
+                    else 
+                    {
+                        res.json({
+                            "success" : true
+                        })
+                    }
+
+                })
+            }
+        })
     })
 })
 module.exports = router
