@@ -273,6 +273,10 @@ adatbázis: Az adatbázis azonos minőségű (jellemzőjű), többnyire struktur
 
 adatbázis-kezelő rendszer: Az adatbázis-kezelő rendszer többfelhasználós, hálózatos környezetben, adatbázisokhoz való hozzáférést, rendszeres és a felhasználói folyamatok zavartalan működést biztosító szoftveralkalmazás.
 
+battle pass: Egy bizonyos összeg befizetése után szinteket léphet a pass és, ha sokat játszik az adott ember, akkor a befizetett összeg többszöröséért kap vizuális jutalmakat, kinézeteket, egyéb dolgokat.
+
+NTP: Angolul: Network Time Protocol. Számítógépes rendszerek óráinak szinkronizálására szolgáló hálózati protokoll. 
+
 MERN: A MERN egy népszerű technológia a modern egyoldalas alkalmazások létrehozásához. A MERN mozaikszó négy szóból áll: MongoDB, Express, React és Node.js.
 
 MongoDB: Nyílt forráskódú adatbázis-kezelő rendszer. Weben és asztali alkalmazáson is használható. Ingyenes, csak regisztrálni kell.
