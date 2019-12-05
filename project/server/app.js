@@ -24,7 +24,9 @@ connection.once('open', _ =>{
 })
 
 const usersRouter = require('./routes/users')
+const villageRouter = require('./routes/village')
 app.use('/users', usersRouter)
+app.use('/village', villageRouter)
 
 app.listen(port, host, 
     _ => {
