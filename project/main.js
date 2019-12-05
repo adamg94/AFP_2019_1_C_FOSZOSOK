@@ -1,10 +1,10 @@
 const { app, BrowserWindow } = require("electron")
 const request = require('request')
-let window
+let bwindow
 
 createWindow = () =>
 {
-    window = new BrowserWindow({
+    bwindow = new BrowserWindow({
         width: 1600,
         height: 900,
         frame: false,
@@ -14,42 +14,48 @@ createWindow = () =>
         }
 
     })
-    window.loadURL("http://localhost:3000/")
-    window.on("close", (e) => {
+    bwindow.loadURL("http://localhost:3000/")
+    bwindow.on("close", (e) => {
         e.preventDefault()
-        
-        window.webContents.executeJavaScript('localStorage.getItem("afp_falu");', true)
-              .then((obj) => {
-                let x = JSON.parse(obj)
-                if(x && x.username && x.token){   
-                    request.post("http://localhost:5000/users/logout",
-                    {
-                        json: {
-                            username: x.username, 
-                            token: x.token
-                        }
-                    }, (err, result) => {
-                            
-                            if(err)
-                            {
-                                console.log(`logoutRequest Error: '${err}'!`)
-                                res.json({"success" : false, "message" : `Server couldn't perform a logout'`})
-                                return
+        if(bwindow.webContents.getURL() != "http://localhost:3000/"){
+            bwindow.webContents.executeJavaScript('localStorage.getItem("afp_falu");', true)
+                .then((obj) => {
+                    let x = JSON.parse(obj)
+                    if(x && x.username && x.token){   
+                        request.post("http://localhost:5000/users/logout",
+                        {
+                            json: {
+                                username: x.username, 
+                                token: x.token
                             }
-                            if(result.body.success)
-                            {
-                               
-                                e.returnValue = true
-                                window.destroy()
+                        }, (err, result) => {
+                                
+                                if(err)
+                                {
+                                    console.log(`logoutRequest Error: '${err}'!`)
+                                    res.json({"success" : false, "message" : `Server couldn't perform a logout'`})
+                                    return
+                                }
+                                if(result.body.success)
+                                {
+                                
+                                    e.returnValue = true
+                                    bwindow.destroy()
 
+                                }
                             }
-                        }
-                    )
-                }
-              })
+                        )
+                    }
+                })
+            }
+            else{
+                e.returnValue = true
+                bwindow.destroy()
+            }
     })
-    window.on("closed", _ =>{
-        window = null
+
+    bwindow.on("closed", _ =>{
+        bwindow = null
     })
 
 }

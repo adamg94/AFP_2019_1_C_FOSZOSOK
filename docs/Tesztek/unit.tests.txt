@@ -21,3 +21,5 @@ Azonban, ha a felhasználó nem lép be, de ki akar lépni az X gomb megnyomás�
 akkor a rendszer nem engedi őt kiléptetni.
 Miért? Mert az ablakot akkor lehet bezárni, ha a session-t elmentette, de belépés előtt
 nem létezik még a session.
+
+Javítva!
