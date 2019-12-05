@@ -51,7 +51,6 @@ class Login extends React.Component {
 	}
 	loginOrRegister(e) {
 		e.preventDefault();
-
 		if (this.state.username.length < 5) {
 			this.onChangeInfo("Username length can't be lower than five!");
 		} else if (this.state.password.length < 1) {

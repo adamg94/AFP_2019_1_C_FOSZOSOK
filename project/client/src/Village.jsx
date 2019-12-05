@@ -27,7 +27,16 @@ class Village extends React.Component{
 
   componentDidMount() 
   {
-
+    const obj = getFromStorage('afp_falu');
+    if(obj && obj.username && obj.token)
+    {
+      const data = {
+        token : obj.token,
+        username : obj.username
+      }
+      axios.post("http://localhost:5000/users/verify", data)
+        .then(res => console.log(res))
+    }
   }
   onChangeInfo(msg)
   {

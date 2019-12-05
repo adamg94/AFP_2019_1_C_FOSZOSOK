@@ -70,7 +70,7 @@ router.route('/').post((req, res) => {
 							});
 						});
 					} else {
-						console.log(`bcrypt.compare() '${username}' bad pasword!:!`);
+						console.log(`bcrypt.compare() '${username}' bad pasword!`);
 						res.json({ success: false, message: `Wrong credentials!` });
 						return;
 					}
@@ -168,5 +168,46 @@ router.route('/logout').post((req, res) => {
 			}
 		});
 	});
+});
+router.route("/verify").post((req, res) => {
+	const username = req.body.username;
+	const token = req.body.token;
+	User.findOne({ username : username }, (err12, findOne_result) => {
+		if (err12) {
+			console.log(`User.findOne Error: '${err12}'!`);
+			res.json({ success: false, message: `Server Error! '012'` });
+			return;
+		}
+		if(findOne_result === null)
+		{
+			console.log(`User doesn't exist error!`);
+			res.json({ success: false, message: `Server Error!` });
+			return;
+		}
+		const userId = findOne_result._id;
+		UserSession.findOne({ userId : userId, isDeleted : false }, (err13, usessionfindOne_result) => {
+			if (err13) {
+				console.log(`UserSession.findOne Error: '${err13}'!`);
+				res.json({ success: false, message: `Server Error! '013'` });
+				return;
+			}
+			if(usessionfindOne_result == null)
+			{
+				console.log(`UserSession doesn't exist error!`);
+				res.json({ success: false, message: `Server Error!` });
+				return;
+			}
+			const sessionId = usessionfindOne_result._id;
+			if(token != sessionId)
+			{
+				console.log(`Session mismatch! ${sessionId} <-> ${token}`);
+				res.json({ success: false, message: `Session mismatch!` });
+				return;
+			}
+			console.log("Session OK")
+			res.json({ success: true, message: `Session ok!` });
+			return;
+		})
+	})
 });
 module.exports = router;
