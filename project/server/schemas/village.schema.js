@@ -14,46 +14,91 @@ const VillageSchema = new Schema({
     },
     buildings : {
        palace : {
-           type : Number,
-           id : 1,
-           default : 1,
-           max : 50
+           level : {
+               type : Number,
+               default : 1
+           },
+           maxlevel : {
+                type : Number,
+                default : 50
+           },
+           id : {
+                type : Number,
+                default : 1
+           }
        },
        merch : {
-           type : Number,
-           id : 2,
-           default : 1,
-           max : 30
+            level : {
+                type : Number,
+                default : 0
+            },
+            maxlevel : {
+                type : Number,
+                default : 30
+            },
+            id : {
+                type : Number,
+                default : 2
+            }
        },
        merchworkshop : {
-           type : Number,
-           id : 3,
-           default : 0,
-           max : 10
+            level : {
+                type : Number,
+                default : 0
+            },
+            maxlevel : {
+                type : Number,
+                default : 10
+            },
+            id : {
+                type : Number,
+                default : 3
+            }
        },
        temple : {
-           type : Number,
-           id : 4,
-           default : 1,
-           max : 10,
-           moral : 50
+            level : {
+                type : Number,
+                default : 1
+            },
+            maxlevel : {
+                type : Number,
+                default : 10
+            },
+            id : {
+                type : Number,
+                default : 4
+            },
+            moral : {
+                type : Number,
+                default : 50
+            }
        },
        wall : {
-        type : Number,
-        id : 5,
-        default : 0,
-        max : 30
+        level : {
+            type : Number,
+            default : 0
+        },
+        maxlevel : {
+            type : Number,
+            default : 30
+        },
+        id : {
+            type : Number,
+            default : 5
+        }
        },
        warehouse : {
-        sources : {
+            level : {
+                type : Number,
+                default : 1
+            },
+            maxlevel : {
+                type : Number,
+                default : 50
+            },
             id : {
                 type : Number,
                 default : 6
-            },
-            level : {
-                type : Number,
-                default : 1,
-                max : 50
             },
             wood : {
                 type : Number,
@@ -79,18 +124,19 @@ const VillageSchema = new Schema({
                 type : Number,
                 default: 0
             }
-        }
        },
-       hideout : {
-        sources : {
-            id : {
-                type: Number,
-                default : 7
-            },
+       hideout : {      
             level : {
                 type : Number,
-                default : 0,
-                max : 50
+                default : 0
+            },
+            maxlevel : {
+                type : Number,
+                default : 50
+            },
+            id : {
+                type : Number,
+                default : 7
             },
             state : {
                 type : Boolean,
@@ -119,8 +165,7 @@ const VillageSchema = new Schema({
             copper : {
                 type : Number,
                 default: 0
-            }
-        },
+            },
         treasure : {
             silver : {
                 type : Number,
@@ -137,46 +182,102 @@ const VillageSchema = new Schema({
         }
        },
        statue : {
-        type : Number,
-        id : 8,
-        default : 0,
-        max : 1
+        level : {
+            type : Number,
+            default : 0
+        },
+        maxlevel : {
+            type : Number,
+            default : 1
+        },
+        id : {
+            type : Number,
+            default : 8
+        }
        },
        metalfurnace : {
-        type : Number,
-        id : 9,
-        default : 0,
-        max : 10
+        level : {
+            type : Number,
+            default : 0
+        },
+        maxlevel : {
+            type : Number,
+            default : 10
+        },
+        id : {
+            type : Number,
+            default : 9
+        }
        },
        mill : {
-        type : Number,
-        id : 10,
-        default : 1,
-        max : 10
+        level : {
+            type : Number,
+            default : 1
+        },
+        maxlevel : {
+            type : Number,
+            default : 10
+        },
+        id : {
+            type : Number,
+            default : 10
+        }
        },
        wheatfield : {
-        type : Number,
-        id : 11,
-        default : 1,
-        max : 50
+        level : {
+            type : Number,
+            default : 1
+        },
+        maxlevel : {
+            type : Number,
+            default : 50
+        },
+        id : {
+            type : Number,
+            default : 11
+        }
        },
        ironmine : {
-        type : Number,
-        id : 12,
-        default : 0,
-        max : 50
+        level : {
+            type : Number,
+            default : 0
+        },
+        maxlevel : {
+            type : Number,
+            default : 50
+        },
+        id : {
+            type : Number,
+            default : 12
+        }
        },
        brickyard : {
-        type : Number,
-        id : 13,
-        default : 0,
-        max : 50
+        level : {
+            type : Number,
+            default : 0
+        },
+        maxlevel : {
+            type : Number,
+            default : 50
+        },
+        id : {
+            type : Number,
+            default : 13
+        }
        },
        lumberyard : {
-        type : Number,
-        id : 14,
-        default : 0,
-        max : 50
+        level : {
+            type : Number,
+            default : 0
+        },
+        maxlevel : {
+            type : Number,
+            default : 50
+        },
+        id : {
+            type : Number,
+            default : 14
+        }
        }
     },
     constructions : {
@@ -190,7 +291,7 @@ const VillageSchema = new Schema({
         },
         startTime : {
             type : Date,
-            default : 0
+            default : ''
         },
         jobTime : {
             type : Number,

@@ -2,6 +2,12 @@ const router = require('express').Router();
 const request = require('request')
 const Village = require('../schemas/village.schema')
 
+router.route('/').get((req, res) => {
+    Village
+    .find()
+    .then(Villages => res.json(Villages))
+    .catch(err => res.status(400).json(`Error: ${err}`))
+})
 
 router.route('/').post((req, res) => {
     const token = req.body.token;

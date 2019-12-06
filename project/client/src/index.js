@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Village from './Village'
 import Login from './Login';
+import Navigation from './Navigation'
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route } from "react-router-dom"
 
@@ -12,6 +13,7 @@ const routing = (
                 <Login />
             </Route>
             <Route path="/village">
+                <Navigation />
                 <Village />
             </Route>
         </Router>
