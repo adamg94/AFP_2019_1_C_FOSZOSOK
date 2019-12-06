@@ -1,20 +1,9 @@
 import React from 'react'
-import axios from 'axios'
 import './sass/Navigation.sass'
-import { getFromStorage, setInStorage } from './utils/storage'
-import { BrowserRouter as Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 class Navigation extends React.Component{
-  
-  constructor(props)
-  {
-    super(props)
-
-
-  }
-
-  componentDidMount() 
-  {}
+ 
   
   render()
   {

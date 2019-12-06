@@ -23,3 +23,12 @@ Miért? Mert az ablakot akkor lehet bezárni, ha a session-t elmentette, de bel�
 nem létezik még a session.
 
 Javítva!
+
+________________
+Updater rendszer - protípus1
+A játék belépésekor NTP szerverről lekéri az aktuális időt.
+Összehasonlítja az adatbázisban levővel, majd a különbség alapján jóváírja a
+nyersanyagokat. 
+
+Ugyanez a folyamat megtörténik akkor is amikor a játékból kilépnük. A rendszer
+az elvártaknak megfelelően működik.

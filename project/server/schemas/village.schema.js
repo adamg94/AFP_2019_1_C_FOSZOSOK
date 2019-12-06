@@ -12,6 +12,10 @@ const VillageSchema = new Schema({
         type : String,
         default: ''
     },
+    lastupdate : {
+        type : Date,
+        default : ''
+    },
     buildings : {
        palace : {
            level : {
@@ -240,7 +244,7 @@ const VillageSchema = new Schema({
        ironmine : {
         level : {
             type : Number,
-            default : 0
+            default : 1
         },
         maxlevel : {
             type : Number,
@@ -254,7 +258,7 @@ const VillageSchema = new Schema({
        brickyard : {
         level : {
             type : Number,
-            default : 0
+            default : 1
         },
         maxlevel : {
             type : Number,
@@ -268,7 +272,7 @@ const VillageSchema = new Schema({
        lumberyard : {
         level : {
             type : Number,
-            default : 0
+            default : 1
         },
         maxlevel : {
             type : Number,
@@ -279,24 +283,6 @@ const VillageSchema = new Schema({
             default : 14
         }
        }
-    },
-    constructions : {
-        buildingId : {
-            type : Number,
-            default : 0
-        },
-        action : {
-            type : Number,
-            default : 0
-        },
-        startTime : {
-            type : Date,
-            default : ''
-        },
-        jobTime : {
-            type : Number,
-            default : 0
-        }
     }
 })
 

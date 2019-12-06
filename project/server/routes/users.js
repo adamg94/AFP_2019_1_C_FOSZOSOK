@@ -2,6 +2,7 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const User = require('../schemas/user.schema');
 const UserSession = require('../schemas/userSession.schema');
+const request = require('request')
 const salt = 10;
 
 ///REGISTER OR LOGIN METHOD
@@ -54,20 +55,34 @@ router.route('/').post((req, res) => {
 								res.json({ "success": false, "message": `Server Error! '004'` });
 								return;
 							}
-							findOne_result.updateOne({ lastlogin: lastLogin }, (err5, update_result) => {
-								if (err5) {
-									console.log(`findOne_result.updateOne() Error: '${err5}'!`);
-									res.json({ "success": false, "message": `Server Error! '005'` });
+
+
+							request('http://localhost:5000/update/getdate', function (err5_5, response, body) {
+                        
+								if (err5_5) {
+									console.log(`NTP Server call Error: '${err5_5}'!`);
+									res.json({ "success": false, "message": `Server Error! 'v005_5'` });
 									return;
 								}
-								res.json({
-									"success": true,
-									"message": 'Logined!',
-									"token": session_result._id,
-									"username": findOne_result.username,
-									"exitCode": 0
+								let lastLogin  =  JSON.parse(body).result
+								findOne_result.updateOne({ lastlogin: lastLogin }, (err5, update_result) => {
+									if (err5) {
+										console.log(`findOne_result.updateOne() Error: '${err5}'!`);
+										res.json({ "success": false, "message": `Server Error! '005'` });
+										return;
+									}
+									res.json({
+										"success": true,
+										"message": 'Logined!',
+										"token": session_result._id,
+										"username": findOne_result.username,
+										"exitCode": 0
+									});
 								});
-							});
+							})
+
+
+
 						});
 					} else {
 						console.log(`bcrypt.compare() '${username}' bad pasword!`);
@@ -77,40 +92,51 @@ router.route('/').post((req, res) => {
 				});
 			});
 		} else {
-			const regdate = Date.now();
-			bcrypt.genSalt(salt, (err6, salt_result) => {
+
+
+
+			request('http://localhost:5000/update/getdate', function (err6, response, body) {
+                        
 				if (err6) {
-					console.log(`bcrypt.genSalt() Error: '${err6}'!`);
+					console.log(`NTP Server call Error: '${err6}'!`);
 					res.json({ "success": false, "message": `Server Error! '006'` });
 					return;
 				}
-				bcrypt.hash(password, salt_result, (err7, hashedPassword) => {
-					if (err7) {
-						console.log(`bcrypt.hash() Error: '${err7}'!`);
-						res.json({ "success": false, "message": `Server Error! '007'` });
+				let regdate  =  JSON.parse(body).result
+				bcrypt.genSalt(salt, (err6, salt_result) => {
+					if (err6) {
+						console.log(`bcrypt.genSalt() Error: '${err6}'!`);
+						res.json({ "success": false, "message": `Server Error! '006'` });
 						return;
 					}
-					const newUser = new User({
-						username: username,
-						password: hashedPassword,
-						regdate: regdate,
-						lastlogin: lastLogin
-					});
-					newUser.save((err8, save_result) => {
-						if (err8) {
-							console.log(`newUser.save() Error: '${err8}'!`);
-							res.json({ "success": false, "message": `Server Error! '008'` });
+					bcrypt.hash(password, salt_result, (err7, hashedPassword) => {
+						if (err7) {
+							console.log(`bcrypt.hash() Error: '${err7}'!`);
+							res.json({ "success": false, "message": `Server Error! '007'` });
 							return;
 						}
-						res.json({
-							"success": true,
-							"message": 'Registered!',
-							"username": username,
-							"exitCode": 1
+						const newUser = new User({
+							username: username,
+							password: hashedPassword,
+							regdate: regdate,
+							lastlogin: regdate
+						});
+						newUser.save((err8, save_result) => {
+							if (err8) {
+								console.log(`newUser.save() Error: '${err8}'!`);
+								res.json({ "success": false, "message": `Server Error! '008'` });
+								return;
+							}
+							res.json({
+								"success": true,
+								"message": 'Registered!',
+								"username": username,
+								"exitCode": 1
+							});
 						});
 					});
 				});
-			});
+			})
 		}
 	});
 });
@@ -160,7 +186,9 @@ router.route('/logout').post((req, res) => {
 							return;
 						} else {
 							res.json({
-								"success": true
+								"success": true,
+								"username" : logoutfindOne_result.username,
+								"token" : tokenFromDb
 							});
 						}
 					}
@@ -209,7 +237,9 @@ router.route("/verify").post((req, res) => {
 			res.json({ 
 				"success": true,
 				"message": `Session ok!`,
-				"uid" : userId });
+				"uid" : userId,
+				"username" :  findOne_result.username,
+				"token" : sessionId});
 			return;
 		})
 	})

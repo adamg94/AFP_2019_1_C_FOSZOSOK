@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './sass/Login.sass';
-import { getFromStorage, setInStorage } from './utils/storage';
+import { setInStorage } from './utils/storage';
 
 class Login extends React.Component {
 	constructor(props) {

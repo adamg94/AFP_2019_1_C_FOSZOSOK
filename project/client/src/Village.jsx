@@ -1,8 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import './sass/Village.sass'
-import { getFromStorage, setInStorage } from './utils/storage'
-import { BrowserRouter as Link} from "react-router-dom"
+import { getFromStorage } from './utils/storage'
+//import { BrowserRouter as Link} from "react-router-dom"
 
 class Village extends React.Component{
   

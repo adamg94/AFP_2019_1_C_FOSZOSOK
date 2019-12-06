@@ -1,7 +1,6 @@
 const { app, BrowserWindow } = require("electron")
 const request = require('request')
 let bwindow
-
 createWindow = () =>
 {
     bwindow = new BrowserWindow({
@@ -22,7 +21,7 @@ createWindow = () =>
                 .then((obj) => {
                     let x = JSON.parse(obj)
                     if(x && x.username && x.token){   
-                        request.post("http://localhost:5000/users/logout",
+                        request.post("http://localhost:5000/village/logout",
                         {
                             json: {
                                 username: x.username, 
@@ -32,16 +31,33 @@ createWindow = () =>
                                 
                                 if(err)
                                 {
-                                    console.log(`logoutRequest Error: '${err}'!`)
-                                    res.json({"success" : false, "message" : `Server couldn't perform a logout'`})
+                                    console.log(`VillageLogout call Error: '${err}'!`)
+                                    res.json({"success" : false, "message" : `Server Error! 'c002''`})
                                     return
                                 }
                                 if(result.body.success)
                                 {
-                                
-                                    e.returnValue = true
-                                    bwindow.destroy()
+                                    request.post("http://localhost:5000/users/logout", 
+                                    {
+                                        json : 
+                                        {
+                                            username : result.body.username,
+                                            token : result.body.token
+                                        }}, (err3, response) => {
+                                            
+                                            if (err3) {
+                                                console.log(`logoutRequest Error: '${err3}'`);
+                                                res.json({ "success": false, "message": `Server Error! 'c003'` });
+                                                return;
+                                            }
 
+                                            if(response.body.success)
+                                            {
+                                                e.returnValue = true
+                                                bwindow.destroy()
+                                            }
+
+                                    })
                                 }
                             }
                         )

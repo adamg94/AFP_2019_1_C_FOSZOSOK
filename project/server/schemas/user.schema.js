@@ -16,11 +16,11 @@ const UserSchema = new Schema({
     },
     regdate : {
         type : Date,
-        default : Date.now
+        default : ''
     },
     lastlogin : {
         type : Date,
-        default : Date.now
+        default : ''
     }
 
 })
