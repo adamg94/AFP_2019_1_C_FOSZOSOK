@@ -9,9 +9,9 @@ class Navigation extends React.Component{
   {
     return (
       <div>
-          <nav>
+          <nav id="game-nav">
               <ul>
-                  <li><Link to="/palace">Palace</Link></li>
+                  <li><Link to="/village">Palace</Link></li>
                   <li><Link to="/merch">Merch</Link></li>
                   <li><Link to="/merchworkshop">Merch Workshop</Link></li>
                   <li><Link to="/temple">Temple</Link></li>

@@ -168,7 +168,7 @@ router.route('/').post((req, res) => {
                                     res.json({
                                         "success": true,
                                         "message": `Village loaded`,
-                                        "villagename": village_findOne_result.name
+                                        "village": village_findOne_result
                                     });
                                     return;
                                 }
@@ -187,7 +187,7 @@ router.route('/').post((req, res) => {
 
                 } else {
 
-                    request('http://localhost:5000/update/getdate', function(err11, response, body) {
+                    request('http://localhost:5000/update/getdate', function(err13, response, body) {
                         if (err13) {
                             console.log(`NTP Server call Error: '${err13}'!`);
                             res.json({ "success": false, "message": `Server Error! 'v013'` });
@@ -208,7 +208,8 @@ router.route('/').post((req, res) => {
                             res.json({
                                 "success": true,
                                 "message": 'Village registered!',
-                                "villagename": newVillagesave_result.name
+                                "village": newVillagesave_result
+
                             });
                         })
 

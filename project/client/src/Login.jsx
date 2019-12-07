@@ -106,7 +106,7 @@ class Login extends React.Component {
 	render() {
 		return (
 			<div>
-				<aside>
+				<aside id="login-form">
 					{this.state.infoMessage}
 					<form onSubmit={this.loginOrRegister}>
 						<input

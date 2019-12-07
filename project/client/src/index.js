@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Village from './Village'
 import Login from './Login';
 import Navigation from './Navigation'
+import Lumberyard from './Lumberyard'
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route } from "react-router-dom"
 
@@ -16,6 +17,11 @@ const routing = (
                 <Navigation />
                 <Village />
             </Route>
+            <Route path="/lumberyard">
+                <Navigation />
+                <Lumberyard />
+            </Route>
+            
         </Router>
     </main>
 )

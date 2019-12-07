@@ -2,9 +2,9 @@ import React from 'react'
 import axios from 'axios'
 import './sass/Village.sass'
 import { getFromStorage } from './utils/storage'
-import { Link } from "react-router-dom"
 
-class Village extends React.Component{
+
+class Lumberyard extends React.Component{
   
   constructor(props)
   {
@@ -36,7 +36,7 @@ class Village extends React.Component{
   componentDidMount() 
   {
     /*
-      session rendszer teszteléséhez volt itt, de lehet még szükséges.*/
+      session rendszer teszteléséhez volt itt, de lehet még szükséges.
     const obj = getFromStorage('afp_falu');
     if(obj && obj.username && obj.token)
     {
@@ -58,7 +58,7 @@ class Village extends React.Component{
 
           
         })
-    }
+    }*/
   }
   onChangeInfo(msg)
   {
@@ -91,48 +91,15 @@ class Village extends React.Component{
   {
     return (
       <section>
-      <div id="grass">
-        <Link to="/lumberyard"><div  id="lumberyard"></div></Link>
-      </div>
-      <aside id="resource-info">
-        <ul>
-          <li>
-            Wood<span>{this.state.wood}</span>
-          </li>
-          <li>
-          Brick<span>{this.state.brick}</span>
-          </li>
-          <li>
-          Iron<span>{this.state.iron}</span>
-          </li>
-          <li>
-          Copper<span>{this.state.copper}</span>
-          </li>
-          <li>
-          Silver<span>{this.state.silver}</span>
-          </li>
-          <li>
-          Gold<span>{this.state.gold}</span>
-          </li>
-        </ul>
-      </aside>
-      <aside id="resource-info2">
-        <ul>
-          <li>
-            Wood<span>80</span>/ hr
-          </li>
-          <li>
-          Brick<span>80</span>/ hr
-          </li>
-          <li>
-          Iron<span>80</span>/ hr
-          </li>
-        </ul>
-      </aside>
+          <div>Lumberyard</div>
+          <span>Level 1</span>
+          <div>Lumberyard gives you basic wood resource</div>
+          <div>Current income: <span>80</span></div>
+          <div>Next level income: <span>160</span></div>
       </section>
 
     )
   }
 }
 
-export default Village
+export default Lumberyard
