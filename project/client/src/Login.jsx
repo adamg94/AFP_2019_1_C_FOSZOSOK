@@ -12,12 +12,14 @@ class Login extends React.Component {
 		this.onChangePassword = this.onChangePassword.bind(this);
 		this.onChangeInfo = this.onChangeInfo.bind(this);
 		this.onChangeToken = this.onChangeToken.bind(this);
+		this.onLogin = this.onLogin.bind(this);
 
 		this.state = {
 			username: '',
 			password: '',
 			infoMessage: '',
-			token: ''
+			token: '',
+			button_state: ''
 		};
 	}
 
@@ -47,6 +49,12 @@ class Login extends React.Component {
 	onChangePassword(e) {
 		this.setState({
 			password: e.target.value
+		});
+	}
+
+	onLogin() {
+		this.setState({
+			button_state: 'disabled'
 		});
 	}
 	loginOrRegister(e) {
@@ -125,7 +133,7 @@ class Login extends React.Component {
 							name="password"
 							placeholder="password"
 						/>
-						<input type="submit" value="Play" />
+						<input type="submit" disabled={this.state.button_state} value="Play" onClick={this.onLogin} />
 					</form>
 				</aside>
 				<section id="background" />

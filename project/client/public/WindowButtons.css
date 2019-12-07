@@ -1,24 +1,47 @@
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
 
-#window-buttons{
-    top: 0;
-    right: 0;
-    position: absolute;
-    z-index: 999;
+#window-buttons {
+	top: 0;
+	right: 0;
+	position: absolute;
+	z-index: 999;
 }
-#window-buttons ul li{
-    float: left;
-    list-style: none;
-    padding: 10px 25px;
-    color: #f4f4ff;
-    font-family: 'Indie Flower';;
-    font-size: 25px;
-    transition: 100ms all;
+#window-buttons ul li {
+	float: left;
+	list-style: none;
+	padding: 10px 25px;
+	color: #f4f4ff;
+	font-family: 'Indie Flower';
+	font-size: 25px;
+	transition: 100ms all;
 }
-#window-buttons ul li:hover{
-    background: rgba(255,255,255,0.2);
-    cursor: pointer;
+#window-buttons ul li:hover {
+	background: rgba(255, 255, 255, 0.2);
+	cursor: pointer;
 }
-#close:hover{
-    background: tomato !important;
+#close:hover {
+	background: tomato !important;
+}
+
+#loading {
+	display: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.2);
+	z-index: 1000;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 100%;
+}
+
+#message {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: white;
 }
