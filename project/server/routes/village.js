@@ -79,20 +79,55 @@ router.route('/').post((req, res) => {
                     userId: uid
                 }
             }, (err2, req_update_res) => {
+
                 if (err2) {
                     console.log(`request.post()VillageUpdate Error: '${err2}'!`);
                     res.json({ "success": false, "message": `Server Error! 'v002'` });
                     return;
                 }
-                res.json({
-                    "success": req_update_res.body.success,
-                    "username": req_res.body.username,
-                    "token": req_res.body.token,
-                    "message": req_update_res.body.message,
-                    "village": req_update_res.body.village
-                })
-                return;
 
+                if (req_update_res.body.success) {
+
+                    res.json({
+                        "success": req_update_res.body.success,
+                        "username": req_res.body.username,
+                        "token": req_res.body.token,
+                        "message": req_update_res.body.message,
+                        "village": req_update_res.body.village
+                    })
+                    return;
+                } else {
+
+
+                    request('http://localhost:5000/update/getdate', function(err13, response, body) {
+
+                        if (err13) {
+                            console.log(`NTP Server call Error: '${err13}'!`);
+                            res.json({ "success": false, "message": `Server Error! 'v013'` });
+                            return;
+                        }
+                        newdate = JSON.parse(body).result
+
+                        const newVillage = new Village({
+                            userId: uid,
+                            lastupdate: newdate
+                        });
+                        newVillage.save((err14, newVillagesave_result) => {
+                            if (err14) {
+                                console.log(`newVillage.save() Error: '${err14}'!`);
+                                res.json({ "success": false, "message": `Server Error! 'v014'` });
+                                return;
+                            }
+                            res.json({
+                                "success": true,
+                                "message": 'Village registered!',
+                                "village": newVillagesave_result
+
+                            });
+                        })
+                    })
+
+                }
             })
 
         } else {

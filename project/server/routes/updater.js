@@ -72,8 +72,12 @@ router.route('/villageupdate').post((req, res) => {
 
             })
         } else {
-            console.log(`VillageUpdate Error!`);
-            res.json({ "success": false, "message": `Server Error! 'v013'` });
+            //nincs faluja -> új felhasználó
+            res.json({
+                "success": false,
+                "message": "Village need to be registered"
+
+            });
             return;
         }
     })
