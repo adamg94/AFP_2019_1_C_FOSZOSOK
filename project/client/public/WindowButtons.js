@@ -7,9 +7,7 @@ const message = document.querySelector('#message');
 
 closeWindow = () => {
 	loadingDiv.style.display = 'block';
-	setTimeout(() => {
-		remote.getCurrentWindow().close();
-	}, 5000);
+	remote.getCurrentWindow().close();
 };
 
 minimizeWindow = () => {

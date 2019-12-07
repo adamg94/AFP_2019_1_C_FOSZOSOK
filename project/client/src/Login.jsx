@@ -12,7 +12,6 @@ class Login extends React.Component {
 		this.onChangePassword = this.onChangePassword.bind(this);
 		this.onChangeInfo = this.onChangeInfo.bind(this);
 		this.onChangeToken = this.onChangeToken.bind(this);
-		this.onLogin = this.onLogin.bind(this);
 
 		this.state = {
 			username: '',
@@ -52,13 +51,11 @@ class Login extends React.Component {
 		});
 	}
 
-	onLogin() {
+	loginOrRegister(e) {
+		e.preventDefault();
 		this.setState({
 			button_state: 'disabled'
 		});
-	}
-	loginOrRegister(e) {
-		e.preventDefault();
 		if (this.state.username.length < 5) {
 			this.onChangeInfo("Username length can't be lower than five!");
 		} else if (this.state.password.length < 1) {
@@ -133,7 +130,7 @@ class Login extends React.Component {
 							name="password"
 							placeholder="password"
 						/>
-						<input type="submit" disabled={this.state.button_state} value="Play" onClick={this.onLogin} />
+						<input type="submit" disabled={this.state.button_state} value="Play" />
 					</form>
 				</aside>
 				<section id="background" />

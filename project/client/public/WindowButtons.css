@@ -15,6 +15,7 @@
 	font-size: 25px;
 	transition: 100ms all;
 }
+
 #window-buttons ul li:hover {
 	background: rgba(255, 255, 255, 0.2);
 	cursor: pointer;
