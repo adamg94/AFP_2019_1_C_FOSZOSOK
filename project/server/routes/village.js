@@ -27,69 +27,25 @@ router.route('/logout').post((req, res) => {
             if (req_res.body.success) {
                 const uid = req_res.body.uid
 
-                Village.findOne({ userId: uid }, (err2, village_findOne_result) => {
+                request.post('http://localhost:5000/update/villageupdate', {
+                    json: {
+                        userId: uid
+                    }
+                }, (err2, req_update_res) => {
+
                     if (err2) {
-                        console.log(`Village.findById() Error: '${err2}'!`);
+                        console.log(`request.post()VillageUpdate Error: '${err2}'!`);
                         res.json({ "success": false, "message": `Server Error! 'v002'` });
                         return;
                     }
-                    if (village_findOne_result) {
-                        request('http://localhost:5000/update/getdate', async function(err3, response, body) {
+                    res.json({
+                        "success": req_update_res.body.success,
+                        "username": req_res.body.username,
+                        "token": req_res.body.token,
+                        "message": req_update_res.body.message
+                    });
+                    return;
 
-                            if (err3) {
-                                console.log(`NTP Server call Error: '${err3}'!`);
-                                res.json({ "success": false, "message": `Server Error! 'v003'` });
-                                return;
-                            }
-
-                            /***
-                             * 
-                             * 
-                             * ELŐZŐ BÁRMILYEN INTERAKCIÓ ÓTA ELTELT IDŐ ALAPJÁN KISZÁMOLJA A FRISSÍTENDŐ ADATOK MENNYISÉGÉT
-                             * 
-                             * 
-                             */
-
-
-                            newdate = JSON.parse(body).result
-                            const timeSinceLastUpdate = parseFloat((Date.parse(newdate) - Date.parse(village_findOne_result.lastupdate)) / 1000)
-
-
-                            //fa
-                            village_findOne_result.buildings.warehouse.wood +=
-                                (GAMESETTINGS.BASE_MULTIPLIER * (timeSinceLastUpdate *
-                                    ((village_findOne_result.buildings.lumberyard.level * 80) / 3600)));
-
-                            //agyag
-                            village_findOne_result.buildings.warehouse.brick +=
-                                (GAMESETTINGS.BASE_MULTIPLIER * (timeSinceLastUpdate *
-                                    ((village_findOne_result.buildings.brickyard.level * 80) / 3600)));
-                            //vas bár itt még mást is kell majd változtatni //TODO
-                            village_findOne_result.buildings.warehouse.iron +=
-                                (GAMESETTINGS.BASE_MULTIPLIER * (timeSinceLastUpdate *
-                                    ((village_findOne_result.buildings.ironmine.level * 80) / 3600)));
-
-                            village_findOne_result.lastupdate = newdate
-                            let save_result = await village_findOne_result.save()
-                                .then(
-                                    _ => {
-                                        res.json({
-                                            "success": true,
-                                            "username": req_res.body.username,
-                                            "token": req_res.body.token
-                                        });
-                                        return;
-                                    }
-
-                                )
-                                .catch((err) => console.log(err))
-
-                        })
-                    } else {
-                        console.log(`VillageLogout Error!`);
-                        res.json({ "success": false, "message": `Server Error! 'v013'` });
-                        return;
-                    }
                 })
             } else {
                 res.json({
@@ -118,105 +74,27 @@ router.route('/').post((req, res) => {
         if (req_res.body.success) {
             const uid = req_res.body.uid
 
-            Village.findOne({ userId: uid }, (err8, village_findOne_result) => {
-                if (err8) {
-                    console.log(`Village.findById() Error: '${err8}'!`);
+            request.post('http://localhost:5000/update/villageupdate', {
+                json: {
+                    userId: uid
+                }
+            }, (err2, req_update_res) => {
+                if (err2) {
+                    console.log(`request.post()VillageUpdate Error: '${err2}'!`);
                     res.json({ "success": false, "message": `Server Error! 'v002'` });
                     return;
                 }
-                if (village_findOne_result) {
-                    request('http://localhost:5000/update/getdate', async function(err11, response, body) {
+                res.json({
+                    "success": req_update_res.body.success,
+                    "username": req_res.body.username,
+                    "token": req_res.body.token,
+                    "message": req_update_res.body.message,
+                    "village": req_update_res.body.village
+                })
+                return;
 
-                        if (err11) {
-                            console.log(`NTP Server call Error: '${err11}'!`);
-                            res.json({ "success": false, "message": `Server Error! 'v0011'` });
-                            return;
-                        }
-
-                        /***
-                         * 
-                         * 
-                         * ELŐZŐ KILÉPÉS ÓTA ELTELT IDŐ ALAPJÁN KISZÁMOLJA A FRISSÍTENDŐ ADATOK MENNYISÉGÉT
-                         * 
-                         * 
-                         */
-
-
-                        newdate = JSON.parse(body).result
-                        const timeSinceLastUpdate = parseFloat((Date.parse(newdate) - Date.parse(village_findOne_result.lastupdate)) / 1000)
-
-
-
-                        //fa
-                        village_findOne_result.buildings.warehouse.wood +=
-                            (GAMESETTINGS.BASE_MULTIPLIER * (timeSinceLastUpdate *
-                                ((village_findOne_result.buildings.lumberyard.level * 80) / 3600)));
-
-                        //agyag
-                        village_findOne_result.buildings.warehouse.brick +=
-                            (GAMESETTINGS.BASE_MULTIPLIER * (timeSinceLastUpdate *
-                                ((village_findOne_result.buildings.brickyard.level * 80) / 3600)));
-                        //vas bár itt még mást is kell majd változtatni //TODO
-                        village_findOne_result.buildings.warehouse.iron +=
-                            (GAMESETTINGS.BASE_MULTIPLIER * (timeSinceLastUpdate *
-                                ((village_findOne_result.buildings.ironmine.level * 80) / 3600)));
-
-                        village_findOne_result.lastupdate = newdate
-                        let save_result = await village_findOne_result.save()
-                            .then(
-                                _ => {
-                                    res.json({
-                                        "success": true,
-                                        "message": `Village loaded`,
-                                        "village": village_findOne_result
-                                    });
-                                    return;
-                                }
-
-                            )
-                            .catch(
-                                (err12) => {
-                                    console.log(`VillageSyncError: '${err12}'!`);
-                                    res.json({ "success": false, "message": `Server Error! 'v012'` });
-                                    return;
-
-                                }
-                            )
-
-                    })
-
-                } else {
-
-                    request('http://localhost:5000/update/getdate', function(err13, response, body) {
-                        if (err13) {
-                            console.log(`NTP Server call Error: '${err13}'!`);
-                            res.json({ "success": false, "message": `Server Error! 'v013'` });
-                            return;
-                        }
-                        newdate = JSON.parse(body).result
-
-                        const newVillage = new Village({
-                            userId: uid,
-                            lastupdate: newdate
-                        });
-                        newVillage.save((err12, newVillagesave_result) => {
-                            if (err14) {
-                                console.log(`newVillage.save() Error: '${err14}'!`);
-                                res.json({ "success": false, "message": `Server Error! 'v014'` });
-                                return;
-                            }
-                            res.json({
-                                "success": true,
-                                "message": 'Village registered!',
-                                "village": newVillagesave_result
-
-                            });
-                        })
-
-                    });
-
-                }
             })
+
         } else {
             res.json({
                 "success": false,
@@ -225,5 +103,6 @@ router.route('/').post((req, res) => {
         }
     })
 });
+
 
 module.exports = router;
