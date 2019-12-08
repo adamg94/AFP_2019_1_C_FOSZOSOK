@@ -1,28 +1,87 @@
-Adatbázisterv: Csak 95%-ban OK, lehet kihagytunk valamit.
-Felhasznalo_tabla
-{id,nev,jelszo}
-Falu_tabla
-{id,felh_id,palota,fal,ercbanya,agyagbanya,fatelep,szobor,rejtekhely,kereskedohaz,kereskedomuhely,templom,nyersanyagraktar,nemesfemkoho,malom,buzamezo,}
-Fejlesztes_tabla
-{id,faluid,epulet_jel szint,epitesi_ido,start_time_UNIX}
 
-Osztályterv: nagyon kezdetleges
-ősosztályok:
-Epulet{id,nev,leiras,szint,kep_sources[tomb],MainFunction override, vagy gyerekosztályokba}
-Termelo{id,nev,liras,szint,mennyiseg,kep_sources[tomb]}
-gyerekosztályok:
-palota {extend: Epulet, MainFunction override, vagy nem és helyette saját funckciói: megjelenít tábla, fejleszt/épít/rombol, stb.}
-ercbanya{extend: Termelo, saját funkció: 30,35,40. szinten megjeleníteni az esélyt: réz,ezüst,arany}
+Ádám:
+Vasbánya  -- kész
+AgyagBánya  --kész
+Fatelep  --kész
+Nemesfémkohó
+Palota
 
 
+Dani:
+Malom
+Búzamezők
+Templom
+Nyersanyagraktár
 
-NTP serverhez ajax call:
 
-fetch('http://worldtimeapi.org/api/timezone/europe/budapest')
-.then(response => response.json())
-.then(result => 
-{
-let date = new Date(result.datetime);
-console.log(d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()); //utcbe majd
-}
-);
+
+
+
+Fennmaradó: Ákos + Erik
+Aktív épületek:
+
+-Kereskedőház
+
+Passzív épületek:
+-Szobor,
+-Kereskedőműhely
+-Rejtekhely //////félig aktív is//////
+-Fal
+
+
+
+Malom és búzamezők rendszere le van írva igazából azok annyira nem nehéz rendszerek.
+_
+Templom is lekéri a morált amilye van és ha a bizonyos érték fölött, vagy alatt van, akkor csökkenti/növeli amit kell.
+Megoldásához javaslom egy új superglobális változó beálíltását, amit a többi updatelt dolognál azzal is beszorzod.
+__
+
+Raktár: A termelés nem állhat le attól független, hogy nincs hely. Minden updatenél megnézi hogy mennyi a szint és az ahhoz tartozó max 
+tárolási kapacítás. oda kell figyelni, hogy az alapnyersanyagokon kívül a többi különlegesnek eltérő a tárolási kapacítása.
+Ha megtelt a raktár nem a termelőket kell leállítani, csak szimplán beállítod mindig a pl. fa értékét a maximumra.
+Szal ha a raktár éppen 5000et bír tárolni de a fából már 5500 van, akkor egy update után visszaírja 5000-re (ezt követően megint termelődik a fa)
+de akármiot csinál is a user úgy is lemegy előtte a frissítés, ami megint vissza írja 5000-re. Ha a tárolási kapacítás alatt van még a nyersanyag
+nem csinálsz semmit értelemszerűen.
+
+kereskedőház:
+Valami táblázatot kell készíteni ezen belül aminek mondjuk három oszlopa van,
+első oszlop hogy mit, középső az arány, és a harmadik hogy mivé.
+Sőt egy negyedik oszlopban az időt is lehet jelezi, hogy ez a művelet ennyi ideig tart.
+Az adatbázisban létre kell hozni egy új mezőt ami ezt az időt eltárolja. S egyszerre csak 1x lehet cserélni
+Ha külön táblát hoznál neki létre, akkor lehetne egyszerre több nyersanyagot is cserélni. Ez lenne az ideális és nem kellene sokkal
+többet kódolni sem, de rábízom annak a döntésére aki csinálja.
+Az arányok le vannak írva, az idő számítása is le van írva.
+
+Kereskedőműhely: Ez csak passzívan van hatással a kereskedőházra. Itt tulajdonképpen nem is kell csinálni semmit, a kereskedőházban kell
+lekérni a műhely szintjét és azt beszorozni a szekér "méretével". 
+pl. ugye önmagában 500at bír el egy kereskedő
+de amikor ezt meghatározod akkor 500 + (lekér kereskedőműhely szintje * 10)
+
+Szobor:
+Megvalósítása egy superglobal változóval kell ugyanolyan módon mint a templom, a game.configba mehetnek ezek. 
+Csak emlékeztetőül a templom a teljes termelést szorozza be, egy nagy zárójelbe rakva a base multiplierrel alapból kiszámolt értéket
+A szobor pedig a templom által adott plusz, vagy csökkentett termelést szorozza be, ha úgy tetszik a szobor szorzója a legvésgső
+őt követi a templom, és legbelül a basemultiplier van.
+
+Rejtekhely:
+nagyon egyszerű
+Ugyanúgy műk9ödik mint a raktár. Nem csak a raktárba mented el a nyersanyagokat hanem ide is, de szinkronizálva.
+Ha van épp 2000 fád, az látszik a raktárban és látszik a rejtekhelyen is.
+De a rejtekhely nem tud olyan sokat tárolni, így az updatek folyamatakor mindig vissza kell írogatni ha megtelt.
+Visszaírogatás, ugyanaz a módszer mint a raktárnál.
+
+nyersanyag költéskor innen is le kell vonni az összeget, hogy szinkronizált maradjon, vagy lehet meg kéne oldani valahogy, hogy mindig a nyersanyagraktárból kéri
+le az értéket. Sőt ez utóbbit valósítsa meg az aki ezt csinálja.
+
+A fal:
+Az egyetlen kérésem afelé aki ezt csinálja, hogy mivel ez egy nagy nulla, semmi funkciója nincs, csak
+a falu nézetre kell ráhelyezni szépen. Az szerezzen be netről fából meg kőből készült falat, vagy rajzoljon.
+
+
+Aki úgy érzi nem kódolt eleget, az készítse el (ne én) az adatbázis tervezet képét.
+Mysql workbench itt nem nagyon használható, de valami vizuális megoldás kéne.
+de ha nem találsz jobb megoldást akkor menjen azzal.
+
+Doksikba a követelménylistákat meg kellene írni nagyjából a funkspec 9. fejezete alapján.
+
+
