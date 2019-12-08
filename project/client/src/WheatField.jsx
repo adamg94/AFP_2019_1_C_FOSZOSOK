@@ -26,8 +26,9 @@ class WheatField extends React.Component {
 			};
 			axios.post('http://localhost:5000/village/getinfo', data).then((res) => {
 				this.setState({
-					moral: res.data.village.buildings.warehouse.wheat,
-					level: res.data.village.buildings.wheatfield.level
+					wheat: res.data.village.buildings.warehouse.wheat,
+					level: res.data.village.buildings.wheatfield.level,
+					income: 10000 + res.data.village.buildings.wheatfield.level * 200
 				});
 
 				if (this.state.level > 0) {
@@ -56,7 +57,9 @@ class WheatField extends React.Component {
 		return (
 			<section>
 				<p id="title">WheatField</p>
-				<p id="building-info">The Wheat field passively produces wheat which can be processed by the mill!</p>
+				<p id="building-info">
+					The Wheat field passively produces wheat every 24 hours which can be processed by the mill!
+				</p>
 
 				<table id="income-info">
 					<tbody>
@@ -67,6 +70,10 @@ class WheatField extends React.Component {
 						<tr>
 							<td>Level:</td>
 							<td>{parseInt(this.state.level)}</td>
+						</tr>
+						<tr>
+							<td>income:</td>
+							<td>{parseInt(this.state.income)} / day</td>
 						</tr>
 					</tbody>
 				</table>
