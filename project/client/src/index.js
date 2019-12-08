@@ -5,6 +5,7 @@ import Login from "./Login";
 import Navigation from "./Navigation";
 import Lumberyard from "./Lumberyard";
 import Brickyard from "./Brickyard";
+import Ironmine from "./Ironmine";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -13,20 +14,24 @@ const routing = (
     <Router>
       <Route exact path="/">
         <Login />
-      </Route>{" "}
+      </Route>
       <Route path="/village">
         <Navigation />
         <Village />
-      </Route>{" "}
+      </Route>
       <Route path="/lumberyard">
         <Navigation />
         <Lumberyard />
-      </Route>{" "}
+      </Route>
       <Route path="/brickyard">
         <Navigation />
         <Brickyard />
-      </Route>{" "}
-    </Router>{" "}
+      </Route>
+      <Route path="/ironmine">
+        <Navigation />
+        <Ironmine />
+      </Route>
+    </Router>
   </main>
 );
 

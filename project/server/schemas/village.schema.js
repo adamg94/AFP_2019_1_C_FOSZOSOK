@@ -127,6 +127,14 @@ const VillageSchema = new Schema({
             copper : {
                 type : Number,
                 default: 0
+            },
+            stone : {
+                type : Number,
+                default: 0
+            },
+            metal : {
+                type : Number,
+                default: 0
             }
        },
        hideout : {      
@@ -167,6 +175,14 @@ const VillageSchema = new Schema({
                 default: 0
             },
             copper : {
+                type : Number,
+                default: 0
+            },
+            stone : {
+                type : Number,
+                default: 0
+            },
+            metal : {
                 type : Number,
                 default: 0
             },

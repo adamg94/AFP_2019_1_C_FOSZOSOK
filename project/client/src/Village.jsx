@@ -7,6 +7,7 @@ import f1 from "./img/fa.png";
 import f2 from "./img/brickyard/agyag1.png";
 import f3 from "./img/brickyard/agyag2.png";
 import f4 from "./img/brickyard/agyag3.png";
+import f5 from "./img/ironmine.png";
 
 class Village extends React.Component {
   constructor(props) {
@@ -18,6 +19,8 @@ class Village extends React.Component {
       copper: 0,
       silver: 0,
       gold: 0,
+      stone: 0,
+      metal: 0,
       wood_level: 0,
       brick_level: 0,
       iron_level: 0,
@@ -54,6 +57,8 @@ class Village extends React.Component {
           copper: parseInt(res.data.village.buildings.warehouse.copper),
           silver: parseInt(res.data.village.buildings.warehouse.silver),
           gold: parseInt(res.data.village.buildings.warehouse.gold),
+          stone: parseInt(res.data.village.buildings.warehouse.stone),
+          metal: parseInt(res.data.village.buildings.warehouse.metal),
           wood_level: res.data.village.buildings.lumberyard.level,
           brick_level: res.data.village.buildings.brickyard.level,
           iron_level: res.data.village.buildings.ironmine.level
@@ -61,6 +66,7 @@ class Village extends React.Component {
         this.timerInterval = setInterval(this.tick.bind(this), 1000);
         this.setState({
           wood_img: <img id="lumberyardimg" alt="" src={f1} />,
+          iron_img: <img id="ironmineimg" alt="" src={f5} />,
           wood_income: this.state.wood_level * 80,
           brick_income: this.state.brick_level * 80,
           iron_income: this.state.iron_level * 80
@@ -95,6 +101,7 @@ class Village extends React.Component {
         <div id="grass">
           <Link to="/lumberyard">{this.state.wood_img}</Link>
           <Link to="/brickyard">{this.state.brick_img}</Link>
+          <Link to="/ironmine">{this.state.iron_img}</Link>
         </div>
         <aside>
           <table id="resource-info">
@@ -113,11 +120,11 @@ class Village extends React.Component {
               </tr>
               <tr>
                 <td>Stone:</td>
-                <td>0</td>
+                <td>{parseInt(this.state.stone)}</td>
               </tr>
               <tr>
                 <td>Metal:</td>
-                <td>0</td>
+                <td>{parseInt(this.state.metal)}</td>
               </tr>
               <tr>
                 <td>Copper:</td>
