@@ -119,8 +119,10 @@ router.route("/").post((req, res) => {
 
                 const newVillage = new Village({
                   userId: uid,
-                  lastupdate: newdate
+                  lastupdate: newdate,
+                  
                 });
+                newVillage.buildings.warehouse.last_check = newdate
                 newVillage.save((err14, newVillagesave_result) => {
                   if (err14) {
                     console.log(`newVillage.save() Error: '${err14}'!`);
@@ -130,6 +132,8 @@ router.route("/").post((req, res) => {
                     });
                     return;
                   }
+
+                  
                   res.json({
                     success: true,
                     message: "Village registered!",

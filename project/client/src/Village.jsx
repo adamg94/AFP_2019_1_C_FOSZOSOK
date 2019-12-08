@@ -128,15 +128,15 @@ class Village extends React.Component {
               </tr>
               <tr>
                 <td>Copper:</td>
-                <td>0</td>
+                <td>{parseInt(this.state.copper)}</td>
               </tr>
               <tr>
                 <td>Silver:</td>
-                <td>0</td>
+                <td>{parseInt(this.state.silver)}</td>
               </tr>
               <tr>
                 <td>Gold:</td>
-                <td>0</td>
+                <td>{parseInt(this.state.gold)}</td>
               </tr>
             </tbody>
           </table>
