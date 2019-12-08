@@ -16,7 +16,8 @@ class Temple extends React.Component {
 		this.state = {
 			moral: 0,
 			level: '',
-			img: ''
+			img: '',
+			miseStarted: ''
 		};
 	}
 
@@ -34,7 +35,8 @@ class Temple extends React.Component {
 			axios.post('http://localhost:5000/village/getinfo', data).then((res) => {
 				this.setState({
 					moral: res.data.village.buildings.temple.moral,
-					level: res.data.village.buildings.temple.level
+					level: res.data.village.buildings.temple.level,
+					miseStarted: res.data.village.mise_started
 				});
 
 				this.timerInterval = setInterval(this.tick.bind(this), 1000);
@@ -77,12 +79,20 @@ class Temple extends React.Component {
 					<tbody>
 						<tr>
 							<td>Current moral:</td>
+							<td><progress value = {parseInt(this.state.moral)} max="100" /></td>
 							<td>{parseInt(this.state.moral)} %</td>
 						</tr>
 						<tr>
 							<td>Level:</td>
-							<td>{parseInt(this.state.level)}</td>
+							<td>{this.state.level}</td>
 						</tr>
+						{this.state.miseStarted != null &&
+						<tr>
+							<td>Mise started at:</td>
+							<td>{this.state.miseStarted}</td>
+						</tr>}
+						{this.state.miseStarted == null &&						
+						<tr>You haven't started a mise yet</tr>	}
 					</tbody>
 				</table>
 				{this.state.img}
@@ -92,17 +102,3 @@ class Temple extends React.Component {
 }
 
 export default Temple;
-/***
- * 
- * TODO
- * bizonyos eséllyel óránként termel copper, silver, gold
- * ez minden órában egyszer történik meg, pl. minden 60. percben (timer)
- * ha nem talál, akkor növekedik az esély
- * ha talál, akkor az esély nullázódik
- * külön esély mindháromra
- * 40. szinten a copper
- * 45. szinten a silver
- * 50. szinten a gold esélyei láthatóvá válnak
- * 
- * 
- */

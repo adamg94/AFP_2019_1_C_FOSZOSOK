@@ -9,6 +9,7 @@ import Ironmine from './Ironmine';
 import Temple from './Temple';
 import Mill from './Mill';
 import WheatField from './WheatField';
+import WareHouse from './Warehouse';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -45,6 +46,10 @@ const routing = (
 			<Route path="/mill">
 				<Navigation />
 				<Mill />
+			</Route>
+			<Route path="/warehouse">
+				<Navigation />
+				<WareHouse />
 			</Route>
 		</Router>
 	</main>

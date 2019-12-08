@@ -54,6 +54,7 @@ router.route("/villageupdate").post((req, res) => {
           else{
             templeMultiplier = 1;
           }
+          let maxMaterial = village_findOne_result.buildings.warehouse.level * 1000;
           newdate = JSON.parse(body).result;
           const timeSinceLastUpdate = parseFloat(
             (Date.parse(newdate) -
@@ -67,6 +68,10 @@ router.route("/villageupdate").post((req, res) => {
             (timeSinceLastUpdate *
               ((village_findOne_result.buildings.lumberyard.level * 80) /
                 3600)) * templeMultiplier;
+          
+                if(village_findOne_result.buildings.warehouse.wood > maxMaterial){
+                  village_findOne_result.buildings.warehouse.wood = maxMaterial;
+                }
 
           //agyag
           village_findOne_result.buildings.warehouse.brick +=
@@ -74,16 +79,30 @@ router.route("/villageupdate").post((req, res) => {
             (timeSinceLastUpdate *
               ((village_findOne_result.buildings.brickyard.level * 80) / 3600)) * templeMultiplier;
 
+              if(village_findOne_result.buildings.warehouse.brick > maxMaterial){
+                village_findOne_result.buildings.warehouse.brick = maxMaterial;
+              }
+
               //búza
 				village_findOne_result.buildings.warehouse.wheat +=
         GAMESETTINGS.BASE_MULTIPLIER *
         (timeSinceLastUpdate * (3600 + village_findOne_result.buildings.mill.level * 1400) / 86400);
+
+        if(village_findOne_result.buildings.warehouse.wheat >maxMaterial){
+          village_findOne_result.buildings.warehouse.wheat = maxMaterial;
+        }
+
       //(10000 + village_findOne_result.buildings.wheatfield.level * 200) -
           //vas
           village_findOne_result.buildings.warehouse.iron +=
             GAMESETTINGS.BASE_MULTIPLIER *
             (timeSinceLastUpdate *
               ((village_findOne_result.buildings.ironmine.level * 80) / 3600)) * templeMultiplier;
+
+
+              if(village_findOne_result.buildings.warehouse.iron >maxMaterial){
+                village_findOne_result.buildings.warehouse.iron = maxMaterial;
+              }
 
                     //templom morál
                     village_findOne_result.buildings.temple.moral -=

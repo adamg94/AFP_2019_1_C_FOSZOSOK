@@ -319,6 +319,12 @@ const VillageSchema = new Schema({
             default : 14
         }
        }
+    }, mise_started :{
+        type: Date,
+        default: null
+    }, mise_ends : {
+        type: Date,
+        default: null
     }
 })
 

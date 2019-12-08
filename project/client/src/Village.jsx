@@ -26,19 +26,23 @@ class Village extends React.Component {
       iron_level: 0,
       wood_img: "",
       brick_img: "",
-      iron_img: ""
+      iron_img: "",
+      warehouseLevel: 0,
+      maxmaterial: 0
     };
   }
   tick() {
-    this.setState({
-      wood: this.state.wood + (this.state.wood_level * 80) / 3600
-    });
-    this.setState({
-      brick: this.state.brick + (this.state.brick_level * 80) / 3600
-    });
-    this.setState({
-      iron: this.state.iron + (this.state.iron_level * 80) / 3600
-    });
+    if(this.state.wood < this.state.maxmaterial){
+      this.setState({
+        wood: this.state.wood + (this.state.wood_level * 80) / 3600
+      });
+      this.setState({
+        brick: this.state.brick + (this.state.brick_level * 80) / 3600
+      });
+      this.setState({
+        iron: this.state.iron + (this.state.iron_level * 80) / 3600
+      });
+    }
   }
   componentDidMount() {
     /*
@@ -61,7 +65,8 @@ class Village extends React.Component {
           metal: parseInt(res.data.village.buildings.warehouse.metal),
           wood_level: res.data.village.buildings.lumberyard.level,
           brick_level: res.data.village.buildings.brickyard.level,
-          iron_level: res.data.village.buildings.ironmine.level
+          iron_level: res.data.village.buildings.ironmine.level,
+          warehouseLevel: res.data.village.buildings.warehouse.level
         });
         this.timerInterval = setInterval(this.tick.bind(this), 1000);
         this.setState({
@@ -69,7 +74,8 @@ class Village extends React.Component {
           iron_img: <img id="ironmineimg" alt="" src={f5} />,
           wood_income: this.state.wood_level * 80,
           brick_income: this.state.brick_level * 80,
-          iron_income: this.state.iron_level * 80
+          iron_income: this.state.iron_level * 80,
+          maxmaterial: this.state.warehouseLevel * 1000
         });
 
         if (this.state.brick_level > 0) {
@@ -106,6 +112,10 @@ class Village extends React.Component {
         <aside>
           <table id="resource-info">
             <tbody>
+            <tr>
+                <td>Ware house level:</td>
+                <td>{parseInt(this.state.warehouseLevel)}</td>
+              </tr>
               <tr>
                 <td>Wood:</td>
                 <td>{parseInt(this.state.wood)}</td>
