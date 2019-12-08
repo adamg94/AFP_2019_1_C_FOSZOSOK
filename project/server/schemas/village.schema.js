@@ -34,7 +34,7 @@ const VillageSchema = new Schema({
        merch : {
             level : {
                 type : Number,
-                default : 0
+                default : 1
             },
             maxlevel : {
                 type : Number,
@@ -48,7 +48,7 @@ const VillageSchema = new Schema({
        merchworkshop : {
             level : {
                 type : Number,
-                default : 0
+                default : 1
             },
             maxlevel : {
                 type : Number,
@@ -80,7 +80,7 @@ const VillageSchema = new Schema({
        wall : {
         level : {
             type : Number,
-            default : 0
+            default : 1
         },
         maxlevel : {
             type : Number,
@@ -160,7 +160,7 @@ const VillageSchema = new Schema({
        hideout : {      
             level : {
                 type : Number,
-                default : 0
+                default : 1
             },
             maxlevel : {
                 type : Number,
@@ -238,7 +238,7 @@ const VillageSchema = new Schema({
        metalfurnace : {
         level : {
             type : Number,
-            default : 0
+            default : 1
         },
         maxlevel : {
             type : Number,
@@ -319,12 +319,6 @@ const VillageSchema = new Schema({
             default : 14
         }
        }
-    }, mise_started :{
-        type: Date,
-        default: null
-    }, mise_ends : {
-        type: Date,
-        default: null
     }
 })
 

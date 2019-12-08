@@ -50,12 +50,12 @@ class Brickyard extends React.Component {
         }
         if (this.state.level > 5) {
           this.setState({
-            img: <img alt="" src={f2} />
+            img: <img alt="" id="kep" src={f2} />
           });
         }
         if (this.state.level > 15) {
           this.setState({
-            img: <img alt="" src={f3} />
+            img: <img alt="" id="kep" src={f3} />
           });
         }
       });
