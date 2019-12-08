@@ -137,11 +137,19 @@ A profilbeállításokban a felhasználó meg tudja változtatni a falva nevét,
 A menüsor alatt található a játék, két oszlopra szedve. Bal oldalt a nagyobbik félben a játék grafikus megjelenítése, ahol az épületek egymás mellett elhelyezkednek, egy kis doboz jelzi mellettük az épület adott szintjét, s ezen épületekre kattintva bejön maga az épület.
 Jobb oldali oszlop egy információs tér, ahol megtudjuk, hogy miből mennyi nyersanyagunk van, hogy áll a népesség száma, illetve hogy óránként milyen mennyiségben növekszik a három alap nyersanyag. A megrendelő kérése volt, hogy az aktuális nyersanyagok kijelzése legyen „meganimálva”, hogy a felhasználó realtime láthassa, hogy miből mennyije van. Ezt úgy oldottuk meg, hogy a játékba belépéskor a szerverről lekéri az éppen aktuális mennyiséget és azt is, hogy óránként mekkora a termelés, majd ezt elosztotta egészen addig, míg másodpercenként is kitudta
  jelezni, s kliensoldalon frissítette az adatokat anélkül, hogy a szervert terhelte volna. Ugyanakkor szerveroldalon minden egyes interakció esetén a szerver is kiszámolta másodpercre való lebontásban, hogy abban az adott pillanatban mennyi nyersanyag volt elérhető, de ez a számítás csak interakciók esetén volt, nem pedig minden alkalommal.
+
+
+
 Épületek kinézetei: Ez kétértelmű, maguk az épületek grafikusan kaptak egy fejlődő kinézetet. Az ügyfél azt szerette volna, ha az épületek minél magasabb szintre lépésük esetén jobban néznének ki. Ezt úgy definiálta, hogy megjelenik az épületnél egy új szárny, új emelet, stb. 
 Mindamellett az épületek belső nézetei, avagy funkciói is eltérően néznek ki.
+
+
+______
 Palota: A palotát megnyitva egy olyan központi felsőrész jelenik meg, amely egyforma minden épület esetében. Ez a header rész úgy néz ki, hogy egy kép az épületről, mellette az épület neve és szintje, majd leírása, hogy mit lehet ott tenni.
 Ezt követően három fül található az oldalon. Az egyik fülben egy faszerkezet, mely megmutatja, hogy az egyes épületek megépítéséhez mit kell tennie a felhasználónak, hiszen vannak olyan épületek, amelyek nem épülhetnek meg akármikor. A középső fül a default fül, itt végezhetünk építést/fejlesztést. Itt egy táblázatot kapunk magáról az épületekről, kis képükkel, nevükkel és aktuális szintjükkel, nyersanyag szükségleteikkel, időigény, valamint egy fejlesztés/építés gombbal. Miután különleges nyersanyagokkal is megépíthetünk egy épületet, ott vizuálisan a táblázat ezt jelzi, hogy van ilyen lehetőségünk is. A számítások: Mivel az agyag/vas kővé/fémmé alakításának aránya 1:4-hez, ráadásul időigényes, ezért biztos, hogy az eredeti alapanyag árak 25%-tól kisebb értékkel kell dolgozni. A végső képlet: Fa+Agyag+Vas összeadva, beszorozva 0,10-zel, majd az eredmény ketté felezve, az egyik a fém ár, a másik a kő ár.
 Rombolás fül: Ugyan úgy néz ki, mint az építés fül, azt leszámítva, hogy nincs nyersanyagigény, csak időigény.
+
+_____________
 Kereskedő ház: A kereskedő házban cserélhetünk nyersanyagokat. A három alap nyersanyagot (Vas, Agyag és Fa) 1:1 arányban cserélhetjük, de ennek a cserének a megtörténte időhöz kötött, mely nő a cserélendő mennyiségtől, azonban csökken az épület szintjétől. Egy kereskedő önmagában 500 egység nyersanyagot tud tárolni minden nyersanyagtípusból. Az épület fejlesztése ezt nem növeli, de a kereskedők számát igen. Különleges ércek cseréje is itt történik: A különleges ércek a következők: Fém, Kő, Arany, Ezüst, Réz. A Fém és Kő az készíthető, a másik három csak található anyag. A fém és vas közötti csere le van tiltva, csak úgy, mint a kő és agyag cseréje, hiszen ezek készíthető elemek.
 Ugyanakkor a Fém és Kő cserélhető egymás között 1:1 arányban. A másik három különleges anyag csak találhatóak, ugyanakkor egymás között cserélhetőek, a réz beváltható fémre/kőre.
 
@@ -165,10 +173,14 @@ Réz, ezüst egymás között: 150%
 Arany és réz/ezüst csere: 200%
 
 Ezen cseréket és arányokat egy táblázat valósítja meg jelezve a felhasználónak a pontos számokat.
+
+________________
 Kereskedő műhely:
 A kereskedő műhely megépítésével és fejlesztésével szekeret adhatunk a kereskedőknek.
 Az épület maximális szintje 10. Minden szinttel 10%-kal növeli a kereskedő alapteherbírását, ami a maximális szinten 100%-ot jelent. Ekkor a kereskedők 1000 egységnyi anyagot képesek majd tárolni.
 
+
+_______
 Templom: A templom épülete passzív buff/debuff hatásokat ad a falura. Alapból 1. szinten megkapjuk ezt az épületet. A templom jelzi a falu lakóinak morálját. A morált bármi tudja módosítani, például a vallás. Ha ez a szám 50 és 75% közötti akkor minden normálisan működik.
 50% alatt gyengítő hatásokat, míg 75% fölött erősítő hatásokat kapunk. Lassító hatások:
 50% alatt 25%-kal növekedő építési idő, 25%-kal lassabb termelés. 30% alatt 50%-kal több építési idő, 50%-kal lassabb termelés.
@@ -177,6 +189,8 @@ Gyorsító hatások:
 
 Fal: Nincs szerepe, vizuális megjelenés.
 
+
+________________
 Nyersanyagraktár: A Nyersanyagraktárban tároljuk az alapanyagokat és különleges érceket is.
 A két készíthető anyag a kő és a fémből az eredeti kapacitás 50%-a, réz esetén az eredeti 35%-a, ezüst esetén az eredeti 20%-a, míg arany esetén az eredeti 10%-a.
 Példa:
@@ -186,23 +200,37 @@ Példa:
 200 egység ezüst
 100 egység arany
 
+
+__________
 Rejtekhely: Nem minősül raktárnak, de egy későbbi fejlesztés előfunkciója. Támadás esetén bizonyos egységnyi nyersanyagot elrejt a raktárból.
 Ezek nem százalékos értékek, mindig fix egységek. A szint fejlesztésével nő az elrejthető mennyiség. 20. szintig a különleges érceket nem lehetne védeni, azt követően azonban elérhetővé válna azok elásásának lehetősége. Egyszerre csak egy ládát lehet elásni, de az örökre ott maradna és nem találna rá senki, csak aki elásta. Falufoglalás esetén automatikusan elveszne. Viszonylag nagy mennyiségben lehet elrejteni benne különleges érceket, nincs megszabva, hogy az egyes típusok közül mennyi fér el benne. Az épület szintjének növelésével nő az elásható mennyiség, csökken az ásási idő is. 
 
+
+______
 Szobor: Csak akkor építhető, ha már minden maximum szintre felépült előtte. Passzív bónuszokat ad hozzá a faluhoz, későbbiekben többet is adhat majd. Megépülése esetén a raktár 25%-kal többet képes raktározni mindenből. A rejtekhely méretére is hatással van, 30%-kal több alapanyag elrejtése és a láda mérete is 20%-kal nagyobb. Egyéb rendszerre nincs hatással.
 
+
+____________
 Nemesfémkohó: A megtermelt agyag és vas megmunkálásának helye. Követ és Fémet készíthetünk ebben az épületben. Minél magasabb az épület szintje a fejlesztés annál rövidebb ideig tart. Az arányok: 
 Agyag/Vas → Kő/Fém 4:1
 Példa: 4 db agyagért 1db követ kapunk.
 
+
+_____
 Malom: Passzív épület melyet csak fejleszteni tudunk. A malmot és a búzaföldeket egy jó balanszban kell tartani, ugyanis a malom nem tudja mindig feldolgozni a megtermelt mennyiségű búzát.
 A búzatermelő a maximális szintjén 20000 egységet ad ki, és a malom a maximális szinten ebből csak 19000-et képes feldolgozni naponta, ez azt jelenti, hogy 1000 mindig kárba vész.
 A malom szintjének növelése növeli a feldolgozható búza mennyiségét. Ha sokkal nagyobb a malom, mint a búzaföldek, akkor a malom kihasználatlan. 
 
+
+_________
 Búzamezők: Passzív termelő, nem óránként, hanem naponta. Ez nem egy elkölthető nyersanyag. Minden építkezés embereket igényel fixen, ezek az emberek a búzamezők által fixen megtermelt egységekből vonódnak le. Eleinte is viszonylag sok búzát termel, de még az épület szintjének növelésével is lassan növekszik.
 
+
+________
 Vasbánya: A vasbánya egy mély barlang ahol többnyire vasat szednek ki a munkások. Rengeteg ember kell ide, hiszen minél nagyobb a szintje a bányának, annál mélyebb, ezáltal annál többet is termel. Időnként azonban lehetőség van réz, ezüst és arany találására is. Rezet valamivel hamarabb találunk, mint ezüstöt, de aranyat csak ritkán. Ezen ércek találására óránként van esély. Miután egy egységet találtunk nullázódik az alapesély. Azonban, ha nem találtunk egy egységet egy óra alatt, akkor az esély növekedni fog. Egy pont után biztosan találni fogunk. A 40. szinttől kezdve látható lesz az ércek találásának esélyei. 40. szinten a rézé, 45. szinten az ezüstté és az utolsó 50. szinten pedig az aranyé is.
 
+
+__________________
 Agyag és Fatermelő: Ezek teljesen ugyanannyi agyagot és fát termelnek, mint a vas, ha mindhárom azonos szinten van. Nincs különösebb funkciójuk, passzív épületek.
 
 4. Adatmentés
@@ -210,19 +238,15 @@ Az adatok mentésére MongoDB adatbázis-kezelő rendszert használ a projekt, h
 
 Felhasználó { id, név, jelszó }
 
-Falu { id, név, Felhasználó.id, Épületlista.id }
+Falu { id, név, Felhasználó.id, ÉpületlistaTömb }
 
-Épületlista { id, Falu.id, level_palota, level_fal, level_vas, level_fa, level_agyag, level_buza, level_malom, level_kereskedo, level_kmuhely, level_szobor, level_koho, level_rhely, level_templom, level_raktar }
+ÉpületlistaTömb  = { ÉpületekTömb }
 
-Építés { id, Épületlista.Id, Épületlista.épületneve, level(+/-), ntp_utc_start time, utc_jobtime }
+ÉpületekTömb { level, maxlevel, id, "esetleges belső funkció miatti külön adatmezők" }
 
-Nyersanyag { faluid, ammount_fa, ammount_vas, ammount_ko, ammount_agyag, ammount_fem, ammount_buza, ammount_rez, ammount_ezust, ammount_arany, ammount_workers }
+Építés { ÉpületId, Bontás/ÉpítésKapcsoló, startTime(NTP), jobTime }
 
-Templom { faluid, level_moral }
 
-Rejtekhely {  faluid, ammount_fa, ammount_vas, ammount_ko, ammount_agyag, ammount_fem, ammount_buza, ammount_rez, ammount_ezust, ammount_arany }
-
-Kincs {  faluid, ammount_rez, ammount_ezust, ammount_arany }
 
 
 5. Játékfolyam
