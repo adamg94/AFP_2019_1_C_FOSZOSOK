@@ -44,7 +44,16 @@ router.route("/villageupdate").post((req, res) => {
            *
            *
            */
-
+          let templeMultiplier = village_findOne_result.buildings.lumberyard.level;
+          if(templeMultiplier >= 75){
+            templeMultiplier = 1.2;
+          }
+          else if (templeMultiplier <= 25){
+            templeMultiplier = 0.8;
+          }
+          else{
+            templeMultiplier = 1;
+          }
           newdate = JSON.parse(body).result;
           const timeSinceLastUpdate = parseFloat(
             (Date.parse(newdate) -
@@ -57,13 +66,13 @@ router.route("/villageupdate").post((req, res) => {
             GAMESETTINGS.BASE_MULTIPLIER *
             (timeSinceLastUpdate *
               ((village_findOne_result.buildings.lumberyard.level * 80) /
-                3600));
+                3600)) * templeMultiplier;
 
           //agyag
           village_findOne_result.buildings.warehouse.brick +=
             GAMESETTINGS.BASE_MULTIPLIER *
             (timeSinceLastUpdate *
-              ((village_findOne_result.buildings.brickyard.level * 80) / 3600));
+              ((village_findOne_result.buildings.brickyard.level * 80) / 3600)) * templeMultiplier;
 
               //búza
 				village_findOne_result.buildings.warehouse.wheat +=
@@ -74,7 +83,13 @@ router.route("/villageupdate").post((req, res) => {
           village_findOne_result.buildings.warehouse.iron +=
             GAMESETTINGS.BASE_MULTIPLIER *
             (timeSinceLastUpdate *
-              ((village_findOne_result.buildings.ironmine.level * 80) / 3600));
+              ((village_findOne_result.buildings.ironmine.level * 80) / 3600)) * templeMultiplier;
+
+                    //templom morál
+                    village_findOne_result.buildings.temple.moral -=
+                    GAMESETTINGS.BASE_MULTIPLIER *
+                    (timeSinceLastUpdate *
+                      ((11 - village_findOne_result.buildings.temple.level) / 86400));
 
          
 

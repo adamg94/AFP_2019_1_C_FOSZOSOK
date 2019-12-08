@@ -3,11 +3,6 @@ import axios from 'axios';
 import './sass/Ironmine.sass';
 import { getFromStorage } from './utils/storage';
 import f1 from './img/ironmine.png';
-/*import f2 from './img/'
-import f3 from './img/'
-nem találtam a fás háznak még másik két képet :(
-
-*/
 
 class Mill extends React.Component {
 	constructor(props) {
@@ -23,7 +18,7 @@ class Mill extends React.Component {
 	}
 
 	tick() {
-		this.setState({ wheat: this.state.wheat + (3600 + this.state.level * 1400) });
+		this.setState({ wheat: this.state.wheat + ((3600 + this.state.level * 1400)/86400) });
 	}
 
 	componentDidMount() {
@@ -92,17 +87,3 @@ class Mill extends React.Component {
 }
 
 export default Mill;
-/***
- * 
- * TODO
- * bizonyos eséllyel óránként termel copper, silver, gold
- * ez minden órában egyszer történik meg, pl. minden 60. percben (timer)
- * ha nem talál, akkor növekedik az esély
- * ha talál, akkor az esély nullázódik
- * külön esély mindháromra
- * 40. szinten a copper
- * 45. szinten a silver
- * 50. szinten a gold esélyei láthatóvá válnak
- * 
- * 
- */
