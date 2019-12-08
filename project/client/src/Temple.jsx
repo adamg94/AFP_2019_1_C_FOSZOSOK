@@ -9,21 +9,19 @@ nem találtam a fás háznak még másik két képet :(
 
 */
 
-class Ironmine extends React.Component {
+class Temple extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			iron: 0,
+			moral: 0,
 			level: '',
-			img: '',
-			nextincome: '',
-			income: ''
+			img: ''
 		};
 	}
 
 	tick() {
-		this.setState({ iron: this.state.iron + this.state.level * 80 / 3600 });
+		this.setState({ moral: this.state.moral - this.state.level * 0.01 });
 	}
 
 	componentDidMount() {
@@ -35,37 +33,25 @@ class Ironmine extends React.Component {
 			};
 			axios.post('http://localhost:5000/village/getinfo', data).then((res) => {
 				this.setState({
-					iron: res.data.village.buildings.warehouse.iron,
-					level: res.data.village.buildings.ironmine.level
+					moral: res.data.village.buildings.temple.moral,
+					level: res.data.village.buildings.temple.level
 				});
 
 				this.timerInterval = setInterval(this.tick.bind(this), 1000);
 
 				if (this.state.level > 0) {
 					this.setState({
-						img: <img id="kep" alt="" src={f1} />,
-						income: this.state.level * 80,
-						nextincome: this.state.level < 50 ? (this.state.level + 1) * 80 : this.state.level
+						img: <img id="kep" alt="" src={f1} />
 					});
-				} /*
-          if(this.state.level > 5)
-          {
-            this.setState({
-              img : <img alt="" src={f2} />
-            })
-          }
-          if(this.state.level > 15)
-          {
-            this.setState({
-              img : <img alt="" src={f3} />
-            })
-          }*/
+				}
 			});
 		}
 	}
+
 	componentWillUnmount() {
 		clearInterval(this.timerInterval);
 	}
+
 	onChangeInfo(msg) {
 		this.setState({
 			infoMessage: ''
@@ -82,24 +68,20 @@ class Ironmine extends React.Component {
 	render() {
 		return (
 			<section>
-				<p id="title">Ironmine</p>
+				<p id="title">Temple</p>
 				<p id="building-info">
-					The ironmine passively producing iron for your village which is a basic and important resource.
+					The temple passively alters building and production time based on it's moral percentage!
 				</p>
 
 				<table id="income-info">
 					<tbody>
 						<tr>
-							<td>Current iron:</td>
-							<td>{parseInt(this.state.iron)}</td>
+							<td>Current moral:</td>
+							<td>{parseInt(this.state.moral)} %</td>
 						</tr>
 						<tr>
-							<td>Current income:</td>
-							<td>{this.state.income} /hour</td>
-						</tr>
-						<tr>
-							<td>Next level income:</td>
-							<td>{this.state.nextincome} /hour</td>
+							<td>Level:</td>
+							<td>{parseInt(this.state.level)}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -109,7 +91,7 @@ class Ironmine extends React.Component {
 	}
 }
 
-export default Ironmine;
+export default Temple;
 /***
  * 
  * TODO
