@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import "./sass/Ironmine.sass";
 import { getFromStorage } from "./utils/storage";
-import f1 from "./img/iron.png";
+import f1 from "./img/ironmine.png";
 /*import f2 from './img/'
 import f3 from './img/'
 nem találtam a fás háznak még másik két képet :(
