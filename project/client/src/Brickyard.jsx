@@ -1,20 +1,17 @@
 import React from "react";
 import axios from "axios";
-import "./sass/Lumberyard.sass";
+import "./sass/Brickyard.sass";
 import { getFromStorage } from "./utils/storage";
-import f1 from "./img/fa.png";
-/*import f2 from './img/'
-import f3 from './img/'
-nem találtam a fás háznak még másik két képet :(
+import f1 from "./img/brickyard/agyag1.png";
+import f2 from "./img/brickyard/agyag2.png";
+import f3 from "./img/brickyard/agyag3.png";
 
-*/
-
-class Lumberyard extends React.Component {
+class Brickyard extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      wood: 0,
+      brick: 0,
       level: "",
       img: "",
       nextincome: "",
@@ -23,7 +20,7 @@ class Lumberyard extends React.Component {
   }
 
   tick() {
-    this.setState({ wood: this.state.wood + (this.state.level * 80) / 3600 });
+    this.setState({ brick: this.state.brick + (this.state.level * 80) / 3600 });
   }
 
   componentDidMount() {
@@ -35,8 +32,8 @@ class Lumberyard extends React.Component {
       };
       axios.post("http://localhost:5000/village/getinfo", data).then(res => {
         this.setState({
-          wood: res.data.village.buildings.warehouse.wood,
-          level: res.data.village.buildings.lumberyard.level
+          brick: res.data.village.buildings.warehouse.brick,
+          level: res.data.village.buildings.brickyard.level
         });
 
         this.timerInterval = setInterval(this.tick.bind(this), 1000);
@@ -50,19 +47,17 @@ class Lumberyard extends React.Component {
                 ? (this.state.level + 1) * 80
                 : this.state.level
           });
-        } /*
-          if(this.state.level > 5)
-          {
-            this.setState({
-              img : <img alt="" src={f2} />
-            })
-          }
-          if(this.state.level > 15)
-          {
-            this.setState({
-              img : <img alt="" src={f3} />
-            })
-          }*/
+        }
+        if (this.state.level > 5) {
+          this.setState({
+            img: <img alt="" src={f2} />
+          });
+        }
+        if (this.state.level > 15) {
+          this.setState({
+            img: <img alt="" src={f3} />
+          });
+        }
       });
     }
   }
@@ -85,17 +80,17 @@ class Lumberyard extends React.Component {
   render() {
     return (
       <section>
-        <p id="title">Lumberyard</p>
+        <p id="title">brickyard</p>
         <p id="building-info">
-          The lumberyard passively producing wood for your village which is a
+          The brickyard passively producing brick for your village which is a
           basic and important resource.
         </p>
 
         <table id="income-info">
           <tbody>
             <tr>
-              <td>Current wood:</td>
-              <td>{parseInt(this.state.wood)}</td>
+              <td>Current brick:</td>
+              <td>{parseInt(this.state.brick)}</td>
             </tr>
             <tr>
               <td>Current income:</td>
@@ -113,4 +108,4 @@ class Lumberyard extends React.Component {
   }
 }
 
-export default Lumberyard;
+export default Brickyard;

@@ -7,67 +7,44 @@ body
 
 #grass
     width: 900px
-    height: 847px
+    height: 853px
     display: inline-block
     float: left
     background: #1a441a
+    position: relative
 
 #resource-info
-    display: inline-block
-    float: left
-    margin: 100px 0
-    width: 600px
+    display: table
+    margin: 0 auto
+    padding-top: 100px
+    //width: 600px
     &::after
        content: ''
        display: table
-       clear: both 
-    ul
-        text-align: right
-        li
-            list-style: none
-            display: inline
-            padding: 20px
-            font-family: $font-five
-            font-size: 24px
-            position: relative
-           
-            
-            span
-                position: absolute
-                bottom: 0
-                text-align: center
-                left: 50%
-                margin: -10px
+       clear: both
+    tr
+        td
+            padding: 10px
+            color: #696969
+            font-family: $font-three
+        td:nth-child(2)
+            color: #CA405B
+            text-align: right
+            font-weight: bold
+#hr
+    border-top: 0
+    border-bottom: 1px solid rgba(0,0,0,0.12)
+    margin: 30px 0
 
-#resource-info2
-    display: inline-block
-    float: left
-    margin: 100px 0
-    width: 600px
-    ul
-        text-align: center
-        li
-            list-style: none
-            margin: 20px
-            padding: 20px
-            font-family: $font-five
-            font-size: 24px
-            position: relative
-           
-            
-            span
-                position: absolute
-                bottom: 0
-                text-align: center
-                //left: 0
-                margin: -10px
-
-#lumberyard
-    background-image: url('../img/fa.png')
-    background-size: 10%
-    background-repeat: no-repeat
-    //background-position: 232px 554px
-    height: 10%
-    z-index: 2
-    &:hover
-        cursor: pointer
+#lumberyardimg
+    width: 13%
+    padding: 10px
+    position: absolute
+    bottom: 20px
+    right: 20px
+#brickyardimg
+    width: 13%
+    padding: 10px
+    position: absolute
+    bottom: 20px
+    left: 20px
