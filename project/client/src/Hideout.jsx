@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import './sass/Ironmine.sass';
 import { getFromStorage } from './utils/storage';
-import f1 from './img/warehouse/raktar1.png';
+import f1 from './img/warehouse/raktar3.png';
 
 class Hideout extends React.Component {
 	constructor(props) {
@@ -31,7 +31,7 @@ class Hideout extends React.Component {
 				if (this.state.level > 0) {
 					this.setState({
                         img: <img id="kep" alt="" src={f1} />,
-                        maxMaterial: this.state.level * 300
+                        maxMaterial: (this.state.level) * 300
 						
 					});
 				}
@@ -56,7 +56,7 @@ class Hideout extends React.Component {
 		return (
 			<section>
 				<p id="title">Hideout</p>
-				<p id="building-info">The hideout is where your villageers also keeps the processed materials!</p>
+				<p id="building-info">The Hide-out is where your villagers also keeps the processed materials.</p>
 
 				<table id="income-info">
 					<tbody>
