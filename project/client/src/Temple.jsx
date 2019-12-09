@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './sass/Ironmine.sass';
+import './sass/Temple.sass';
 import { getFromStorage } from './utils/storage';
 import f1 from './img/ironmine.png';
 /*import f2 from './img/'
@@ -12,17 +13,46 @@ nem találtam a fás háznak még másik két képet :(
 class Temple extends React.Component {
 	constructor(props) {
 		super(props);
-
+		this.MiseStart = this.MiseStart.bind(this);
 		this.state = {
 			moral: 0,
 			level: '',
 			img: '',
-			miseStarted: ''
+			miseStarted: '',
+			miseEnds: ''
 		};
 	}
 
 	tick() {
 		this.setState({ moral: this.state.moral - this.state.level * 0.01 });
+	}
+	MiseStart(e) {
+		e.preventDefault();
+		const obj = getFromStorage('afp_falu');
+		if (obj && obj.username && obj.token) {
+			const data = {
+				token: obj.token,
+				username: obj.username
+			};
+			axios.post('http://localhost:5000/village/miseStart', data).then((res) => {
+			
+			this.setState({
+					moral: res.data.village.buildings.temple.moral,
+					level: res.data.village.buildings.temple.level,
+					miseStarted: res.data.village.buildings.temple.mise_started,
+					miseEnds: res.data.village.buildings.temple.mise_ends
+				});
+				console.log(res.data);
+
+				this.timerInterval = setInterval(this.tick.bind(this), 1000);
+
+				if (this.state.level > 0) {
+					this.setState({
+						img: <img id="kep" alt="" src={f1} />
+					});
+				}
+			});
+		}
 	}
 
 	componentDidMount() {
@@ -36,7 +66,8 @@ class Temple extends React.Component {
 				this.setState({
 					moral: res.data.village.buildings.temple.moral,
 					level: res.data.village.buildings.temple.level,
-					miseStarted: res.data.village.mise_started
+					miseStarted: res.data.village.buildings.temple.mise_started,
+					miseEnds: res.data.village.buildings.temple.mise_ends
 				});
 
 				this.timerInterval = setInterval(this.tick.bind(this), 1000);
@@ -74,27 +105,37 @@ class Temple extends React.Component {
 				<p id="building-info">
 					The temple passively alters building and production time based on it's moral percentage!
 				</p>
-
-				<table id="income-info">
-					<tbody>
-						<tr>
-							<td>Current moral:</td>
-							<td><progress value = {parseInt(this.state.moral)} max="100" /></td>
-							<td>{parseInt(this.state.moral)} %</td>
-						</tr>
-						<tr>
-							<td>Level:</td>
-							<td>{this.state.level}</td>
-						</tr>
-						{this.state.miseStarted != null &&
-						<tr>
-							<td>Mise started at:</td>
-							<td>{this.state.miseStarted}</td>
-						</tr>}
-						{this.state.miseStarted == null &&						
-						<tr>You haven't started a mise yet</tr>	}
-					</tbody>
-				</table>
+				<form onSubmit={this.MiseStart}>
+					<table id="income-info">
+						<tbody>
+							<tr>
+								<td>Current moral:</td>
+								<td>
+									<progress value={parseInt(this.state.moral)} max="100" />
+								</td>
+								<td>{parseInt(this.state.moral)} %</td>
+							</tr>
+							<tr>
+								<td>Level:</td>
+								<td>{this.state.level}</td>
+							</tr>
+							{this.state.miseStarted != null && 
+								<tr>
+									<td>Mise started at:</td>
+									<td>{this.state.miseStarted}</td>
+								</tr> &&
+								<tr>
+									<td>Mise ends at:</td>
+									<td>{this.state.miseEnds}</td>
+								</tr>
+							}
+							
+						</tbody>
+					</table>
+					{this.state.miseStarted == null && <tr>You haven't started a mise yet</tr> && 
+								<input type="submit" className="improvebutton" value="Start Mise" />
+							}
+				</form>
 				{this.state.img}
 			</section>
 		);
