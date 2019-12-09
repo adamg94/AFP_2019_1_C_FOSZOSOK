@@ -245,6 +245,7 @@ router.route("/miseStart").post((req, res) => {
             }
           },
           (err2, req_update_res) => {
+            
             if (err2) {
               console.log(`request.post()VillageUpdate Error: '${err2}'!`);
               res.json({ success: false, message: `Server Error! 'v002'` });
@@ -252,14 +253,31 @@ router.route("/miseStart").post((req, res) => {
             }
 
             if (req_update_res.body.success) {
-              res.json({
-                success: req_update_res.body.success,
-                username: req_res.body.username,
-                token: req_res.body.token,
-                message: req_update_res.body.message,
-                village: req_update_res.body.village
-              });
-              return;
+              
+            Village.findOne({_id : req_update_res.body.villageId}, async (err3, foundVillage) => {
+              if (err3) {
+                console.log(`Village findOne error: '${err3}'!`);
+                res.json({ success: false, message: `Server Error! 'v002'` });
+                return;
+              }
+              
+              foundVillage.buildings.temple.mise_started = req_update_res.body.currentdatentp;
+              foundVillage.buildings.temple.mise_ends = Date.parse(req_update_res.body.currentdatentp) + 
+              7200000; 
+              let save_result = await foundVillage
+              .save()
+              .then(_ => {
+                res.json({
+                  currentdatentp: foundVillage.buildings.temple.mise_started,
+                  success: true,
+                  message: "Village Updated",
+                  village: foundVillage
+                });
+                console.log('OK');
+                return;
+              })
+              .catch(err => console.log(err));              
+            })
             } else {
               res.json({
                 success: false,

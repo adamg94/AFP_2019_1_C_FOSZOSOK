@@ -44,15 +44,16 @@ router.route("/villageupdate").post((req, res) => {
            *
            *
            */
-          let templeMultiplier = village_findOne_result.buildings.lumberyard.level;
-          if(templeMultiplier >= 75){
-            templeMultiplier = 1.2;
+          let morelLevel = village_findOne_result.buildings.temple.moral;
+          GAMESETTINGS.TEMPLE_MULTIPLIER = morelLevel;
+          if(GAMESETTINGS.TEMPLE_MULTIPLIER >= 75){
+            GAMESETTINGS.TEMPLE_MULTIPLIER = 1.2;
           }
-          else if (templeMultiplier <= 25){
-            templeMultiplier = 0.8;
+          else if (GAMESETTINGS.TEMPLE_MULTIPLIER <= 25){
+            GAMESETTINGS.TEMPLE_MULTIPLIER = 0.8;
           }
           else{
-            templeMultiplier = 1;
+            GAMESETTINGS.TEMPLE_MULTIPLIER = 1;
           }
           let maxMaterial = village_findOne_result.buildings.warehouse.level * 1000;
           newdate = JSON.parse(body).result;
@@ -67,7 +68,7 @@ router.route("/villageupdate").post((req, res) => {
             GAMESETTINGS.BASE_MULTIPLIER *
             (timeSinceLastUpdate *
               ((village_findOne_result.buildings.lumberyard.level * 80) /
-                3600)) * templeMultiplier;
+                3600)) * GAMESETTINGS.TEMPLE_MULTIPLIER;
           
                 if(village_findOne_result.buildings.warehouse.wood > maxMaterial){
                   village_findOne_result.buildings.warehouse.wood = maxMaterial;
@@ -77,7 +78,7 @@ router.route("/villageupdate").post((req, res) => {
           village_findOne_result.buildings.warehouse.brick +=
             GAMESETTINGS.BASE_MULTIPLIER *
             (timeSinceLastUpdate *
-              ((village_findOne_result.buildings.brickyard.level * 80) / 3600)) * templeMultiplier;
+              ((village_findOne_result.buildings.brickyard.level * 80) / 3600)) * GAMESETTINGS.TEMPLE_MULTIPLIER;
 
               if(village_findOne_result.buildings.warehouse.brick > maxMaterial){
                 village_findOne_result.buildings.warehouse.brick = maxMaterial;
@@ -97,7 +98,7 @@ router.route("/villageupdate").post((req, res) => {
           village_findOne_result.buildings.warehouse.iron +=
             GAMESETTINGS.BASE_MULTIPLIER *
             (timeSinceLastUpdate *
-              ((village_findOne_result.buildings.ironmine.level * 80) / 3600)) * templeMultiplier;
+              ((village_findOne_result.buildings.ironmine.level * 80) / 3600)) * GAMESETTINGS.TEMPLE_MULTIPLIER;
 
 
               if(village_findOne_result.buildings.warehouse.iron >maxMaterial){
@@ -109,6 +110,10 @@ router.route("/villageupdate").post((req, res) => {
                     GAMESETTINGS.BASE_MULTIPLIER *
                     (timeSinceLastUpdate *
                       ((11 - village_findOne_result.buildings.temple.level) / 86400));
+                      let datum = Date.parse(village_findOne_result.buildings.temple.mise_ends)
+                      if((Date.parse(newdate) - datum ) > 7200000){
+                        //TODO
+                      }
 
          
 
@@ -176,7 +181,9 @@ router.route("/villageupdate").post((req, res) => {
               res.json({
                 success: true,
                 message: "Village Updated",
-                village: village_findOne_result
+                village: village_findOne_result,
+                currentdatentp: newdate,
+                villageId: village_findOne_result._id
               });
               return;
             })

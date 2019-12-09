@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import './sass/Ironmine.sass';
 import { getFromStorage } from './utils/storage';
-import f1 from './img/ironmine.png';
+import f1 from './img/warehouse/raktar1.png';
 
 class Warehouse extends React.Component {
 	constructor(props) {
@@ -69,7 +69,7 @@ class Warehouse extends React.Component {
 						{this.state.level < 50 &&
 						
 							<tr>
-								<td>Nect level maximum amount:</td>
+								<td>NeXt level maximum amount:</td>
 								<td>{parseInt(this.state.maxMaterial) + 1000} / material </td>
 							</tr>
 						}

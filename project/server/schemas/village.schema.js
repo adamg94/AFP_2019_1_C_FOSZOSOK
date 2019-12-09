@@ -75,6 +75,12 @@ const VillageSchema = new Schema({
             moral : {
                 type : Number,
                 default : 50
+            }, mise_started :{
+                type: Date,
+                default: null
+            }, mise_ends : {
+                type: Date,
+                default: null
             }
        },
        wall : {
@@ -318,14 +324,7 @@ const VillageSchema = new Schema({
             type : Number,
             default : 14
         }
-       }
-    }, mise_started :{
-        type: Date,
-        default: null
-    }, mise_ends : {
-        type: Date,
-        default: null
-    }
+       }}
 })
 
 
