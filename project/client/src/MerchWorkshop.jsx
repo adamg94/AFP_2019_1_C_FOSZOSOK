@@ -54,7 +54,7 @@ class MerchWorkshop extends React.Component {
 		return (
 			<section>
 				<p id="title">MerchWorkshop</p>
-				<p id="building-info">This is a passive building.</p>
+				<p id="building-info">This building has a passiv effect on the Merch.</p>
 
 				<table id="income-info">
 					<tbody>
@@ -65,7 +65,7 @@ class MerchWorkshop extends React.Component {
 						</tr>
                         <tr>
 							<td>Current increase:</td>
-							<td>{this.state.level}%</td>
+							<td>{parseInt(this.state.level)*10} %</td>
 						</tr>
 						
 					</tbody>

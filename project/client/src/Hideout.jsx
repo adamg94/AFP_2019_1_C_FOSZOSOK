@@ -2,16 +2,17 @@ import React from 'react';
 import axios from 'axios';
 import './sass/Ironmine.sass';
 import { getFromStorage } from './utils/storage';
-import f1 from './img/warehouse/raktar1.png';
+import f1 from './img/warehouse/raktar3.png';
 
-class Warehouse extends React.Component {
+class Hideout extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			maxMaterial: 0,
+            maxMaterial: 0,
 			level: '',
-			img: ''
+            img: '',
+            
 		};
 	}
 
@@ -24,13 +25,14 @@ class Warehouse extends React.Component {
 			};
 			axios.post('http://localhost:5000/village/getinfo', data).then((res) => {
 				this.setState({
-					level: res.data.village.buildings.warehouse.level
+					level: res.data.village.buildings.hideout.level
 				});
 
 				if (this.state.level > 0) {
 					this.setState({
-						img: <img id="kep" alt="" src={f1} />,
-						maxMaterial: this.state.level * 1000
+                        img: <img id="kep" alt="" src={f1} />,
+                        maxMaterial: (this.state.level) * 300
+						
 					});
 				}
 			});
@@ -53,26 +55,28 @@ class Warehouse extends React.Component {
 	render() {
 		return (
 			<section>
-				<p id="title">Warehouse</p>
-				<p id="building-info">The warehouse is where your villageers keep the processed materials!</p>
+				<p id="title">Hideout</p>
+				<p id="building-info">The Hide-out is where your villagers also keeps the processed materials.</p>
 
 				<table id="income-info">
 					<tbody>
 						<tr>
 							<td>Current level:</td>
-							<td>{this.state.level}</td>
+                            <td>{this.state.level}</td>
+							
 						</tr>
-						<tr>
-							<td>Current maximum amount:</td>
+                        <tr>
+                        <td>Current maximum amount:</td>
 							<td>{parseInt(this.state.maxMaterial)} / material </td>
 						</tr>
-						{this.state.level < 50 &&
+                        {this.state.level < 50 &&
 						
-							<tr>
-								<td>NeXt level maximum amount:</td>
-								<td>{parseInt(this.state.maxMaterial) + 1000} / material </td>
-							</tr>
-						}
+                        <tr>
+                            <td>Next level maximum amount:</td>
+                            <td>{parseInt(this.state.maxMaterial) + 300} / material </td>
+                        </tr>
+                    }
+						
 					</tbody>
 				</table>
 				{this.state.img}
@@ -81,4 +85,4 @@ class Warehouse extends React.Component {
 	}
 }
 
-export default Warehouse;
+export default Hideout;
