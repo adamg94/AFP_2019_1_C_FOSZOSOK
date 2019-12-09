@@ -49,3 +49,20 @@ IX. Projekt bemutatása
 
 
 6. Fizikai környezet
+Futtató környezet:
+	-Windows 7 vagy újabb
+	-Ubuntu 12.04 vagy újabb
+	-macOS 10.10 (Yosemite) vagy újabb
+Minimum hardver:
+	-processzor: Intel Pentium 4 vagy újabb
+	-memória: 512 MB RAM
+	-videókártya: bármilyen integrált mely, megfelelő korú a processzorral
+Ajánlott hardver:
+	-processzor: 8. genenárciós Intel i3
+	-memória: 4 GB DDR 3 1333 Mhz
+	-videókártya: több féle NVIDIA vagy integrált
+Elérhető szoftverek:
+	-Electron
+Fejlesztői környezet:
+	-Visual Studio Code
+	-Notepad++
