@@ -58,17 +58,23 @@ router.route("/villageupdate").post((req, res) => {
           let maxStoneHid;
           let maxGoldHid;
           if(village_findOne_result.buildings.hideout.level == 1){
-            maxStoneH = 200;
-            maxGoldH = 20;
+            maxStoneHid = 200;
+            maxGoldHid = 20;
           }
           else{
-            maxStoneH = village_findOne_result.hideout.level * 714 + 200;
-            maxGoldH = village_findOne_result.hideout.level * 102 + 20;
+            maxStoneHid = village_findOne_result.hideout.level * 714 + 200;
+            maxGoldHid = village_findOne_result.hideout.level * 102 + 20;
           }
 
 
           let maxMaterial =
             village_findOne_result.buildings.warehouse.level * 10000;
+
+          if(village_findOne_result.buildings.statue.level > 0){
+            maxMaterial = (village_findOne_result.buildings.warehouse.level * 10000) * 1.25;
+            maxMaterialHid = (village_findOne_result.buildings.hideout.level * 3000) * 1.30;
+          }
+
           let maxStone;
           let maxGold;
           if(village_findOne_result.buildings.warehouse.level == 1){
@@ -89,11 +95,12 @@ router.route("/villageupdate").post((req, res) => {
 
             //hideout
           village_findOne_result.buildings.hideout.wood +=
+          GAMESETTINGS.STATUE_MULTIPLIER*(
           GAMESETTINGS.BASE_MULTIPLIER *
           (timeSinceLastUpdate *
             ((village_findOne_result.buildings.lumberyard.level * 80) /
               3600)) *
-          GAMESETTINGS.TEMPLE_MULTIPLIER;
+          GAMESETTINGS.TEMPLE_MULTIPLIER)
 
         if (village_findOne_result.buildings.hideout.wood > maxMaterialHid) {
           village_findOne_result.buildings.hideout.wood = maxMaterialHid;
@@ -103,11 +110,12 @@ router.route("/villageupdate").post((req, res) => {
 
           //warehouse
           village_findOne_result.buildings.warehouse.wood +=
+            GAMESETTINGS.STATUE_MULTIPLIER*(
             GAMESETTINGS.BASE_MULTIPLIER *
             (timeSinceLastUpdate *
               ((village_findOne_result.buildings.lumberyard.level * 80) /
                 3600)) *
-            GAMESETTINGS.TEMPLE_MULTIPLIER;
+            GAMESETTINGS.TEMPLE_MULTIPLIER);
 
           if (village_findOne_result.buildings.warehouse.wood > maxMaterial) {
             village_findOne_result.buildings.warehouse.wood = maxMaterial;
@@ -117,11 +125,12 @@ router.route("/villageupdate").post((req, res) => {
 
            //hideout
            village_findOne_result.buildings.hideout.brick +=
+           GAMESETTINGS.STATUE_MULTIPLIER*(
            GAMESETTINGS.BASE_MULTIPLIER *
            (timeSinceLastUpdate *
              ((village_findOne_result.buildings.brickyard.level * 80) /
                3600)) *
-           GAMESETTINGS.TEMPLE_MULTIPLIER;
+           GAMESETTINGS.TEMPLE_MULTIPLIER);
 
          if (village_findOne_result.buildings.hideout.brick > maxMaterialHid) {
            village_findOne_result.buildings.hideout.brick = maxMaterialHid;
@@ -129,11 +138,12 @@ router.route("/villageupdate").post((req, res) => {
 
           //warehouse
           village_findOne_result.buildings.warehouse.brick +=
+            GAMESETTINGS.STATUE_MULTIPLIER*(
             GAMESETTINGS.BASE_MULTIPLIER *
             (timeSinceLastUpdate *
               ((village_findOne_result.buildings.brickyard.level * 80) /
                 3600)) *
-            GAMESETTINGS.TEMPLE_MULTIPLIER;
+            GAMESETTINGS.TEMPLE_MULTIPLIER);
 
           if (village_findOne_result.buildings.warehouse.brick > maxMaterial) {
             village_findOne_result.buildings.warehouse.brick = maxMaterial;
@@ -143,10 +153,11 @@ router.route("/villageupdate").post((req, res) => {
 
           //hideout
           village_findOne_result.buildings.hideout.wheat +=
+            GAMESETTINGS.STATUE_MULTIPLIER*(
             GAMESETTINGS.BASE_MULTIPLIER *
             ((timeSinceLastUpdate *
               (3600 + village_findOne_result.buildings.mill.level * 1400)) /
-              86400);
+              86400));
 
           if (village_findOne_result.buildings.hideout.wheat > maxMaterialHid) {
             village_findOne_result.buildings.hideout.wheat = maxMaterialHid;
@@ -155,10 +166,11 @@ router.route("/villageupdate").post((req, res) => {
 
           //warehouse
           village_findOne_result.buildings.warehouse.wheat +=
+            GAMESETTINGS.STATUE_MULTIPLIER*(
             GAMESETTINGS.BASE_MULTIPLIER *
             ((timeSinceLastUpdate *
               (3600 + village_findOne_result.buildings.mill.level * 1400)) /
-              86400);
+              86400));
 
           if (village_findOne_result.buildings.warehouse.wheat > maxMaterial) {
             village_findOne_result.buildings.warehouse.wheat = maxMaterial;
@@ -169,10 +181,11 @@ router.route("/villageupdate").post((req, res) => {
 
           //hideout
           village_findOne_result.buildings.hideout.iron +=
+            GAMESETTINGS.STATUE_MULTIPLIER*(
             GAMESETTINGS.BASE_MULTIPLIER *
             (timeSinceLastUpdate *
               ((village_findOne_result.buildings.ironmine.level * 80) / 3600)) *
-            GAMESETTINGS.TEMPLE_MULTIPLIER;
+            GAMESETTINGS.TEMPLE_MULTIPLIER);
 
           if (village_findOne_result.buildings.hideout.iron > maxMaterialHid) {
             village_findOne_result.buildings.hideout.iron = maxMaterialHid;
@@ -180,10 +193,11 @@ router.route("/villageupdate").post((req, res) => {
 
           //warehouse
           village_findOne_result.buildings.warehouse.iron +=
+            GAMESETTINGS.STATUE_MULTIPLIER*(
             GAMESETTINGS.BASE_MULTIPLIER *
             (timeSinceLastUpdate *
               ((village_findOne_result.buildings.ironmine.level * 80) / 3600)) *
-            GAMESETTINGS.TEMPLE_MULTIPLIER;
+            GAMESETTINGS.TEMPLE_MULTIPLIER);
 
           if (village_findOne_result.buildings.warehouse.iron > maxMaterial) {
             village_findOne_result.buildings.warehouse.iron = maxMaterial;
@@ -191,9 +205,10 @@ router.route("/villageupdate").post((req, res) => {
 
           //templom morál
           village_findOne_result.buildings.temple.moral -=
+            GAMESETTINGS.STATUE_MULTIPLIER*(
             GAMESETTINGS.BASE_MULTIPLIER *
             (timeSinceLastUpdate *
-              ((72) / 86400));
+              ((72) / 86400)));
               if(village_findOne_result.buildings.temple.moral < 1){
                 village_findOne_result.buildings.temple.moral = 0
               }
