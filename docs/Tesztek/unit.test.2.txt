@@ -10,7 +10,11 @@ A session tokent a rendszer megfelelõen generálja és kilépéskor megfelelõen törl
 és többszörös megnyomás esetén a program hibával kilépett és nem törölte a session-t. Ezt úgy oldottam meg, hogy a gomb felé helyez egy div-et ami ellehetetleníti a gomb megnyomását.
 
 Update rendszer:
+Itt észleltem egy hibát a raktár rendszerébe, a kõre és vasra nem volt rávizsgálva, hogy a maximum mennyiséget elérte-e és lehetséges volt a végtelenségig növelni. Ez a hiba javítva lett.
 
+Frontend: 
+A termelõk nem igazodtak a raktár szintjéhez, jelezték a termelést, adatbázisba nem mentettek, mindne újratöltéskor visszaálltak a maximumra. Javítva lett.
+Egyes képek a falu kirajzolásánál összecsúsztak a fal elhelyezése után, javítva lett
 
 Navigációs sáv:
 A navigációs sávon a megfelelõ épületre kattintva a megfelelõ épület oldala jelenik meg, a tálca és a kilépés gomb is az elvártnak megfelelõen mûködik.
@@ -22,6 +26,28 @@ A morál az elvártaknak megfelelõen befolyásolja a nyersanyag termelést, egy glob
 A mise kezdés gomb megnyomásával sikeresen regisztrálja az adatbázisba, annak kezdését és várható végét. Az idõ leteltekor a morál megfelelõ mennyiséggel növekszik. A szerver nem enged új misét indítani, amíg nem telt el 2 mise között megfelelõ idõ, ezt a templom szintje befolyásolja.
 A gomb sem jelenik meg kliens oldalon amíg nem lehetséges a mise kezdése.
 
+Hiba:
+Új felhasználó nem tudott misét indítani, mert logikai hiba történt. Rá lett vizsgálva, hogy nincs-e folyamatban mise ÉS az utolsó mise óta eltelt-e a megfelelõ idõmennyiség. Nyílván nem telt el mivel nem volt elõzõ mise, ezért a gomb soha nem jelent meg az új játékosnak. Ez a hiba javítva lett
+
 Raktár:
 A raktár oldalára navigálva az elvártnak megfelelõen jelenik meg az oldal. A funckiója abból áll, hogy meghatározza mennyi nyersanyag tárolható.
 Hiba volt, hogy leállította a termelést ahelyett, hogy nem engedte volna menteni az adatbázisba, ez késõbb javítva lett.
+
+Szobor:
+A szobor oldalára lépve megjelenik az oldal. A szobor az egész termelést beszorozza. Ez egy global változóval lett megoldva. A raktár és a rejtekhely tárolási kapacitását megnöveli.
+
+Hiba volt:
+Import hiba miatt nem lehetett rámenni az oldalra, az indexbõl is kimaradt. Ezek tesztelve lettek és javítva.
+
+Rejtekhely:
+Az oldalra lépve megjelenik. A rejtekhely ugyanúgy mûködik, mint a raktár csak a kapacitása kisebb. Az updaterben létre lettek hozva neki új változók.
+Ha a nyersanyag több, mint amit eltud tárolni akkor visszaírja a max nyersanyagra.
+
+Hiba volt:
+Itt is kimaradt egy import, de javítva lett. Szintenkénti tárolás mennyisége is el volt írva (lemaradt egy nulla), de késõbb ez is javítva lett.
+
+Kereskedõmûhely:
+Az oldalra lépve megjelenik. A kereskedõmûhelynek nincs nagyon funkciója. Maximális szintje 10 lehet. A szintet a kereskedõház letudja kérni.
+
+Hiba volt:
+Kimaradt a progressiv bar, meg a max szint se volt beállítva. A "Current increase" az aktuális szint számát mutatta, és nem a százalékot, ezért még be kellett szorozni tízzel és a végére rakni egy százalékjelet. Ezek természetesen tesztelve lettek és javítva.

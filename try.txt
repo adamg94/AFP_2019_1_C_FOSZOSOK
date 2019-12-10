@@ -3,7 +3,6 @@
 Vasbánya  -- kész
 AgyagBánya  --kész
 Fatelep  --kész
-Nemesfémkohó
 Palota
 
 
@@ -19,19 +18,16 @@ Erik:
 -Szobor
 -Rejtekhely
 
-Ákos:
+
+
+Ákos
 -Fal
--Metalfurnace
+-Nemesfémkohó
 
-Fennmaradó: Ákos + Erik
-Aktív épületek:
 
--Kereskedőház
+Lebeg:
+Merch
 
-Passzív épületek:
--Szobor,
--Kereskedőműhely
--Rejtekhely //////félig aktív is//////
 
 
 

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const request = require("request");
 const Village = require("../schemas/village.schema");
+const Construct = require("../schemas/constructions")
 const GAMESETTINGS = require("../village.config");
 let newdate;
 let date;
@@ -44,6 +45,15 @@ router.route("/villageupdate").post((req, res) => {
            *
            *
            */
+
+
+          
+
+
+
+
+
+
           let morelLevel = village_findOne_result.buildings.temple.moral;
           GAMESETTINGS.TEMPLE_MULTIPLIER = morelLevel;
           if (GAMESETTINGS.TEMPLE_MULTIPLIER >= 75) {
@@ -58,17 +68,23 @@ router.route("/villageupdate").post((req, res) => {
           let maxStoneHid;
           let maxGoldHid;
           if(village_findOne_result.buildings.hideout.level == 1){
-            maxStoneH = 200;
-            maxGoldH = 20;
+            maxStoneHid = 200;
+            maxGoldHid = 20;
           }
           else{
-            maxStoneH = village_findOne_result.hideout.level * 714 + 200;
-            maxGoldH = village_findOne_result.hideout.level * 102 + 20;
+            maxStoneHid = village_findOne_result.hideout.level * 714 + 200;
+            maxGoldHid = village_findOne_result.hideout.level * 102 + 20;
           }
 
 
           let maxMaterial =
             village_findOne_result.buildings.warehouse.level * 10000;
+
+          if(village_findOne_result.buildings.statue.level > 0){
+            maxMaterial = (village_findOne_result.buildings.warehouse.level * 10000) * 1.25;
+            maxMaterialHid = (village_findOne_result.buildings.hideout.level * 3000) * 1.30;
+          }
+
           let maxStone;
           let maxGold;
           if(village_findOne_result.buildings.warehouse.level == 1){
@@ -78,7 +94,126 @@ router.route("/villageupdate").post((req, res) => {
             maxStone = village_findOne_result.buildings.warehouse.level * 5986 + 700,
 						maxGold = village_findOne_result.buildings.warehouse.level * 1994 + 300
           }
+
+          if(village_findOne_result.buildings.warehouse.stone > maxStone){
+            village_findOne_result.buildings.warehouse.stone = maxStone;
+          } 
+          if(village_findOne_result.buildings.warehouse.metal > maxStone){
+            village_findOne_result.buildings.warehouse.metal = maxStone;
+          }
+
           newdate = JSON.parse(body).result;
+
+
+
+
+          Construct.find({
+            villageId : village_findOne_result._id
+          }, async (err66, construct_find_result) => {
+
+
+            if(construct_find_result.length > 0)
+            {
+              for(let i = 0; i <construct_find_result.length; i++)
+              {
+                if(Date.parse(construct_find_result[i].jobTime) < Date.parse(newdate))
+                {
+                  let building
+                  let built_building_id = construct_find_result[i].buildingId
+
+                  let action = construct_find_result[i].action
+
+
+                  switch (built_building_id) {
+                    case 1:
+                      building = "palace";
+                      break;
+                    case 2:
+                      building = "merch";
+                      break;
+                    case 3:
+                      building = "merchworkshop";
+                      break;
+                    case 4:
+                      building = "temple";
+                      break;
+                    case 5:
+                      building = "wall";
+                      break;
+                    case 6:
+                      building = "warehouse";
+                      break;
+                    case 7:
+                      building = "hideout";
+                      break;
+                    case 8:
+                      building = "statue";
+                      break;
+                    case 9:
+                      building = "metalfurnace";
+                      break;
+                    case 10:
+                      building = "mill";
+                      break;
+                    case 11:
+                      building = "wheatfield";
+                      break;
+                    case 12:
+                      building = "ironmine";
+                      break;
+                    case 13:
+                      building = "brickyard";
+                      break;
+                    case 14:
+                      building = "lumberyard";
+                      break;
+                    default:
+                      break;
+                  }
+                  if( action == 1)
+                  {
+                    if(village_findOne_result.buildings[building].level + 1 != village_findOne_result.buildings[building].maxlevel)
+                      {
+                        console.log(village_findOne_result.buildings[building].level)
+                        village_findOne_result.buildings[building].level += 1
+                        
+                        console.log(village_findOne_result.buildings[building].level)
+                      }
+                  }
+                  else if(action == -1)
+                  {
+                    if(village_findOne_result.buildings[building].level - 1 != 0)
+                    {
+                      village_findOne_result.buildings[building].level -= 1
+                    
+                 
+                    }
+                  }
+                 
+                    
+                 
+                
+
+                    
+                  let save_result0 = await construct_find_result[i]
+                  .deleteOne()
+                  .then(_ => {
+                    
+                  })
+                  .catch(err => console.log(err));
+
+                }
+                
+              }
+            }
+
+          })
+
+
+
+
+
+
           const timeSinceLastUpdate = parseFloat(
             (Date.parse(newdate) -
               Date.parse(village_findOne_result.lastupdate)) /
@@ -89,11 +224,12 @@ router.route("/villageupdate").post((req, res) => {
 
             //hideout
           village_findOne_result.buildings.hideout.wood +=
+          GAMESETTINGS.STATUE_MULTIPLIER*(
           GAMESETTINGS.BASE_MULTIPLIER *
           (timeSinceLastUpdate *
             ((village_findOne_result.buildings.lumberyard.level * 80) /
               3600)) *
-          GAMESETTINGS.TEMPLE_MULTIPLIER;
+          GAMESETTINGS.TEMPLE_MULTIPLIER)
 
         if (village_findOne_result.buildings.hideout.wood > maxMaterialHid) {
           village_findOne_result.buildings.hideout.wood = maxMaterialHid;
@@ -103,11 +239,12 @@ router.route("/villageupdate").post((req, res) => {
 
           //warehouse
           village_findOne_result.buildings.warehouse.wood +=
+            GAMESETTINGS.STATUE_MULTIPLIER*(
             GAMESETTINGS.BASE_MULTIPLIER *
             (timeSinceLastUpdate *
               ((village_findOne_result.buildings.lumberyard.level * 80) /
                 3600)) *
-            GAMESETTINGS.TEMPLE_MULTIPLIER;
+            GAMESETTINGS.TEMPLE_MULTIPLIER);
 
           if (village_findOne_result.buildings.warehouse.wood > maxMaterial) {
             village_findOne_result.buildings.warehouse.wood = maxMaterial;
@@ -117,11 +254,12 @@ router.route("/villageupdate").post((req, res) => {
 
            //hideout
            village_findOne_result.buildings.hideout.brick +=
+           GAMESETTINGS.STATUE_MULTIPLIER*(
            GAMESETTINGS.BASE_MULTIPLIER *
            (timeSinceLastUpdate *
              ((village_findOne_result.buildings.brickyard.level * 80) /
                3600)) *
-           GAMESETTINGS.TEMPLE_MULTIPLIER;
+           GAMESETTINGS.TEMPLE_MULTIPLIER);
 
          if (village_findOne_result.buildings.hideout.brick > maxMaterialHid) {
            village_findOne_result.buildings.hideout.brick = maxMaterialHid;
@@ -129,11 +267,12 @@ router.route("/villageupdate").post((req, res) => {
 
           //warehouse
           village_findOne_result.buildings.warehouse.brick +=
+            GAMESETTINGS.STATUE_MULTIPLIER*(
             GAMESETTINGS.BASE_MULTIPLIER *
             (timeSinceLastUpdate *
               ((village_findOne_result.buildings.brickyard.level * 80) /
                 3600)) *
-            GAMESETTINGS.TEMPLE_MULTIPLIER;
+            GAMESETTINGS.TEMPLE_MULTIPLIER);
 
           if (village_findOne_result.buildings.warehouse.brick > maxMaterial) {
             village_findOne_result.buildings.warehouse.brick = maxMaterial;
@@ -143,10 +282,11 @@ router.route("/villageupdate").post((req, res) => {
 
           //hideout
           village_findOne_result.buildings.hideout.wheat +=
+            GAMESETTINGS.STATUE_MULTIPLIER*(
             GAMESETTINGS.BASE_MULTIPLIER *
             ((timeSinceLastUpdate *
               (3600 + village_findOne_result.buildings.mill.level * 1400)) /
-              86400);
+              86400));
 
           if (village_findOne_result.buildings.hideout.wheat > maxMaterialHid) {
             village_findOne_result.buildings.hideout.wheat = maxMaterialHid;
@@ -155,10 +295,11 @@ router.route("/villageupdate").post((req, res) => {
 
           //warehouse
           village_findOne_result.buildings.warehouse.wheat +=
+            GAMESETTINGS.STATUE_MULTIPLIER*(
             GAMESETTINGS.BASE_MULTIPLIER *
             ((timeSinceLastUpdate *
               (3600 + village_findOne_result.buildings.mill.level * 1400)) /
-              86400);
+              86400));
 
           if (village_findOne_result.buildings.warehouse.wheat > maxMaterial) {
             village_findOne_result.buildings.warehouse.wheat = maxMaterial;
@@ -169,10 +310,11 @@ router.route("/villageupdate").post((req, res) => {
 
           //hideout
           village_findOne_result.buildings.hideout.iron +=
+            GAMESETTINGS.STATUE_MULTIPLIER*(
             GAMESETTINGS.BASE_MULTIPLIER *
             (timeSinceLastUpdate *
               ((village_findOne_result.buildings.ironmine.level * 80) / 3600)) *
-            GAMESETTINGS.TEMPLE_MULTIPLIER;
+            GAMESETTINGS.TEMPLE_MULTIPLIER);
 
           if (village_findOne_result.buildings.hideout.iron > maxMaterialHid) {
             village_findOne_result.buildings.hideout.iron = maxMaterialHid;
@@ -180,10 +322,11 @@ router.route("/villageupdate").post((req, res) => {
 
           //warehouse
           village_findOne_result.buildings.warehouse.iron +=
+            GAMESETTINGS.STATUE_MULTIPLIER*(
             GAMESETTINGS.BASE_MULTIPLIER *
             (timeSinceLastUpdate *
               ((village_findOne_result.buildings.ironmine.level * 80) / 3600)) *
-            GAMESETTINGS.TEMPLE_MULTIPLIER;
+            GAMESETTINGS.TEMPLE_MULTIPLIER);
 
           if (village_findOne_result.buildings.warehouse.iron > maxMaterial) {
             village_findOne_result.buildings.warehouse.iron = maxMaterial;
@@ -191,9 +334,10 @@ router.route("/villageupdate").post((req, res) => {
 
           //templom morál
           village_findOne_result.buildings.temple.moral -=
+            GAMESETTINGS.STATUE_MULTIPLIER*(
             GAMESETTINGS.BASE_MULTIPLIER *
             (timeSinceLastUpdate *
-              ((72) / 86400));
+              ((72) / 86400)));
               if(village_findOne_result.buildings.temple.moral < 1){
                 village_findOne_result.buildings.temple.moral = 0
               }
@@ -277,7 +421,14 @@ router.route("/villageupdate").post((req, res) => {
           if(village_findOne_result.buildings.warehouse.gold > maxGold){
             village_findOne_result.buildings.warehouse.gold = maxGold;
           }
+          if(village_findOne_result.buildings.warehouse.silver > maxGold){
+            village_findOne_result.buildings.warehouse.silver = maxGold;
+          }
+          if(village_findOne_result.buildings.warehouse.copper > maxGold){
+            village_findOne_result.buildings.warehouse.copper = maxGold;
+          }
 
+          console.log(village_findOne_result.buildings.palace.level)
           village_findOne_result.lastupdate = newdate;
           let save_result = await village_findOne_result
             .save()

@@ -1,4 +1,5 @@
 module.exports = {
     BASE_MULTIPLIER : 1,
-    TEMPLE_MULTIPLIER: 0
+    TEMPLE_MULTIPLIER: 0,
+    STATUE_MULTIPLIER: 1.2
 }

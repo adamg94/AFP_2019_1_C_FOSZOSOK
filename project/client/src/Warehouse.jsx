@@ -11,7 +11,7 @@ class Warehouse extends React.Component {
 		this.state = {
 			maxMaterial: 0,
 			msxStone: 0,
-			maxGold:0,
+			maxGold: 0,
 			level: '',
 			img: ''
 		};
@@ -33,15 +33,15 @@ class Warehouse extends React.Component {
 					this.setState({
 						img: <img id="kep" alt="" src={f1} />,
 						maxMaterial: this.state.level * 10000,
-						maxStone : this.state.level * 5986 + 700,
-						maxGold : this.state.level * 1994 + 300
+						maxStone: this.state.level * 5986 + 700,
+						maxGold: this.state.level * 1994 + 300
 					});
 				}
-				if(this.state.level == 1){
+				if (this.state.level == 1) {
 					this.setState({
-						maxStone : 700,
-						maxGold :  300
-					})
+						maxStone: 700,
+						maxGold: 300
+					});
 				}
 			});
 		}
@@ -84,13 +84,22 @@ class Warehouse extends React.Component {
 							<td>Current maximum amount:</td>
 							<td>{parseInt(this.state.maxGold)} copper/silver/gold </td>
 						</tr>
-						{this.state.level < 50 &&
-						
+						{this.state.level < 50 && (
 							<tr>
 								<td>NeXt level maximum amount:</td>
-								<td>{parseInt(this.state.maxMaterial) + 1000} / material </td>
+								<td>{parseInt(this.state.maxMaterial) + 1000} / wood/brick/iron </td>
 							</tr>
-						}
+						)}
+						{this.state.level < 50 && (
+						<tr>
+							<td>NeXt level maximum amount:</td>
+							<td>{parseInt(this.state.level) * 5986 + 700} /stone/metal </td>
+						</tr>)}
+						{this.state.level < 50 && (
+						<tr>
+							<td>NeXt level maximum amount:</td>
+							<td>{parseInt(this.state.level) * 1994 + 300} /copper/silver/gold </td>
+						</tr>)}
 					</tbody>
 				</table>
 				{this.state.img}

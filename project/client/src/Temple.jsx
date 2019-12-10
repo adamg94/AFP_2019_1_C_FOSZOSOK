@@ -144,6 +144,9 @@ class Temple extends React.Component {
 						{this.state.miseStarted == null && Date.parse(this.state.lastMise) >  780000 - 600000 * this.state.level &&(
 							<input type="submit" className="improvebutton" value="Start Mise" />
 						)}
+						{this.state.lastMise == null &&
+							<input type="submit" className="improvebutton" value="Start Mise" />
+						}
 
 				</form>
 				{this.state.img}

@@ -18,12 +18,16 @@ class Lumberyard extends React.Component {
       level: "",
       img: "",
       nextincome: "",
-      income: ""
+      income: "",
+      maxamount: 0
     };
   }
 
   tick() {
-    this.setState({ wood: this.state.wood + (this.state.level * 80) / 3600 });
+    if(this.state.wood < this.state.maxamount){
+      this.setState({ wood: this.state.wood + (this.state.level * 80) / 3600 });
+    }
+    else{this.setState({wood:this.state.maxamount})}
   }
 
   componentDidMount() {
@@ -36,7 +40,8 @@ class Lumberyard extends React.Component {
       axios.post("http://localhost:5000/village/getinfo", data).then(res => {
         this.setState({
           wood: res.data.village.buildings.warehouse.wood,
-          level: res.data.village.buildings.lumberyard.level
+          level: res.data.village.buildings.lumberyard.level,
+          maxamount: res.data.village.buildings.warehouse.level * 10000
         });
 
         this.timerInterval = setInterval(this.tick.bind(this), 1000);
