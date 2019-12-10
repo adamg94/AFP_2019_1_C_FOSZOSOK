@@ -103,6 +103,117 @@ router.route("/villageupdate").post((req, res) => {
           }
 
           newdate = JSON.parse(body).result;
+
+
+
+
+          Construct.find({
+            villageId : village_findOne_result._id
+          }, async (err66, construct_find_result) => {
+
+
+            if(construct_find_result.length > 0)
+            {
+              for(let i = 0; i <construct_find_result.length; i++)
+              {
+                if(Date.parse(construct_find_result[i].jobTime) < Date.parse(newdate))
+                {
+                  let building
+                  let built_building_id = construct_find_result[i].buildingId
+
+                  let action = construct_find_result[i].action
+
+
+                  switch (built_building_id) {
+                    case 1:
+                      building = "palace";
+                      break;
+                    case 2:
+                      building = "merch";
+                      break;
+                    case 3:
+                      building = "merchworkshop";
+                      break;
+                    case 4:
+                      building = "temple";
+                      break;
+                    case 5:
+                      building = "wall";
+                      break;
+                    case 6:
+                      building = "warehouse";
+                      break;
+                    case 7:
+                      building = "hideout";
+                      break;
+                    case 8:
+                      building = "statue";
+                      break;
+                    case 9:
+                      building = "metalfurnace";
+                      break;
+                    case 10:
+                      building = "mill";
+                      break;
+                    case 11:
+                      building = "wheatfield";
+                      break;
+                    case 12:
+                      building = "ironmine";
+                      break;
+                    case 13:
+                      building = "brickyard";
+                      break;
+                    case 14:
+                      building = "lumberyard";
+                      break;
+                    default:
+                      break;
+                  }
+                  if( action == 1)
+                  {
+                    if(village_findOne_result.buildings[building].level + 1 != village_findOne_result.buildings[building].maxlevel)
+                      {
+                        console.log(village_findOne_result.buildings[building].level)
+                        village_findOne_result.buildings[building].level += 1
+                        
+                        console.log(village_findOne_result.buildings[building].level)
+                      }
+                  }
+                  else if(action == -1)
+                  {
+                    if(village_findOne_result.buildings[building].level - 1 != 0)
+                    {
+                      village_findOne_result.buildings[building].level -= 1
+                    
+                 
+                    }
+                  }
+                 
+                    
+                 
+                
+
+                    
+                  let save_result0 = await construct_find_result[i]
+                  .deleteOne()
+                  .then(_ => {
+                    
+                  })
+                  .catch(err => console.log(err));
+
+                }
+                
+              }
+            }
+
+          })
+
+
+
+
+
+
           const timeSinceLastUpdate = parseFloat(
             (Date.parse(newdate) -
               Date.parse(village_findOne_result.lastupdate)) /
@@ -311,6 +422,7 @@ router.route("/villageupdate").post((req, res) => {
             village_findOne_result.buildings.warehouse.gold = maxGold;
           }
 
+          console.log(village_findOne_result.buildings.palace.level)
           village_findOne_result.lastupdate = newdate;
           let save_result = await village_findOne_result
             .save()
