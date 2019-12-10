@@ -104,7 +104,7 @@ class Palace extends React.Component {
         username: obj.username,
         buildingId : e.target.id
       };
-      console.log(data)
+      
       axios.post("http://localhost:5000/village/palacenormalupgrade", data).then(res => {
 
         console.log(res)
@@ -122,7 +122,6 @@ class Palace extends React.Component {
         username: obj.username,
         buildingId : e.target.id
       };
-      console.log(data)
       axios.post("http://localhost:5000/village/palacerareupgrade", data).then(res => {
 
         console.log(res)

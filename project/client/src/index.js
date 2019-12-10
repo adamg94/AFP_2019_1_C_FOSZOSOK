@@ -11,6 +11,7 @@ import Mill from './Mill';
 import Palace from './Palace';
 import WheatField from './WheatField';
 import WareHouse from './Warehouse';
+import Merchworkshop from './MerchWorkshop';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -55,6 +56,10 @@ const routing = (
 			<Route path="/warehouse">
 				<Navigation />
 				<WareHouse />
+			</Route>
+			<Route path="/merchworkshop">
+				<Navigation />
+				<Merchworkshop />
 			</Route>
 		</Router>
 	</main>

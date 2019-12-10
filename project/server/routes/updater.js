@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const request = require("request");
 const Village = require("../schemas/village.schema");
+const Construct = require("../schemas/constructions")
 const GAMESETTINGS = require("../village.config");
 let newdate;
 let date;
@@ -44,6 +45,15 @@ router.route("/villageupdate").post((req, res) => {
            *
            *
            */
+
+
+          
+
+
+
+
+
+
           let morelLevel = village_findOne_result.buildings.temple.moral;
           GAMESETTINGS.TEMPLE_MULTIPLIER = morelLevel;
           if (GAMESETTINGS.TEMPLE_MULTIPLIER >= 75) {
