@@ -129,10 +129,11 @@ router.route("/villageupdate").post((req, res) => {
           let datum = Date.parse(
             village_findOne_result.buildings.temple.mise_ends
           );
-          console.log(Date.parse(newdate) - datum)
+          /*console.log(7800000 - 600000 * village_findOne_result.buildings.temple.level)
           console.log(Date.parse(newdate))
           console.log(datum)
-          if (Date.parse(newdate) - datum > (7800000 - 600000 * village_findOne_result.buildings.temple.level)) {
+          console.log(Date.parse(newdate) - datum)*/
+          if (Date.parse(newdate) - datum > 780000 - 600000 * village_findOne_result.buildings.temple.level) { 
             village_findOne_result.buildings.temple.last_mise = village_findOne_result.buildings.temple.mise_ends;
             village_findOne_result.buildings.temple.moral += 30;
             if(village_findOne_result.buildings.temple.moral > 100){

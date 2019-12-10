@@ -121,7 +121,7 @@ class Temple extends React.Component {
 							<tr>
 								<td>Last mise ended at:</td>
 								{this.state.lastMise != null && <td>{this.state.lastMise}</td>}
-								{this.state.lastMise == null && <td>You haven't had a mise yet! God might be angry</td>}
+								{this.state.lastMise == null && <td>You haven't finished any mise yet! God might be angry</td>}
 							</tr>
 							<tr>
 								<td>Level:</td>
@@ -141,9 +141,10 @@ class Temple extends React.Component {
 							)}
 						</tbody>
 					</table>
-					{this.state.miseStarted == null && (
-						<input type="submit" className="improvebutton" value="Start Mise" />
-					)}
+						{this.state.miseStarted == null && Date.parse(this.state.lastMise) >  780000 - 600000 * this.state.level &&(
+							<input type="submit" className="improvebutton" value="Start Mise" />
+						)}
+
 				</form>
 				{this.state.img}
 			</section>

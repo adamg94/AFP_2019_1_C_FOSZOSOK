@@ -261,8 +261,9 @@ router.route("/miseStart").post((req, res) => {
                     });
                     return;
                   }
-                  if(foundVillage.buildings.temple.last_mise != null 
-                    && Date.parse(foundVillage.buildings.temple.last_mise) + (7800000 * 600000 * foundVillage.building.temple.level) >= req_update_res.body.currentdatentp ){
+                  let ezkell = Date.parse(foundVillage.buildings.temple.last_mise)
+                  if(ezkell!= null 
+                    && ezkell + (7800000 - 600000 * foundVillage.buildings.temple.level) <= req_update_res.body.currentdatentp ){
                       return;
                     }
                   foundVillage.buildings.temple.mise_started =

@@ -1,0 +1,27 @@
+Funkciók tesztelése:
+
+Belépés és Regisztráció:
+Rövid felhasználónév megadása esetén a program jelzi, hogy túl rövid.
+Még nem létezõ megfelelõ játékos adatok megadása esetén a program az elvártnak megfelelõen létrehozza a felasználót és annak "játékterét".
+Már létezõ felhasználó esetén a megfelelõ falu töltõdik be.
+
+Session:
+A session tokent a rendszer megfelelõen generálja és kilépéskor megfelelõen törli. Itt volt egy hiba, hogy a kilépés gombot nem deaktiválta a rendszer,
+és többszörös megnyomás esetén a program hibával kilépett és nem törölte a session-t. Ezt úgy oldottam meg, hogy a gomb felé helyez egy div-et ami ellehetetleníti a gomb megnyomását.
+
+Update rendszer:
+
+
+Navigációs sáv:
+A navigációs sávon a megfelelõ épületre kattintva a megfelelõ épület oldala jelenik meg, a tálca és a kilépés gomb is az elvártnak megfelelõen mûködik.
+
+Templom:
+A templom oldalára navigálva az elvártnak megfelelõen jelenik meg az oldal
+A templom a morált túl gyorsan csökkentette és nem mentette megfelelõen az adatbázisba. Ez késõbb javítva lett.
+A morál az elvártaknak megfelelõen befolyásolja a nyersanyag termelést, egy globális változót állítva a morálszintnek megfelelõen.
+A mise kezdés gomb megnyomásával sikeresen regisztrálja az adatbázisba, annak kezdését és várható végét. Az idõ leteltekor a morál megfelelõ mennyiséggel növekszik. A szerver nem enged új misét indítani, amíg nem telt el 2 mise között megfelelõ idõ, ezt a templom szintje befolyásolja.
+A gomb sem jelenik meg kliens oldalon amíg nem lehetséges a mise kezdése.
+
+Raktár:
+A raktár oldalára navigálva az elvártnak megfelelõen jelenik meg az oldal. A funckiója abból áll, hogy meghatározza mennyi nyersanyag tárolható.
+Hiba volt, hogy leállította a termelést ahelyett, hogy nem engedte volna menteni az adatbázisba, ez késõbb javítva lett.

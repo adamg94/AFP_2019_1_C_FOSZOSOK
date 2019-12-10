@@ -48,6 +48,39 @@ A megrendelő külön kiemelte, hogy a játék bezárásakor se álljon le a fej
 Modell: lásd Pictures/kovspecUzletModell.png
 
 5. Követelménylista
+1. Egy asztali faluépítős program, megfelelő stratégiai elemekkel.
+2. Bejelentkezés és regisztráció, ha nem létező adat kerül megadásra akkor történjen meg a regisztráció
+3. Kinézet a játék képernyőjén felül legyen a navigációs sáv, bal oldalon egy kép a faluról, jobb oldalon a nyersanyag mennyiségek. Minden épületnek legyen külön oldala leírással, és különböző adatokkal
+
+ÉPÜLETEK
+1. Palota: megnyitáskor fogadjon minket egy lista az elérhető épületekről, a fejlesztési idő, a fejlesztés ára valamint a fejlesztést indító gombok.
+
+2. Kereskedő ház: különböző nyersanyagokkal való üzletelés történjen itt, előre meghatározott arányokban, és persze ez a csere időbe kell hogy teljen, nem történhet meg azonnali módon.
+
+3. Kereskedő műhely: megépítésével és fejlesztésével a kereskedők szekereket kapnak. A szekerek növelik a maximálisna egyszerre cserélhető nyersanyagmennyiségeket.
+
+4. Templom: itt látható a falu morálja, ami passzívan befolyásol több dolgot is. A megtermelt nyersanyagok mennyiségét, valamint az építési időt. A templomnak egy funkciója van, a mise szervezés. Ez eltartana egy ideig, növelné a falu morálját, valamint csak adott idő eltelte után indítható új mise, amit a templom szintje befolyásol.
+
+5. Nyersanyagraktár:
+Itt tároljuk a különböző nyersanyagokat és különleges érceket. Az alap nyersanyagokból tárolható a legtöbb, a készíthető nyersanyagokból kevesebb a különleges ércekből meg nagyon kevés. Tehát minél értékesebb egy nyersanyag annál kevesebbet tudunk belőle tárolni.
+
+6. Rejtekhely:
+Nagyon hasonlít a raktárhoz, de nem minősül annak. A játékfejlesztés első fázisában nem töltené ki a funkcióját, csak ha már csatázni is lehet. Támadás a nyersanyagokból tudnánk itt tárolni, amiket lehetetlen lenne ellopni az ellenfélnek. Valamint lehetne lehetőség kincsek elásásra, ez azért lenne jó, mert nem lehetne onnan kiásni csak annak aki elásta, tehát ha elfoglalnák a falut az örökre elveszne.
+
+7. Szobor:
+Az utóljára építhető épület, csak akkor jöhet létre hamár minden más maximum szinten van. Az előbb említettek alapján, tehát egy rendkívül értékes épületről van szó. Növelné a raktárban tárolható mennyiséget valamint a rejtekhelyben elrejthető mennyiségeket is.
+
+8. Nemesfémkohó:
+A megtermelt agyagot és vasat lehet itt megmunkálni. 4:1 arányban készíthető kő és fém, amelyek értékesebb nyersanyagok, olcsóbb lenne velük az építkezés.
+
+9. Búzamezők:
+Passzív termelő, naponta termelne búzát. Ez nem elkölthető nyersanyag, építkezéskor vonódna le belőle.
+
+10. Malom:
+Passzív épület, csak fejleszteni lehet. A búzamezőkön megtermelt búzát dolgozza fel.
+
+11. Vasbánya, agyag- és fatermelő:
+A 3 alap nyersanyagot termelik ezek az épületek, óránként adott mennyiséget.
 
 
 6. Fogalomszótár
