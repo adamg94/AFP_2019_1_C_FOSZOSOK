@@ -81,6 +81,9 @@ const VillageSchema = new Schema({
             }, mise_ends : {
                 type: Date,
                 default: null
+            }, last_mise: {
+                type: Date,
+                default: null
             }
        },
        wall : {

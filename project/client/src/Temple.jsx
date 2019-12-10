@@ -19,7 +19,8 @@ class Temple extends React.Component {
 			level: '',
 			img: '',
 			miseStarted: '',
-			miseEnds: ''
+			miseEnds: '',
+			lastMise: ''
 		};
 	}
 
@@ -35,12 +36,12 @@ class Temple extends React.Component {
 				username: obj.username
 			};
 			axios.post('http://localhost:5000/village/miseStart', data).then((res) => {
-			
-			this.setState({
+				this.setState({
 					moral: res.data.village.buildings.temple.moral,
 					level: res.data.village.buildings.temple.level,
 					miseStarted: res.data.village.buildings.temple.mise_started,
-					miseEnds: res.data.village.buildings.temple.mise_ends
+					miseEnds: res.data.village.buildings.temple.mise_ends,
+					lastMise: res.data.village.buildings.temple.last_mise
 				});
 				console.log(res.data);
 
@@ -67,7 +68,8 @@ class Temple extends React.Component {
 					moral: res.data.village.buildings.temple.moral,
 					level: res.data.village.buildings.temple.level,
 					miseStarted: res.data.village.buildings.temple.mise_started,
-					miseEnds: res.data.village.buildings.temple.mise_ends
+					miseEnds: res.data.village.buildings.temple.mise_ends,
+					lastMise: res.data.village.buildings.temple.last_mise
 				});
 
 				this.timerInterval = setInterval(this.tick.bind(this), 1000);
@@ -115,26 +117,33 @@ class Temple extends React.Component {
 								</td>
 								<td>{parseInt(this.state.moral)} %</td>
 							</tr>
+
+							<tr>
+								<td>Last mise ended at:</td>
+								{this.state.lastMise != null && <td>{this.state.lastMise}</td>}
+								{this.state.lastMise == null && <td>You haven't had a mise yet! God might be angry</td>}
+							</tr>
 							<tr>
 								<td>Level:</td>
 								<td>{this.state.level}</td>
 							</tr>
-							{this.state.miseStarted != null && 
+							{this.state.miseStarted != null && (
 								<tr>
 									<td>Mise started at:</td>
 									<td>{this.state.miseStarted}</td>
-								</tr> &&
+								</tr>
+							)}
+							{this.state.miseStarted != null && (
 								<tr>
 									<td>Mise ends at:</td>
 									<td>{this.state.miseEnds}</td>
 								</tr>
-							}
-							
+							)}
 						</tbody>
 					</table>
-					{this.state.miseStarted == null && <tr>You haven't started a mise yet</tr> && 
-								<input type="submit" className="improvebutton" value="Start Mise" />
-							}
+					{this.state.miseStarted == null && (
+						<input type="submit" className="improvebutton" value="Start Mise" />
+					)}
 				</form>
 				{this.state.img}
 			</section>

@@ -113,12 +113,24 @@ router.route("/villageupdate").post((req, res) => {
           village_findOne_result.buildings.temple.moral -=
             GAMESETTINGS.BASE_MULTIPLIER *
             (timeSinceLastUpdate *
-              ((11 - village_findOne_result.buildings.temple.level) / 86400));
+              ((72) / 86400));
+              if(village_findOne_result.buildings.temple.moral < 1){
+                village_findOne_result.buildings.temple.moral = 0
+              }
           let datum = Date.parse(
             village_findOne_result.buildings.temple.mise_ends
           );
-          if (Date.parse(newdate) - datum > 7200000) {
-            //TODO
+          console.log(Date.parse(newdate) - datum)
+          console.log(Date.parse(newdate))
+          console.log(datum)
+          if (Date.parse(newdate) - datum > (7800000 - 600000 * village_findOne_result.buildings.temple.level)) {
+            village_findOne_result.buildings.temple.last_mise = village_findOne_result.buildings.temple.mise_ends;
+            village_findOne_result.buildings.temple.moral += 30;
+            if(village_findOne_result.buildings.temple.moral > 100){
+              village_findOne_result.buildings.temple.moral = 100
+            }
+            village_findOne_result.buildings.temple.mise_ends = null;
+            village_findOne_result.buildings.temple.mise_started = null;
           }
 
           //különleges anyagok random adása
