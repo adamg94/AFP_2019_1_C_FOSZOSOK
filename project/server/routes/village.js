@@ -319,7 +319,60 @@ router.route("/miseStart").post((req, res) => {
 });
 
 router.route("/furnaceStart").post((req, res) => {
-  
+  const token = req.body.token;
+  const username = req.body.username;
+  request.post(
+    "http://localhost:5000/users/verify",
+    {
+      json: {
+        token: token,
+        username: username
+      }
+    },
+    (err7, req_res) => {
+      if (err7) {
+        console.log(`request.post() Error: '${err7}'!`);
+        res.json({ success: false, message: `Server Error! 'v007'` });
+        return;
+      }
+
+      if (req_res.body.success) {
+        const uid = req_res.body.uid;
+
+        request.post(
+          "http://localhost:5000/update/villageupdate",
+          {
+            json: {
+              userId: uid
+            }
+          },
+          (err2, req_update_res) => {
+            if (err2) {
+              console.log(`request.post()VillageUpdate Error: '${err2}'!`);
+              res.json({ success: false, message: `Server Error! 'v002'` });
+              return;
+            }
+
+            if (req_update_res.body.success) {
+              // IDE JÖNNE A VARÁZSLAT
+               
+            } else {
+              res.json({
+                success: false,
+                message: `You don't have a village O.o! `
+              });
+              return;
+            }
+          }
+        );
+      } else {
+        res.json({
+          success: false,
+          message: `You have no access to this operation!`
+        });
+      }
+    }
+  ); 
 });
 
 router.route("/palacenormalupgrade").post((req, res) => {

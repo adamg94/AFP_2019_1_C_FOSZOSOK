@@ -56,7 +56,7 @@ class Merch extends React.Component {
 			<section>
 				<p id="title">Merch</p>
 				<p id="building-info">
-					The Merch: in here you can trade with other people when you are not too busy fighting off the enemies.
+					The Merch
 				</p>
 				{this.state.img}
 			</section>

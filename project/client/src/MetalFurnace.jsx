@@ -19,6 +19,7 @@ class MetalFurnace extends React.Component {
 		};
 	}
 
+
 	componentDidMount() {
 		const obj = getFromStorage('afp_falu');
 		if (obj && obj.username && obj.token) {
@@ -88,10 +89,9 @@ class MetalFurnace extends React.Component {
 					</tbody>
 				</table>
 				<input
-                      id={2}
+                      id={1}
                       className="improvebutton"
                       type="submit"
-                      onClick={e => this.onBaseSubmit(e)}
                       value="Heat up the furnace"
                     />
 				</form>
