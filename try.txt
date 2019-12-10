@@ -19,6 +19,8 @@ Erik:
 -Szobor
 -Rejtekhely
 
+Ákos:
+-Fal
 
 Fennmaradó: Ákos + Erik
 Aktív épületek:
@@ -29,7 +31,7 @@ Passzív épületek:
 -Szobor,
 -Kereskedőműhely
 -Rejtekhely //////félig aktív is//////
--Fal
+
 
 
 
@@ -79,6 +81,7 @@ le az értéket. Sőt ez utóbbit valósítsa meg az aki ezt csinálja.
 A fal:
 Az egyetlen kérésem afelé aki ezt csinálja, hogy mivel ez egy nagy nulla, semmi funkciója nincs, csak
 a falu nézetre kell ráhelyezni szépen. Az szerezzen be netről fából meg kőből készült falat, vagy rajzoljon.
+ ~Nem lehet normálisat találni a rajztudásomat pedig nem villogtatnám.
 
 
 Aki úgy érzi nem kódolt eleget, az készítse el (ne én) az adatbázis tervezet képét.
