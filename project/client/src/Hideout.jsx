@@ -31,7 +31,7 @@ class Hideout extends React.Component {
 				if (this.state.level > 0) {
 					this.setState({
                         img: <img id="kep" alt="" src={f1} />,
-                        maxMaterial: (this.state.level) * 300
+                        maxMaterial: (this.state.level) * 3000
 						
 					});
 				}
@@ -73,7 +73,7 @@ class Hideout extends React.Component {
 						
                         <tr>
                             <td>Next level maximum amount:</td>
-                            <td>{parseInt(this.state.maxMaterial) + 300} / material </td>
+                            <td>{parseInt(this.state.maxMaterial) + 3000} / material </td>
                         </tr>
                     }
 						
