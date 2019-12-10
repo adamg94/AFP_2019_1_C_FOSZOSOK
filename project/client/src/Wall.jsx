@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import './sass/Ironmine.sass';
 import f10 from './img/wall.png';
+import { getFromStorage } from './utils/storage';
 
 class Wall extends React.Component {
 	constructor(props) {
