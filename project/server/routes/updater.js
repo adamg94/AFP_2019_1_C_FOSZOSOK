@@ -78,6 +78,14 @@ router.route("/villageupdate").post((req, res) => {
             maxStone = village_findOne_result.buildings.warehouse.level * 5986 + 700,
 						maxGold = village_findOne_result.buildings.warehouse.level * 1994 + 300
           }
+
+          if(village_findOne_result.buildings.warehouse.stone > maxStone){
+            village_findOne_result.buildings.warehouse.stone = maxStone;
+          } 
+          if(village_findOne_result.buildings.warehouse.metal > maxStone){
+            village_findOne_result.buildings.warehouse.stone = maxStone;
+          }
+
           newdate = JSON.parse(body).result;
           const timeSinceLastUpdate = parseFloat(
             (Date.parse(newdate) -
