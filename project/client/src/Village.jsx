@@ -72,6 +72,7 @@ class Village extends React.Component {
         username: obj.username
       };
       axios.post("http://localhost:5000/village/", data).then(res => {
+        console.log(res.data.village);
         this.setState({
           wood: parseInt(res.data.village.buildings.warehouse.wood),
           brick: parseInt(res.data.village.buildings.warehouse.brick),
