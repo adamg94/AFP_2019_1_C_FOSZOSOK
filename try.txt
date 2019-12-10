@@ -21,6 +21,7 @@ Erik:
 
 Ákos:
 -Fal
+-Metalfurnace
 
 Fennmaradó: Ákos + Erik
 Aktív épületek:

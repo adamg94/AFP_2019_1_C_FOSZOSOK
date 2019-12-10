@@ -308,6 +308,10 @@ router.route("/miseStart").post((req, res) => {
   );
 });
 
+router.route("/furnaceStart").post((req, res) => {
+  
+});
+
 router.route("/palacenormalupgrade").post((req, res) => {
   const token = req.body.token;
   const username = req.body.username;

@@ -13,6 +13,7 @@ import f7 from "./img/mill/mill.png";
 import f8 from "./img/warehouse/raktar1.png";
 import f9 from "./img/wheatfield/wheatfield.png";
 import f10 from "./img/wall/wall.png"
+import f11 from "./img/metalfurnace/metalfurnace.png"
 
 class Village extends React.Component {
   constructor(props) {
@@ -104,6 +105,7 @@ class Village extends React.Component {
           mill_img: <img id="millimg" alt="" src={f7} />,
           wheatfield_img: <img id="wheatfieldimg" alt="" src={f9} />,
           wall_img: <img id="wallimg" alt="" src={f10} />,
+          metalfurnace_img: <img id="metalfurnaceimg" alt="" src={f11} />,
           wood_income: this.state.wood_level * 80,
           brick_income: this.state.brick_level * 80,
           iron_income: this.state.iron_level * 80,
@@ -144,6 +146,7 @@ class Village extends React.Component {
           <Link to="/warehouse">{this.state.warehouse_img}</Link>
           <Link to="/wheatfield">{this.state.wheatfield_img}</Link>
           <Link to="/wall">{this.state.wall_img}</Link>
+          <Link to="/metalfurnace">{this.state.metalfurnace_img}</Link>
         </div>
         <aside>
           <table id="resource-info">
