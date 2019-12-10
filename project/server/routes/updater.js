@@ -27,7 +27,7 @@ router.route("/villageupdate").post((req, res) => {
         return;
       }
       if (village_findOne_result) {
-        request("http://localhost:5000/update/getdate", async function(
+        request("http://localhost:5000/update/getdate", function(
           err3,
           response,
           body
@@ -109,7 +109,7 @@ router.route("/villageupdate").post((req, res) => {
 
           Construct.find({
             villageId : village_findOne_result._id
-          }, async (err66, construct_find_result) => {
+          }, (err66, construct_find_result) => {
 
 
             if(construct_find_result.length > 0)
@@ -174,34 +174,40 @@ router.route("/villageupdate").post((req, res) => {
                   {
                     if(village_findOne_result.buildings[building].level + 1 != village_findOne_result.buildings[building].maxlevel)
                       {
-                        console.log(village_findOne_result.buildings[building].level)
-                        village_findOne_result.buildings[building].level += 1
-                        
-                        console.log(village_findOne_result.buildings[building].level)
+                        console.log("itt mi a helyzet??")
+                  
+                        village_findOne_result.buildings[building].level ++
+                        console.log("és itt")
+                      
                       }
                   }
                   else if(action == -1)
                   {
                     if(village_findOne_result.buildings[building].level - 1 != 0)
                     {
-                      village_findOne_result.buildings[building].level -= 1
+                      village_findOne_result.buildings[building].level --
                     
                  
                     }
                   }
-                 
-                    
-                 
                 
+                  village_findOne_result.save( village_findOne_result.buildings[building].level , (err111, con_update_res) => {
 
-                    
-                  let save_result0 = await construct_find_result[i]
-                  .deleteOne()
-                  .then(_ => {
+                    if(err111) console.log(err111)
+
+                    console.log("updatelt")
+                  } )
+                
+                 
+     
+                  construct_find_result[i].deleteOne((err, da) => {
+                    if (err)
+                    console.log(err)
                     
                   })
-                  .catch(err => console.log(err));
-
+           
+             
+ 
                 }
                 
               }
@@ -428,21 +434,27 @@ router.route("/villageupdate").post((req, res) => {
             village_findOne_result.buildings.warehouse.copper = maxGold;
           }
 
-          console.log(village_findOne_result.buildings.palace.level)
+          console.log("mi fut le hamarabb????")
           village_findOne_result.lastupdate = newdate;
-          let save_result = await village_findOne_result
-            .save()
-            .then(_ => {
-              res.json({
-                success: true,
-                message: "Village Updated",
-                village: village_findOne_result,
-                currentdatentp: newdate,
-                villageId: village_findOne_result._id
-              });
+          village_findOne_result.updateOne(village_findOne_result, (save_res_err,save_res) => {
+            if (save_res_err) {
+              console.log(`VillageSave Error: '${save_res_err}'!`);
+              res.json({ success: false, message: `Server Error! 'v002'` });
               return;
-            })
-            .catch(err => console.log(err));
+            }
+
+
+            console.log(save_res)
+            res.json({
+              success: true,
+              message: "Village Updated",
+              village: village_findOne_result,
+              currentdatentp: newdate,
+              villageId: village_findOne_result._id
+            });
+            return;
+
+          })
         });
       } else {
         //nincs faluja -> új felhasználó
