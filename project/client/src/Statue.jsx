@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './sass/Ironmine.sass';
+import { getFromStorage } from './utils/storage';
 import f1 from './img/szobor.png';
 
 class Statue extends React.Component {
