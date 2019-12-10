@@ -14,6 +14,7 @@ import WareHouse from './Warehouse';
 import MerchWorkshop from './MerchWorkshop';
 import Hideout from './Hideout';
 import Statue from './Statue';
+import Wall from './Wall'
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -66,6 +67,10 @@ const routing = (
 			<Route path="/statue">
 				<Navigation />
 				<Statue />
+			</Route>
+			<Route path="/wall">
+				<Navigation />
+				<Wall />
 			</Route>
 			<Route path="/warehouse">
 				<Navigation />
