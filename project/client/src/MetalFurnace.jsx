@@ -18,7 +18,34 @@ class MetalFurnace extends React.Component {
 
 		};
 	}
+	FurnaceStart(e) {
+		e.preventDefault();
+		const obj = getFromStorage('afp_falu');
+		if (obj && obj.username && obj.token) {
+			const data = {
+				token: obj.token,
+				username: obj.username
+			};
+			axios.post('http://localhost:5000/village/furnaceStart', data).then((res) => {
+				this.setState({
+					iron: res.data.village.buildings.warehouse.iron,
+					brick: res.data.village.buildings.warehouse.brick,
+					stone: res.data.village.buildings.warehouse.stone,
+					metal: res.data.village.buildings.warehouse.metal,
+					level: res.data.village.buildings.warehouse.level
+				});
+				console.log(res.data);
 
+				this.timerInterval = setInterval(this.tick.bind(this), 1000);
+
+				if (this.state.level > 0) {
+					this.setState({
+						img: <img id="kep" alt="" src={f1} />
+					});
+				}
+			});
+		}
+	}
 
 	componentDidMount() {
 		const obj = getFromStorage('afp_falu');
@@ -33,8 +60,9 @@ class MetalFurnace extends React.Component {
 					brick: res.data.village.buildings.warehouse.brick,
 					stone: res.data.village.buildings.warehouse.stone,
 					metal: res.data.village.buildings.warehouse.metal,
-					level: res.data.village.buildings.wheatfield.level
+					level: res.data.village.buildings.warehouse.level
 				});
+
 
 				if (this.state.level > 0) {
 					this.setState({
@@ -43,6 +71,10 @@ class MetalFurnace extends React.Component {
 				}
 			});
 		}
+	}
+
+	componentWillUnmount() {
+		clearInterval(this.timerInterval);
 	}
 
 	onChangeInfo(msg) {

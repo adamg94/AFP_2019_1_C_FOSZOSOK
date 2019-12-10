@@ -354,7 +354,7 @@ router.route("/furnaceStart").post((req, res) => {
             }
 
             if (req_update_res.body.success) {
-              // IDE JÖNNE A VARÁZSLAT
+              
                
             } else {
               res.json({
