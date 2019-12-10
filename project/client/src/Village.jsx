@@ -43,25 +43,43 @@ class Village extends React.Component {
     };
   }
   tick() {
+    console.log(this.state.maxGold)
     if(this.state.wood < this.state.maxmaterial){
       this.setState({
         wood: this.state.wood + (this.state.wood_level * 80) / 3600
-      });
-      this.setState({
-        brick: this.state.brick + (this.state.brick_level * 80) / 3600
-      });
-      this.setState({
-        iron: this.state.iron + (this.state.iron_level * 80) / 3600
-      });
+      })}
+      else{
+        this.setState({
+          wood: this.state.maxmaterial
+        })
+      }
+      if(this.state.brick < this.state.maxmaterial){
+        this.setState({
+          brick: this.state.brick + (this.state.brick_level * 80) / 3600
+        })
+      }
+      else{
+        this.setState({
+          brick: this.state.maxmaterial
+        })
+      }
+      if(this.state.iron < this.state.maxmaterial){
+        this.setState({
+          iron: this.state.iron + (this.state.iron_level * 80) / 3600
+        })
+      }
+      else{    
+         this.setState({         
+          iron: this.state.maxmaterial
+        })
+      }
+      if(this.state.gold >= this.state.maxGold){this.setState({gold:this.state.maxGold})}
+      if(this.state.silver >= this.state.maxGold){this.setState({silver:this.state.maxGold})}
+      if(this.state.copper >= this.state.maxGold){this.setState({copper:this.state.maxGold})}
+
+      if(this.state.stone >= this.state.maxStone){this.setState({stone:this.state.maxStone})}
+      if(this.state.metal >= this.state.maxStone){this.setState({metal:this.state.maxStone})}
     }
-    else{
-      this.setState({
-        wood: this.state.maxmaterial,
-        brick: this.state.maxmaterial,
-        iron: this.state.maxmaterial
-      })
-    }
-  }
   componentDidMount() {
     /*
       session rendszer teszteléséhez volt itt, de lehet még szükséges.*/
@@ -73,6 +91,18 @@ class Village extends React.Component {
       };
       axios.post("http://localhost:5000/village/", data).then(res => {
         console.log(res.data.village);
+        if(res.data.village.buildings.warehouse.level == 1){
+          this.setState({
+            maxStone: 700,
+            maxGold: 700
+          })
+        }
+        else{
+          this.setState({
+            maxStone: parseInt(res.data.village.buildings.warehouse.level * 5986 + 700),
+            maxGold : parseInt(res.data.village.buildings.warehouse.level * 1994 + 300)
+          })
+        }
         this.setState({
           wood: parseInt(res.data.village.buildings.warehouse.wood),
           brick: parseInt(res.data.village.buildings.warehouse.brick),
@@ -86,9 +116,7 @@ class Village extends React.Component {
           brick_level: res.data.village.buildings.brickyard.level,
           iron_level: res.data.village.buildings.ironmine.level,
           warehouseLevel: res.data.village.buildings.warehouse.level,
-          maxmaterial: parseInt(res.data.village.buildings.warehouse.level * 1000),
-          maxStone: parseInt(res.data.village.buildings.warehouse.level * 5986 + 700),
-          maxGold : parseInt(res.data.village.buildings.warehouse.level * 1994 + 300)
+          maxmaterial: parseInt(res.data.village.buildings.warehouse.level * 10000),
         });
         if(res.data.village.buildings.warehouse.level == 1){
           this.setState({

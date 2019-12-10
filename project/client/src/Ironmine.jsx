@@ -24,12 +24,16 @@ class Ironmine extends React.Component {
       goldchance: 0,
       copperlabel: '',
       silverlabel: '',
-      goldlabel: ''
+      goldlabel: '',
+      maxamount: 0
     };
   }
 
   tick() {
-    this.setState({ iron: this.state.iron + (this.state.level * 80) / 3600 });
+    if(this.state.iron < this.state.maxamount){
+      this.setState({ iron: this.state.iron + (this.state.level * 80) / 3600 });
+    }
+    else{this.setState({iron:this.state.maxamount})}
   }
 
   componentDidMount() {
@@ -45,7 +49,8 @@ class Ironmine extends React.Component {
           level: res.data.village.buildings.ironmine.level,
           copperchance : res.data.village.buildings.warehouse.copper_chance,
           silverchance : res.data.village.buildings.warehouse.silver_chance,
-          goldchance : res.data.village.buildings.warehouse.gold_chance
+          goldchance : res.data.village.buildings.warehouse.gold_chance,
+          maxamount : parseInt(res.data.village.buildings.warehouse.level * 10000)
         });
 
         this.timerInterval = setInterval(this.tick.bind(this), 1000);

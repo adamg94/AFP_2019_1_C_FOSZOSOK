@@ -12,6 +12,10 @@ A session tokent a rendszer megfelelõen generálja és kilépéskor megfelelõen törl
 Update rendszer:
 Itt észleltem egy hibát a raktár rendszerébe, a kõre és vasra nem volt rávizsgálva, hogy a maximum mennyiséget elérte-e és lehetséges volt a végtelenségig növelni. Ez a hiba javítva lett.
 
+Frontend: 
+A termelõk nem igazodtak a raktár szintjéhez, jelezték a termelést, adatbázisba nem mentettek, mindne újratöltéskor visszaálltak a maximumra. Javítva lett.
+Egyes képek a falu kirajzolásánál összecsúsztak a fal elhelyezése után, javítva lett
+
 Navigációs sáv:
 A navigációs sávon a megfelelõ épületre kattintva a megfelelõ épület oldala jelenik meg, a tálca és a kilépés gomb is az elvártnak megfelelõen mûködik.
 
@@ -28,3 +32,22 @@ Hiba:
 Raktár:
 A raktár oldalára navigálva az elvártnak megfelelõen jelenik meg az oldal. A funckiója abból áll, hogy meghatározza mennyi nyersanyag tárolható.
 Hiba volt, hogy leállította a termelést ahelyett, hogy nem engedte volna menteni az adatbázisba, ez késõbb javítva lett.
+
+Szobor:
+A szobor oldalára lépve megjelenik az oldal. A szobor az egész termelést beszorozza. Ez egy global változóval lett megoldva. A raktár és a rejtekhely tárolási kapacitását megnöveli.
+
+Hiba volt:
+Import hiba miatt nem lehetett rámenni az oldalra, az indexbõl is kimaradt. Ezek tesztelve lettek és javítva.
+
+Rejtekhely:
+Az oldalra lépve megjelenik. A rejtekhely ugyanúgy mûködik, mint a raktár csak a kapacitása kisebb. Az updaterben létre lettek hozva neki új változók.
+Ha a nyersanyag több, mint amit eltud tárolni akkor visszaírja a max nyersanyagra.
+
+Hiba volt:
+Itt is kimaradt egy import, de javítva lett. Szintenkénti tárolás mennyisége is el volt írva (lemaradt egy nulla), de késõbb ez is javítva lett.
+
+Kereskedõmûhely:
+Az oldalra lépve megjelenik. A kereskedõmûhelynek nincs nagyon funkciója. Maximális szintje 10 lehet. A szintet a kereskedõház letudja kérni.
+
+Hiba volt:
+Kimaradt a progressiv bar, meg a max szint se volt beállítva. A "Current increase" az aktuális szint számát mutatta, és nem a százalékot, ezért még be kellett szorozni tízzel és a végére rakni egy százalékjelet. Ezek természetesen tesztelve lettek és javítva.

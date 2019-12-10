@@ -97,11 +97,19 @@ Modell: lásd Pictures/Funk.Spec. - Igenyelt Uzleti Folyamatok modellje.png
 6. Követelménylista
 
 ID  Modul		Név			Fejezet				Leírás
-1   Főoldal		Bejelentkezőfelület	1.2, 1.4, 2.5, 2.9, 2.3		Regisztrálás és bejelentkezés lehetősége.
-2   Főoldal		Bejelentkezőfelület	1.2, 1.4, 2.5, 2.9, 2.3		A már regisztrált felhasználók tárolása adatbázisban.
-3   Főoldal		Bejelentkezőfelület	1.2, 1.4, 2.5, 2.9, 2.3		Ismeretlen fhsz.név esetén létrehozza magától a profilt, a megadott jlsz-val.
-4   Főoldal		Bejelentkezőfelület     1.2, 2.3		        Bal oldalt lenne egy ablak magasságával megegyező boksz, itt lehetne a bejelentkezés.
-5   Főoldal		Bejelentkezőfelület     1.2, 2.3		        Jobb oldalt a bejelentkezésfelület mellett egy kép lenne a játékról.
+ID  Modul		Név			Fejezet				Leírás
+1   Program		Technológia		2.9, 1.2, 1.4			Platformfüggetlen asztali alkalmazást szeretnénk, amit tovább lehet majd fejleszteni.
+2   Főoldal		Bejelentkezőfelület	1.2, 1.4, 2.5, 2.9, 2.3		Regisztrálás és bejelentkezés lehetősége.
+3   Főoldal		Bejelentkezőfelület	1.2, 1.4, 2.5, 2.9, 2.3		A már regisztrált felhasználók tárolása adatbázisban.
+4   Főoldal		Regisztráció		1.2, 1.4, 2.5, 2.9, 2.3		Ismeretlen fhsz.név esetén létrehozza magától a profilt, a megadott jlsz-val.
+5   Főoldal		Bejelentkezőfelület     1.2, 2.3		        Bal oldalt lenne egy ablak magasságával megegyező box, itt lehetne a bejelentkezés.
+6   Főoldal		Bejelentkezőfelület     1.2, 2.3		        Jobb oldalt a bejelentkezésfelület mellett egy kép lenne a játékról.
+7   Főoldal		Bejelentkezőfelület     1.2, 2.3, 2.9			A felhasználó név: [A-z][0-9] így nézhet ki és a  jelszó minimum 5 karakter.
+8   Játék index		Dizájn			1.2, 2.3, 			Bejelentkezés után rögtön egy grafikusan megjelenített faluba dobna a rendszer.
+9   Játék index		Dizájn			1.2, 2.3, 			A rendszer jelezze a nyersanyagok számát és egyéb termelési információkat
+10  Játék index		Dizájn			1.2, 2.3			Minden épületnek legyen külön oldala leírással, és különböző adatokkal.
+11  Játék index 	Dizájn			1.2, 2.3			A játék képernyőjén legfelül legyen egy navigációs sáv.
+
 
 
 

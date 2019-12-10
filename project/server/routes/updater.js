@@ -421,6 +421,12 @@ router.route("/villageupdate").post((req, res) => {
           if(village_findOne_result.buildings.warehouse.gold > maxGold){
             village_findOne_result.buildings.warehouse.gold = maxGold;
           }
+          if(village_findOne_result.buildings.warehouse.silver > maxGold){
+            village_findOne_result.buildings.warehouse.silver = maxGold;
+          }
+          if(village_findOne_result.buildings.warehouse.copper > maxGold){
+            village_findOne_result.buildings.warehouse.copper = maxGold;
+          }
 
           console.log(village_findOne_result.buildings.palace.level)
           village_findOne_result.lastupdate = newdate;
