@@ -4,6 +4,10 @@ const mongoose = require('mongoose')
 const Schema = require('mongoose').Schema
 
 const ConstructionSchema = new Schema({
+        villageId : {
+            type : String,
+            default : ''
+        },
         buildingId : {
             type : Number,
             default : 0
@@ -17,8 +21,8 @@ const ConstructionSchema = new Schema({
             default : ''
         },
         jobTime : {
-            type : Number,
-            default : 0
+            type : Date,
+            default : ''
         }
 })
 
