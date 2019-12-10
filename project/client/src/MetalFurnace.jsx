@@ -1,7 +1,3 @@
-/*A megtermelt agyag és vas megmunkálásának helye. Követ és Fémet készíthetünk ebben az épületben.
- Minél magasabb az épület szintje a fejlesztés annál rövidebb ideig tart. Az arányok: 
-Agyag/Vas → Kő/Fém 4:1
-Példa: 4 db agyagért 1db követ kapunk. */
 import React from 'react';
 import axios from 'axios';
 import './sass/Ironmine.sass';
