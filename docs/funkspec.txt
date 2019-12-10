@@ -96,6 +96,14 @@ Modell: lásd Pictures/Funk.Spec. - Igenyelt Uzleti Folyamatok modellje.png
 
 6. Követelménylista
 
+ID  Modul		Név			Fejezet				Leírás
+1   Főoldal		Bejelentkezőfelület	1.2, 1.4, 2.5, 2.9, 2.3		Regisztrálás és bejelentkezés lehetősége.
+2   Főoldal		Bejelentkezőfelület	1.2, 1.4, 2.5, 2.9, 2.3		A már regisztrált felhasználók tárolása adatbázisban.
+3   Főoldal		Bejelentkezőfelület	1.2, 1.4, 2.5, 2.9, 2.3		Ismeretlen fhsz.név esetén létrehozza magától a profilt, a megadott jlsz-val.
+4   Főoldal		Bejelentkezőfelület     1.2, 2.3		        Bal oldalt lenne egy ablak magasságával megegyező boksz, itt lehetne a bejelentkezés.
+5   Főoldal		Bejelentkezőfelület     1.2, 2.3		        Jobb oldalt a bejelentkezésfelület mellett egy kép lenne a játékról.
+
+
 
 7. Használati esetek
 
