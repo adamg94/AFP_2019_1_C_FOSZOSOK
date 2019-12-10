@@ -280,6 +280,8 @@ router.route("/miseStart").post((req, res) => {
                   }
                   foundVillage.buildings.temple.mise_started =
                     req_update_res.body.currentdatentp;
+                    foundVillage.buildings.temple.last_mise =
+                    Date.parse(req_update_res.body.currentdatentp) + 7200000;
                   foundVillage.buildings.temple.mise_ends =
                     Date.parse(req_update_res.body.currentdatentp) + 7200000;
                   let save_result = await foundVillage
