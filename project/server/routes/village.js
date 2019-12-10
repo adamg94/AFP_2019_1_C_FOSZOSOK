@@ -264,6 +264,10 @@ router.route("/miseStart").post((req, res) => {
                   let ezkell = Date.parse(foundVillage.buildings.temple.last_mise)
                   if(ezkell!= null 
                     && ezkell + (7800000 - 600000 * foundVillage.buildings.temple.level) <= req_update_res.body.currentdatentp ){
+                      res.json({
+                      success: false,
+                      message: "You can't start a mise yet",
+                      })
                       return;
                     }
                   foundVillage.buildings.temple.mise_started =
@@ -280,7 +284,6 @@ router.route("/miseStart").post((req, res) => {
                         message: "Village Updated",
                         village: foundVillage
                       });
-                      console.log("OK");
                       return;
                     })
                     .catch(err => console.log(err));
