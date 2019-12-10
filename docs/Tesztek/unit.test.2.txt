@@ -51,3 +51,13 @@ Az oldalra lépve megjelenik. A kereskedõmûhelynek nincs nagyon funkciója. Maximá
 
 Hiba volt:
 Kimaradt a progressiv bar, meg a max szint se volt beállítva. A "Current increase" az aktuális szint számát mutatta, és nem a százalékot, ezért még be kellett szorozni tízzel és a végére rakni egy százalékjelet. Ezek természetesen tesztelve lettek és javítva.
+
+Merch: 
+Egyenlõre funkció nélküli csak egy menü elem, mely megjeleníti az adott képet és kiírja a mûködést, melyet majd kesõbb meg kell valósítani.
+
+Fal:
+Egy funkciótlan menü elem, kesõbb a város védelmét fogja ellátni. Jobb képet, amely körül öleli a falut, majd kesõbb egy mûvészíbb emberrel aki kompetens
+készíttetni kell.
+
+Nemesfémkohó:
+Input mezõk megadva, gomb a helyére téve, jelenlegi nyersanyagaink láthatóak.Nem lesz idõm befejezni...

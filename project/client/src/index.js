@@ -16,6 +16,7 @@ import Hideout from './Hideout';
 import Statue from './Statue';
 import Wall from './Wall'
 import MetalFurnace from './MetalFurnace';
+import Merch from './Merch'
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -76,6 +77,10 @@ const routing = (
 			<Route path="/metalfurnace">
 				<Navigation />
 				<MetalFurnace />
+			</Route>
+			<Route path="/merch">
+				<Navigation />
+				<Merch />
 			</Route>
 			<Route path="/warehouse">
 				<Navigation />
