@@ -8,6 +8,10 @@ import f2 from "./img/brickyard/agyag1.png";
 import f3 from "./img/brickyard/agyag2.png";
 import f4 from "./img/brickyard/agyag3.png";
 import f5 from "./img/ironmine.png";
+import f6 from "./img/temple/temple.png";
+import f7 from "./img/mill/mill.png";
+import f8 from "./img/warehouse/raktar1.png";
+import f9 from "./img/wheatfield/wheatfield.png";
 
 class Village extends React.Component {
   constructor(props) {
@@ -27,6 +31,10 @@ class Village extends React.Component {
       wood_img: "",
       brick_img: "",
       iron_img: "",
+      temple_img: "",
+      mill_img: "",
+      warehouse_img: "",
+      wheatfield_img: "",
       warehouseLevel: 0,
       maxmaterial: 0,
       maxStone: 0,
@@ -90,6 +98,10 @@ class Village extends React.Component {
         this.setState({
           wood_img: <img id="lumberyardimg" alt="" src={f1} />,
           iron_img: <img id="ironmineimg" alt="" src={f5} />,
+          temple_img: <img id="templeimg" alt="" src={f6} />,
+          warehouse_img: <img id="warehouseimg" alt="" src={f8} />,
+          mill_img: <img id="millimg" alt="" src={f7} />,
+          wheatfield_img: <img id="wheatfieldimg" alt="" src={f9} />,
           wood_income: this.state.wood_level * 80,
           brick_income: this.state.brick_level * 80,
           iron_income: this.state.iron_level * 80,
@@ -125,6 +137,10 @@ class Village extends React.Component {
           <Link to="/lumberyard">{this.state.wood_img}</Link>
           <Link to="/brickyard">{this.state.brick_img}</Link>
           <Link to="/ironmine">{this.state.iron_img}</Link>
+          <Link to="/temple">{this.state.temple_img}</Link>
+          <Link to="/mill">{this.state.mill_img}</Link>
+          <Link to="/warehouse">{this.state.warehouse_img}</Link>
+          <Link to="/wheatfield">{this.state.wheatfield_img}</Link>
         </div>
         <aside>
           <table id="resource-info">
