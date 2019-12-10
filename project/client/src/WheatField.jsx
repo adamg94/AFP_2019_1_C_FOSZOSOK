@@ -10,10 +10,10 @@ class WheatField extends React.Component {
 
 		this.state = {
 			wheat: 0,
-			level: '',
+			level: 0,
 			img: '',
 			nextincome: '',
-			income: ''
+			income: 0
 		};
 	}
 
