@@ -99,7 +99,7 @@ router.route("/villageupdate").post((req, res) => {
             village_findOne_result.buildings.warehouse.stone = maxStone;
           } 
           if(village_findOne_result.buildings.warehouse.metal > maxStone){
-            village_findOne_result.buildings.warehouse.stone = maxStone;
+            village_findOne_result.buildings.warehouse.metal = maxStone;
           }
 
           newdate = JSON.parse(body).result;
