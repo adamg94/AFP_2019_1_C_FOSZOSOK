@@ -3,7 +3,7 @@ import axios from 'axios';
 import './sass/Ironmine.sass';
 import './sass/Temple.sass';
 import { getFromStorage } from './utils/storage';
-import f1 from './img/ironmine.png';
+import f1 from './img/temple/temple.png';
 /*import f2 from './img/'
 import f3 from './img/'
 nem találtam a fás háznak még másik két képet :(

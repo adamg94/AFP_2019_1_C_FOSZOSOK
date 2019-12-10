@@ -54,7 +54,16 @@ router.route("/villageupdate").post((req, res) => {
             GAMESETTINGS.TEMPLE_MULTIPLIER = 1;
           }
           let maxMaterial =
-            village_findOne_result.buildings.warehouse.level * 1000;
+            village_findOne_result.buildings.warehouse.level * 10000;
+          let maxStone;
+          let maxGold;
+          if(village_findOne_result.buildings.warehouse.level == 1){
+            maxStone = 700;
+            maxGold = 300;
+          } else{
+            maxStone = village_findOne_result.buildings.warehouse.level * 5986 + 700,
+						maxGold = village_findOne_result.buildings.warehouse.level * 1994 + 300
+          }
           newdate = JSON.parse(body).result;
           const timeSinceLastUpdate = parseFloat(
             (Date.parse(newdate) -
@@ -165,6 +174,9 @@ router.route("/villageupdate").post((req, res) => {
             } else {
               village_findOne_result.buildings.warehouse.copper_chance += current_c_chance;
             }
+            if(village_findOne_result.buildings.warehouse.copper > maxGold){
+              village_findOne_result.buildings.warehouse.copper = maxGold;
+            }
             //silver
 
             if (s_chance + current_s_chance >= chance) {
@@ -174,6 +186,9 @@ router.route("/villageupdate").post((req, res) => {
               village_findOne_result.buildings.warehouse.silver_chance = 0;
             } else {
               village_findOne_result.buildings.warehouse.silver_chance += current_s_chance;
+            }
+            if(village_findOne_result.buildings.warehouse.silver > maxGold){
+              village_findOne_result.buildings.warehouse.silver = maxGold;
             }
             //gold
 
@@ -186,6 +201,9 @@ router.route("/villageupdate").post((req, res) => {
               village_findOne_result.buildings.warehouse.gold_chance += current_g_chance;
             }
             village_findOne_result.buildings.warehouse.last_check = newdate;
+          }
+          if(village_findOne_result.buildings.warehouse.gold > maxGold){
+            village_findOne_result.buildings.warehouse.gold = maxGold;
           }
 
           village_findOne_result.lastupdate = newdate;

@@ -28,7 +28,9 @@ class Village extends React.Component {
       brick_img: "",
       iron_img: "",
       warehouseLevel: 0,
-      maxmaterial: 0
+      maxmaterial: 0,
+      maxStone: 0,
+      maxGold:0
     };
   }
   tick() {
@@ -42,6 +44,13 @@ class Village extends React.Component {
       this.setState({
         iron: this.state.iron + (this.state.iron_level * 80) / 3600
       });
+    }
+    else{
+      this.setState({
+        wood: this.state.maxmaterial,
+        brick: this.state.maxmaterial,
+        iron: this.state.maxmaterial
+      })
     }
   }
   componentDidMount() {
@@ -66,8 +75,17 @@ class Village extends React.Component {
           wood_level: res.data.village.buildings.lumberyard.level,
           brick_level: res.data.village.buildings.brickyard.level,
           iron_level: res.data.village.buildings.ironmine.level,
-          warehouseLevel: res.data.village.buildings.warehouse.level
+          warehouseLevel: res.data.village.buildings.warehouse.level,
+          maxmaterial: parseInt(res.data.village.buildings.warehouse.level * 1000),
+          maxStone: parseInt(res.data.village.buildings.warehouse.level * 5986 + 700),
+          maxGold : parseInt(res.data.village.buildings.warehouse.level * 1994 + 300)
         });
+        if(res.data.village.buildings.warehouse.level == 1){
+          this.setState({
+            maxStone: 700,
+            maxGold : 300
+          })
+        }
         this.timerInterval = setInterval(this.tick.bind(this), 1000);
         this.setState({
           wood_img: <img id="lumberyardimg" alt="" src={f1} />,
@@ -75,7 +93,6 @@ class Village extends React.Component {
           wood_income: this.state.wood_level * 80,
           brick_income: this.state.brick_level * 80,
           iron_income: this.state.iron_level * 80,
-          maxmaterial: this.state.warehouseLevel * 1000
         });
 
         if (this.state.brick_level > 0) {

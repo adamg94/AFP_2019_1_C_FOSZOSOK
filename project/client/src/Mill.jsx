@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import './sass/Ironmine.sass';
 import { getFromStorage } from './utils/storage';
-import f1 from './img/ironmine.png';
+import f1 from './img/mill/mill.png';
 
 class Mill extends React.Component {
 	constructor(props) {
