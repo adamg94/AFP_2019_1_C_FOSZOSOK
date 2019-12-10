@@ -15,12 +15,16 @@ class Brickyard extends React.Component {
       level: "",
       img: "",
       nextincome: "",
-      income: ""
+      income: "",
+      maxamount: 0
     };
   }
 
   tick() {
-    this.setState({ brick: this.state.brick + (this.state.level * 80) / 3600 });
+    if(this.state.brick < this.state.maxamount){
+      this.setState({ brick: this.state.brick + (this.state.level * 80) / 3600 });
+    }
+    else{this.setState({brick:this.state.maxamount})}
   }
 
   componentDidMount() {
@@ -32,8 +36,9 @@ class Brickyard extends React.Component {
       };
       axios.post("http://localhost:5000/village/getinfo", data).then(res => {
         this.setState({
-          brick: res.data.village.buildings.warehouse.brick,
-          level: res.data.village.buildings.brickyard.level
+          brick: parseInt(res.data.village.buildings.warehouse.brick),
+          level: res.data.village.buildings.brickyard.level,
+          maxamount: parseInt(res.data.village.buildings.warehouse.level * 10000)
         });
 
         this.timerInterval = setInterval(this.tick.bind(this), 1000);
