@@ -12,6 +12,10 @@ A session tokent a rendszer megfelelõen generálja és kilépéskor megfelelõen törl
 Update rendszer:
 Itt észleltem egy hibát a raktár rendszerébe, a kõre és vasra nem volt rávizsgálva, hogy a maximum mennyiséget elérte-e és lehetséges volt a végtelenségig növelni. Ez a hiba javítva lett.
 
+Frontend: 
+A termelõk nem igazodtak a raktár szintjéhez, jelezték a termelést, adatbázisba nem mentettek, mindne újratöltéskor visszaálltak a maximumra. Javítva lett.
+Egyes képek a falu kirajzolásánál összecsúsztak a fal elhelyezése után, javítva lett
+
 Navigációs sáv:
 A navigációs sávon a megfelelõ épületre kattintva a megfelelõ épület oldala jelenik meg, a tálca és a kilépés gomb is az elvártnak megfelelõen mûködik.
 
