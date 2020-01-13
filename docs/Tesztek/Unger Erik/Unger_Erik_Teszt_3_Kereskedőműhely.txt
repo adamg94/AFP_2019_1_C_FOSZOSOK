@@ -1,0 +1,14 @@
+Project név:AFP_2019_1_C_FOSZOSOK
+Utolsó mentés kelte:2019.12.11.
+Teszt rövid leírása:Funkció tesztelése.
+Javítás rövid leírása: Kereskedőműhely implementálása. Az oldalra lépve megjelenik. A kereskedőműhelynek nincs nagyon funkciója. Maximális szintje 10 lehet. A szintet a kereskedőház letudja kérni.
+Tesztelést végző személyek: Unger Erik
+Hatás:(magas/közepes/alacsony) Magas.
+Eredmény:(Megfelelt/Nem felelt meg/ Megfelelt megyjegyzésekkel) Megfelelt megyjegyzésekkel.
+Megjegyzések: Kimaradt a progressiv bar, meg a max szint se volt beállítva. A "Current increase" az aktuális szint számát mutatta, és nem a százalékot, ezért még be kellett szorozni tízzel és a végére rakni egy százalékjelet. Ezek természetesen tesztelve lettek és javítva.
+
+Tesztelést elvégezte
+Név: Unger Erik
+Beosztás: Programozó
+Aláírás: Unger Erik	
+Dárum:2019.12.11.

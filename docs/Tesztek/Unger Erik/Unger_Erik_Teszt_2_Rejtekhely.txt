@@ -1,0 +1,15 @@
+Project név:AFP_2019_1_C_FOSZOSOK
+Utolsó mentés kelte:2019.12.10.
+Teszt rövid leírása:Funkció tesztelése.
+Javítás rövid leírása: Rejtekhely implementálása. Az oldalra lépve megjelenik. A rejtekhely ugyanúgy működik, mint a raktár csak a kapacitása kisebb. Az updaterben létre lettek hozva neki új változók.
+Ha a nyersanyag több, mint amit eltud tárolni akkor visszaírja a max nyersanyagra.
+Tesztelést végző személyek: Unger Erik
+Hatás:(magas/közepes/alacsony) Magas.
+Eredmény:(Megfelelt/Nem felelt meg/ Megfelelt megyjegyzésekkel) Megfelelt megyjegyzésekkel.
+Megjegyzések: Kimaradt egy import, de javítva lett. Szintenkénti tárolás mennyisége is el volt írva (lemaradt egy nulla), de később ez is javítva lett.
+
+Tesztelést elvégezte
+Név: Unger Erik
+Beosztás: Programozó
+Aláírás: Unger Erik	
+Dárum:2019.12.10.

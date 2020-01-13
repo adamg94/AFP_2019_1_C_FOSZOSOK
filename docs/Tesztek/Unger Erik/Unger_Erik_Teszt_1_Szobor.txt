@@ -1,0 +1,14 @@
+Project név:AFP_2019_1_C_FOSZOSOK
+Utolsó mentés kelte:2019.12.09.
+Teszt rövid leírása:Funkció tesztelése.
+Javítás rövid leírása: Szobor implementálása. A szobor oldalára lépve megjelenik az oldal. A szobor az egész termelést beszorozza. Ez egy global változóval lett megoldva. A raktár és a rejtekhely tárolási kapacitását megnöveli.
+Tesztelést végző személyek: Unger Erik
+Hatás:(magas/közepes/alacsony) Magas.
+Eredmény:(Megfelelt/Nem felelt meg/ Megfelelt megyjegyzésekkel) Megfelelt megyjegyzésekkel.
+Megjegyzések: Import hiba miatt nem lehetett rámenni az oldalra, az indexből is kimaradt. Ezek tesztelve lettek és javítva.
+
+Tesztelést elvégezte
+Név: Unger Erik
+Beosztás: Programozó
+Aláírás: Unger Erik	
+Dárum:2019.12.09.
