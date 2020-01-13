@@ -1,0 +1,14 @@
+Project név: AFP_2019_1_C_FOSZOSOK
+Utolsó mentés kelte: 2019.12.12.
+Teszt rövid leírása: Funkció tesztelése
+Javítás rövid leírása: Merch implementálása, főprogrambeli hatás ellenőrzése.Egyenlőre funkció nélküli csak egy menü elem, mely megjeleníti az adott képet és kiírja a működését.
+Tesztelést végző személy: Komjáti Ákos
+Hatás:(magas/közepes/alacsony) Alacsony
+Eredmény:(Megfelelt/Nem felelt meg/ Megfelelt megyjegyzésekkel) Megfelelt megjegyzésekkel.
+Megjegyzések: Működést később kell megvalósítani.
+
+Tesztelést elvégezte
+Név:Komjáti Ákos
+Beosztás: Programozó
+Aláírás:Komjáti Ákos
+Dárum:2019.12.12

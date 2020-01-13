@@ -1,0 +1,14 @@
+Project név:AFP_2019_1_C_FOSZOSOK
+Utolsó mentés kelte:2019.12.14.
+Teszt rövid leírása:Funkció tesztelése.
+Javítás rövid leírása: Nemesfémkohó implementálása. Input mezők megadva, gomb a helyére téve, jelenlegi nyersanyagaink láthatóak.
+Tesztelést végző személyek: Komjáti Ákos
+Hatás:(magas/közepes/alacsony) Magas.
+Eredmény:(Megfelelt/Nem felelt meg/ Megfelelt megyjegyzésekkel) Megfelelt megjegyzésekkel.
+Megjegyzések: Befejezni, hogy minden funkciója működhessen és a tesztelés is befejeződhessen.
+
+Tesztelést elvégezte
+Név:Komjáti Ákos
+Beosztás: Programozó
+Aláírás: Komjáti Ákos	
+Dárum:2019.12.14.

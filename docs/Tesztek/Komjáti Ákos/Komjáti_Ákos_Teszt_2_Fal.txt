@@ -1,0 +1,15 @@
+Project név:AFP_2019_1_C_FOSZOSOK
+Utolsó mentés kelte:2019.12.13.
+Teszt rövid leírása:Funkció tesztelése.
+Javítás rövid leírása: Fal implementálása. Egy funkciótlan menü elem, kesőbb a város védelmét fogja ellátni.
+Tesztelést végző személyek: Komjáti Ákos
+Hatás:(magas/közepes/alacsony) Alacsony.
+Eredmény:(Megfelelt/Nem felelt meg/ Megfelelt megyjegyzésekkel) Megfelelt megjegyzésekkel.
+Megjegyzések:Jobb képet, amely körül öleli a falut, majd kesőbb egy művészíbb emberrel aki kompetens
+készíttetni kell.
+
+Tesztelést elvégezte
+Név:Komjáti Ákos
+Beosztás: Programozó
+Aláírás: Komjáti Ákos	
+Dárum:2019.12.13.
