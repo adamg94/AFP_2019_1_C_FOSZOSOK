@@ -1,0 +1,14 @@
+﻿Project név:
+Utolsó mentés kelte:
+Teszt rövid leírása:
+Javítás rövid leírása:
+Tesztelést végző személyek:
+Hatás:(magas/közepes/alacsony)
+Eredmény:(Megfelelt/Nem felelt meg/ Megfelelt megjegyzésekkel)
+Megjegyzések:
+
+Tesztelést elvégezte
+Név:
+Beosztás:
+Aláírás:
+Dárum:
