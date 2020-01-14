@@ -1,0 +1,14 @@
+Project név:AFP_2019_1_C_FOSZOSOK
+Utolsó mentés kelte:2019.12.10.
+Teszt rövid leírása:Funkció tesztelése.
+Javítás rövid leírása: Raktár implementálása.A raktár oldalára navigálva az elvártnak megfelelően jelenik meg az oldal. A funckiója abból áll, hogy meghatározza mennyi nyersanyag tárolható.
+Tesztelést végző személyek: Török Dániel
+Hatás:(magas/közepes/alacsony) Magas.
+Eredmény:(Megfelelt/Nem felelt meg/ Megfelelt megyjegyzésekkel) Megfelelt megjegyzésekkel.
+Megjegyzések:Hiba volt, hogy leállította a termelést ahelyett, hogy nem engedte volna menteni az adatbázisba, ez később javítva lett.
+
+Tesztelést elvégezte
+Név: Török Dániel
+Beosztás: Programozó
+Aláírás: Török Dániel	
+Dárum:2019.12.10.

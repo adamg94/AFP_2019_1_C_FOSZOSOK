@@ -1,0 +1,14 @@
+﻿Project név:AFP_2019_1_C_FOSZOSOK
+Utolsó mentés kelte:2019.12.12.
+Teszt rövid leírása:Funkció tesztelése.
+Javítás rövid leírása: Búzamező implementálása. Az implementálás sikeres volt a tesztek során semmilyen hibát nem észleltem.
+Tesztelést végző személyek: Török Dániel
+Hatás:(magas/közepes/alacsony) Közepes.
+Eredmény:(Megfelelt/Nem felelt meg/ Megfelelt megjegyzésekkel) Megfelelt.
+Megjegyzések: 
+
+Tesztelést elvégezte
+Név: Török Dániel
+Beosztás: Programozó
+Aláírás: Török Dániel	
+Dárum:2019.12.12.

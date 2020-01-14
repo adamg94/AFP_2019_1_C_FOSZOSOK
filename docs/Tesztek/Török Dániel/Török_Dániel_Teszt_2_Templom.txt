@@ -1,0 +1,14 @@
+﻿Project név: AFP_2019_1_C_FOSZOSOK
+Utolsó mentés kelte:2019.12.11.
+Teszt rövid leírása: Funkció tesztelése.
+Javítás rövid leírása: Templom implementálása. A templom a morált túl gyorsan csökkentette és nem mentette megfelelően az adatbázisba. Ez később javítva lett. A morál az elvártaknak megfelelően befolyásolja a nyersanyag termelést, egy globális változót állítva a morálszintnek megfelelően.
+Tesztelést végző személyek: Török Dániel
+Hatás:(magas/közepes/alacsony) Magas.
+Eredmény:(Megfelelt/Nem felelt meg/ Megfelelt megjegyzésekkel) Megfelelt megjegyzésekkel.
+Megjegyzések: Új felhasználó nem tudott misét indítani, mert logikai hiba történt. Rá lett vizsgálva, hogy nincs-e folyamatban mise ÉS az utolsó mise óta eltelt-e a megfelelő időmennyiség. Nyilván nem telt el mivel nem volt előző mise, ezért a gomb soha nem jelent meg az új játékosnak. Ez a hiba javítva lett
+
+Tesztelést elvégezte
+Név: Török Dániel
+Beosztás: Programozó
+Aláírás: Török Dániel	
+Dárum:2019.12.11.
