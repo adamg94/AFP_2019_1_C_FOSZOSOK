@@ -1,0 +1,18 @@
+Project név:AFP_2019_1_C_FOSZOSOK
+Utolsó mentés kelte:2019.12.01.
+Teszt rövid leírása:Funkció tesztelése.
+Javítás rövid leírása: Belépés és regisztráció rendszer. Létező felhasználó esetén: Korábban egy létező felhasználónév és jelszó beírását követően,
+a Play gombra való kattintáskor nem töltötte be a falut, mert a komponens fejlesztője elfelejtette
+átirányítani. Csak Akkor irányított át, ha regisztrációt követően történt a belépés.
+Tesztelést végző személyek: Gulyás Ádám
+Hatás:(magas/közepes/alacsony) Magas.
+Eredmény:(Megfelelt/Nem felelt meg/ Megfelelt megyjegyzésekkel) Megfelelt megjegyzésekkel.
+Megjegyzések: Regisztráció és azután belépés:
+ha nincs felhasználó, akkor létrehozza azt, s a rendszer egyből belépteti.
+Minden a megfelelően működik.
+
+Tesztelést elvégezte
+Név: Gulyás Ádám
+Beosztás: Programozó
+Aláírás: Gulyás Ádám	
+Dátum:2019.12.01.

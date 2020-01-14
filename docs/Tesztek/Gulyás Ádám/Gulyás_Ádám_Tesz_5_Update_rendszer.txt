@@ -1,0 +1,14 @@
+Project név:AFP_2019_1_C_FOSZOSOK
+Utolsó mentés kelte:2019.12.05.
+Teszt rövid leírása:Funkció tesztelése.
+Javítás rövid leírása: Update rendszer hiba javítás.
+Tesztelést végző személyek: Gulyás Ádám
+Hatás:(magas/közepes/alacsony) Magas.
+Eredmény:(Megfelelt/Nem felelt meg/ Megfelelt megyjegyzésekkel) Megfelelt megyjegyzésekkel.
+Megjegyzések: Itt észleltem egy hibát a raktár rendszerébe, a kőre és vasra nem volt rávizsgálva, hogy a maximum mennyiséget elérte-e és lehetséges volt a végtelenségig növelni. Ez a hiba javítva lett.
+
+Tesztelést elvégezte
+Név: Gulyás Ádám
+Beosztás: Programozó
+Aláírás: Gulyás Ádám	
+Dátum:2019.12.05.

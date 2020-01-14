@@ -1,0 +1,14 @@
+Project név:AFP_2019_1_C_FOSZOSOK
+Utolsó mentés kelte:2019.12.03.
+Teszt rövid leírása:Funkció tesztelése.
+Javítás rövid leírása: A navigációs sávon a megfelelő épületre kattintva a megfelelő épület oldala jelenik meg, a tálca és a kilépés gomb is az elvártnak megfelelően működik.
+Tesztelést végző személyek: Gulyás Ádám
+Hatás:(magas/közepes/alacsony) Közepes.
+Eredmény:(Megfelelt/Nem felelt meg/ Megfelelt megyjegyzésekkel) Megfelelt.
+Megjegyzések: 
+
+Tesztelést elvégezte
+Név: Gulyás Ádám
+Beosztás: Programozó
+Aláírás: Gulyás Ádám	
+Dátum:2019.12.03.

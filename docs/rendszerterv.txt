@@ -41,29 +41,105 @@ VIII. Felkészülés a projekt bemutatására.
 IX. Projekt bemutatása
 
 3. Üzleti folyamatok végleges modellje
-
+A képek között található a modell.
 
 4. Követelménylista
 
+ID  Modul       	Név         			Fejezet             		Leírás
+1   Program     	Technológia     		2.9, 1.2, 1.4           	Platformfüggetlen asztali alkalmazást szeretnénk, amit tovább lehet majd fejleszteni.
+2   Főoldal     	Bejelentkezőfelület 	1.2, 1.4, 2.5, 2.9, 2.3     Regisztrálás és bejelentkezés lehetősége.
+3   Főoldal     	Bejelentkezőfelület 	1.2, 1.4, 2.5, 2.9, 2.3     A már regisztrált felhasználók tárolása adatbázisban.
+4   Főoldal     	Regisztráció        	1.2, 1.4, 2.5, 2.9, 2.3     Ismeretlen fhsz.név esetén létrehozza magától a profilt, a megadott jlsz-val.
+5   Főoldal     	Bejelentkezőfelület     1.2, 2.3                	Bal oldalt lenne egy ablak magasságával megegyező box, itt lehetne a bejelentkezés.
+6   Főoldal     	Bejelentkezőfelület     1.2, 2.3                	Jobb oldalt a bejelentkezésfelület mellett egy kép lenne a játékról.
+7   Főoldal     	Bejelentkezőfelület     1.2, 2.3, 2.9           	A felhasználó név: [A-z][0-9] így nézhet ki és a  jelszó minimum 5 karakter.
+8   Játék index     Dizájn          		1.2, 2.3,           		Bejelentkezés után rögtön egy grafikusan megjelenített faluba dobna a rendszer.
+9   Játék index     Dizájn          		1.2, 2.3,           		A rendszer jelezze a nyersanyagok számát és egyéb termelési információkat
+10  Játék index     Dizájn          		1.2, 2.3            		Minden épületnek legyen külön oldala leírással, és különböző adatokkal.
+11  Játék index     Dizájn          		1.2, 2.3            		A játék képernyőjén legfelül legyen egy navigációs sáv.
+12  Falu            Játék          			3.4, 3.5        			A falu grafikusan megjelenik, az épületek kis képekként kattinthatóak.
+13  Palota          Játék          			3.4, 3.5             		Építés lehetősége megvalósítva, jelenlegi építkezések nem láthatóak.
+14  Termelés        Játék          			3.4, 3.5             		Az alap és ritka nyersanyagok termelődnek.
+15  Templom         Játék          			3.4, 3.5             		Misék tartása megvalósítva.
+16  Szobor          Játék          			3.4, 3.5             		Szobor passzív épület megvalósítva.
+17  Kereskedő m.    Játék          			3.4, 3.5             		A kereskedő műhely megvalósítva.
+18  Fal             Játék          			3.4, 3.5             		Fal megvalósítva.
+19  Raktár          Játék          			3.4, 3.5             		Raktár megvalósítva, különleges anyagok funkciói megírva.
+20  Rejtekhely      Játék          			3.4, 3.5             		Rejtekhely alapépület megvalósítva.
+21  Malom           Játék          			3.4, 3.5             		Malom megvalósítva.
 
 5. Funkcionális terv
+
+Ebben a fejezetben az elkészült funkciók kerülnek megvitatásra.
+
+
+Belépés/Regisztráció/Játék:
+Az alapelvárás szerint, ha nincs felhasználó, hát regisztráljon automatikusan.
+Ha van, akkor pedig léptesse be. Amint automatikusan regisztrált, szintén léptesse.
+Ezen rendszerek megvalósításra kerültek, néhány kisebb hiba felmerült ugyan, de a rendszer ezen
+komponense hibamentesen, az elvártaknak megfelelően működik. A megvalósítás során ügyelni kellett arra,
+hogy a felhasználó a be és kilépés során egyedi sessiontokenje csak addig éljen, ameddig be van lépve.
+Ezen kívül a tokent úgy kellett megalkotni, hogy azt a többi alrendszer is használhassa azonosítás,
+jogosultság szempontjából. A fejlesztés során felmerült a kliens manipulálhatóságának a problémája,
+miszerint a html szerkesztőben könnyedén átírható minden, ezért sok helyen a szerver és kliensoldalon is
+különböző ellenőrzések duplán futnak le. Az egész programot lényegében két .js file kelti életre mely folyamatosan
+kommunikál az adatbázissal. Ezen két fájl lényegesen sok kódot tartalmaznak, mivel hamar rá kellett jönni, hogy
+bizony az egyes rendszereket csak úgy tudjuk "hamisított" háttérfolyamatnak álcázni, ha azok minden interakció
+vagy oldalfrissítés során újra kiértékelődtek. Miért? Mert ha a szerveren minden egyes pillanatban, vagy időközönként
+minden falu, minden szegmensét, összes épületét, egyéb adatát frissítenénk, akkor az nagyon leterhelné az egészet.
+A felhaszáló szemszögéből az egész úgy néz ki, mintha folyamatosan zajlana a játék, hiszen még kliensoldalra
+beültettünk vizualizálást is. (pl. a termelés folyamatosan látszik) mely úgy működik, hogy a legutolsó kapott frissítéskor
+a kliens lekéri a termelő szintjét, a raktár szintjét és csupán ezekből képes olyan "animációt" készíteni ami vizualizálja
+a termelést, de az igazság az, hogy akkor abban az adott pillanatban neki csak annyi nyersanyaga van, amennyi az utolsó frissítéskor volt.
+Ha újra frissít természetesen jóváíródik az az idő óta eltelt mennyiség.
+A játék ezen az alapelven épült fel, minden épület az utolsó eltelt frissítés ideje alapján számolgat.
+Megjegyzés: 
+Így átlátva a rendszert az fogalmazódott meg bennünk, hogy a túl sok kódból és rengeteg frissítésből álló rendszer
+valószínűleg több száz játékos esetén nagyban megterhelne egy szervert. Tényleg frissíteni kell minden oldal frissítéskor mindent?
+Ha nem abba az adott épületbe lépek be, akkor annak a részét egyelőre ne frissítsem. Körvonalozódik ki erre a következő kérdés:
+De mi a helyzet, ha emiatt nem frissülne egy épület megépítése és ez visszaveti pl. a termelést, mert lassabban termelne.
+A megoldás az lenne, ha a szerveren el lehetne helyezni úgy nevezett eseményeket, de ehhez az egész rendszert úgy kellett
+volna kialakítani, mintha egy szerver létezne ami figyel ezen eseményekre. 
+Természetesen jelenleg is eseményalapú a rendszer, csak épp nem olyan események bekövetkeztekor frissít, mint pl.
+befejezett építés, hanem csak oldalfrissítéskor és valamilyen interakció (építés indítása, mise indítása) stb során.
+
+Játék alrendszeri: Épületek, Dizájn, UI tervezés
+
+Az elkészült épületek többsége a rendeltetésének megfelelően működik, néhány éület máshogy működik.
+Egy-kettő pedig nem került kifejlesztésre. Az egyes épületek gyakorlatilag két rendszerre bonthatóak.
+A passzív és aktív épületekre melyek alatt azt értjük, hogy konkrétan van interkaciója a játékossal vagy sincs.
+Hiszen ha előbbi, akkor jóformán csak az adott épület hatását kell mindig frissíteni, de ha aktív is, akkor meg kell
+írni magát az aktív rendszert is. Ilyen pl. a palota mely interkaciója pl. az építés.
+Ezen elvet követve létrehoztunk egy épületsablont, amely minden másik épületre is meghívható, lényegében a fájlok
+kerültek lemásolásra és a megfelelő helyeken át lettek írva (ez kliensoldalra értendő). Persze mivel újak vagyunk a React
+rendszerben valami oldalkigenerálást meg kellett volna oldani ahelyett, hogy minden épületnek meg van a maga fájlja.
+Szerver oldalon pedig az updater.js és a village.js az amelyek végzik ezeket. Az updater neve beszédes, a village.js
+az ami a konkrét aktív épületek funkcióit is megvalósítja.
+
+Dizájn: Mivel a megrendelő nem igazán tért ki arra, hogy milyen színvilág és a játék konkrét részeit sem taglalta,
+így jóformán a képernyőtervek megvalósításán kívül mindenben improvizált a frontendes. Alapvető cél volt
+egy minimalista, egyszerű letisztult, modernnek mondható dizájn kialakítása, de az épületek képei lehetséges, hogy
+csúfítják.
+
+UI tervezés: A felhasználói felületeket úgy próbáltuk kialakítani, hogy azokat kellően könnyű legyen kezelni.
+Mindent a megfelelő helyekre próbáltunk elhelyezni, a lényeges információkat olyan helyen megjeleníteni ahol szükséges.
 
 
 6. Fizikai környezet
 Futtató környezet:
-	-Windows 7 vagy újabb
-	-Ubuntu 12.04 vagy újabb
-	-macOS 10.10 (Yosemite) vagy újabb
+    -Windows 7 vagy újabb
+    -Ubuntu 12.04 vagy újabb
+    -macOS 10.10 (Yosemite) vagy újabb
 Minimum hardver:
-	-processzor: Intel Pentium 4 vagy újabb
-	-memória: 512 MB RAM
-	-videókártya: bármilyen integrált mely, megfelelő korú a processzorral
+    -processzor: Intel Pentium 4 vagy újabb
+    -memória: 512 MB RAM
+    -videókártya: bármilyen integrált mely, megfelelő korú a processzorral
 Ajánlott hardver:
-	-processzor: 8. genenárciós Intel i3
-	-memória: 4 GB DDR 3 1333 Mhz
-	-videókártya: több féle NVIDIA vagy integrált
+    -processzor: 8. genenárciós Intel i3
+    -memória: 4 GB DDR 3 1333 Mhz
+    -videókártya: több féle NVIDIA vagy integrált
 Elérhető szoftverek:
-	-Electron
+    -Electron
 Fejlesztői környezet:
-	-Visual Studio Code
-	-Notepad++
+    -Visual Studio Code
+    -Notepad++

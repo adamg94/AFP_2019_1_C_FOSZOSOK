@@ -1,0 +1,14 @@
+Project név:AFP_2019_1_C_FOSZOSOK
+Utolsó mentés kelte:2019.12.05.
+Teszt rövid leírása:Funkció tesztelése.
+Javítás rövid leírása: A termelők nem igazodtak a raktár szintjéhez, jelezték a termelést, adatbázisba nem mentettek, mindne újratöltéskor visszaálltak a maximumra. Javítva lett.
+Tesztelést végző személyek: Gulyás Ádám
+Hatás:(magas/közepes/alacsony) Közepes.
+Eredmény:(Megfelelt/Nem felelt meg/ Megfelelt megyjegyzésekkel) Megfelelt megyjegyzésekkel.
+Megjegyzések: Egyes képek a falu kirajzolásánál összecsúsztak a fal elhelyezése után, javítva lett
+
+Tesztelést elvégezte
+Név: Gulyás Ádám
+Beosztás: Programozó
+Aláírás: Gulyás Ádám	
+Dátum:2019.12.05.

@@ -1,0 +1,18 @@
+Project név:AFP_2019_1_C_FOSZOSOK
+Utolsó mentés kelte:2019.12.02.
+Teszt rövid leírása:Funkció tesztelése.
+Javítás rövid leírása: Session rendszer. Token adása: A token-t megfelelően generálja a rendszer, működik az ellenőrzés is. Ablak bezárásakor a session-t bezárja a rendszer. Minden az elvártaknak működik.
+Azonban, ha a felhasználó nem lép be, de ki akar lépni az X gomb megnyomásával,
+akkor a rendszer nem engedi őt kiléptetni.
+Miért? Mert az ablakot akkor lehet bezárni, ha a session-t elmentette, de belépés előtt
+nem létezik még a session.
+Tesztelést végző személyek: Gulyás Ádám
+Hatás:(magas/közepes/alacsony) Magas.
+Eredmény:(Megfelelt/Nem felelt meg/ Megfelelt megyjegyzésekkel) Megfelelt.
+Megjegyzések:
+
+Tesztelést elvégezte
+Név: Gulyás Ádám
+Beosztás: Programozó
+Aláírás: Gulyás Ádám	
+Dátum:2019.12.02.
