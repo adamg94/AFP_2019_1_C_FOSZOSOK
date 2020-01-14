@@ -12,4 +12,4 @@ Tesztelést elvégezte
 Név: Unger Erik
 Beosztás: Programozó
 Aláírás: Unger Erik	
-Dárum:2019.12.10.
+Dátum:2019.12.10.
