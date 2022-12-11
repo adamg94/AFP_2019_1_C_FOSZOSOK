@@ -27,7 +27,7 @@
   "homepage": "https://github.com/adamg94/AFP_2019_1_C_FOSZOSOK#readme",
   "dependencies": {
     "electron": "^7.1.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "request": "^2.88.0"
   }
 }
